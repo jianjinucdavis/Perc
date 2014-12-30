@@ -1,1 +1,1 @@
-export(PercMatrix)
+export(PercMatrix, sim.rank.order)
