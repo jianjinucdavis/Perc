@@ -1,4 +1,4 @@
-PercolationMatrix <- function(data, path.length = 2) {
+PercMatrix <- function(data, path.length = 2) {
   
   ## PercolationMatrix Function takes the input as an edgelist from 
   ##     a directed weighted network. 
