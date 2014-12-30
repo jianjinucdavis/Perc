@@ -1,11 +1,19 @@
+#' Find the certainty of dominance interactions.
+#' 
+#' @param data a data frame. Edgelist. With the first column named "Initiator"; the second column named "Recipient". 
+#' @param path.length an integer between 2 to 4, representing the length of indirect pathways used in finding dominance interactions.
+#' @return a dataframe representing dominance certainty matrix.
+#' @examples
+#' PercMatrix(edgelist1)
+#' PercMatrix(edgelist2)
+
 PercMatrix <- function(data, path.length = 2) {
   
   ## PercolationMatrix Function takes the input as an edgelist from 
   ##     a directed weighted network. 
   ##   output: a dataframe. Gives the certainty of dominance interactions.
   
-  ## data: a data frame. Edgelist. With the first column named "Initiator"; 
-  ##       the second column named "Recipient". 
+  ## 
   
   ## path.legn: the length of indirect pathways used. an integer between 2 to 4.
   
