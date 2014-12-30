@@ -3,7 +3,8 @@ Type: Package
 Title: What the package does (short line)
 Version: 1.0
 Date: 2014-12-29
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: xxx
+Contributor: xxx 
+Maintainer: Jian Jin <jinjian.pku@gmail.com>
+Description: Find the certainty of dominance interactions with indirect interactions being considered.
+License: GNU 3
