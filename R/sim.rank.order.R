@@ -47,5 +47,6 @@ sim.rank.order <- function(data, kmax = 5){
   RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
   
   Rank <- RankingID[,c("SubjectRanking", "ID")]
-  return(Rank)
+  Rank.ordered <- Rank[order(Rank$SubjectRanking), ]
+  return(Rank.ordered)
 }
