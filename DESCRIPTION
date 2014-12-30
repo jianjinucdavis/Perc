@@ -1,10 +1,11 @@
 Package: Perc
 Type: Package
 Title: What the package does (short line)
-Version: 0.3
+Version: 0.33
 Date: 2014-12-29
 Author: xxx
 Contributor: xxx 
 Maintainer: Jian Jin <jinjian.pku@gmail.com>
 Description: Find the certainty of dominance interactions with indirect interactions being considered.
 License: GNU 3
+LazyData: true
