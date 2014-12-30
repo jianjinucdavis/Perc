@@ -18,7 +18,6 @@ a dataframe representing dominance certainty matrix.
 Find the certainty of dominance interactions.
 }
 \examples{
-PercMatrix(edgelist1)
-PercMatrix(edgelist2)
+PercOutput <- PercMatrix(SampleEdgelist, 2)
 }
 

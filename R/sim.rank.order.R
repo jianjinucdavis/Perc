@@ -1,8 +1,17 @@
-sim.rank.order <- function(df, kmax = 5){
+#' Find the certainty of dominance interactions.
+#' 
+#' @param data a data frame. the output from PercMatrix
+#' @param kmax an integer between 2 to 1000
+#' @return a dataframe representing simulated rank order.
+#' @examples
+#' rank <- sim.rank.order(PercOutput, 5)
+#' head(rank)
+
+sim.rank.order <- function(data, kmax = 5){
   # input df, a dataframe, the output from percolation function.
   
   # run the SimAnneal.R manually. 
-  percMat2 <- as.matrix(df) 
+  percMat2 <- as.matrix(data) 
   ### Run the simulated annealing many times, since it sometimes gets 
   ### stuck in local minima.
   sim.ann1 = SimAnneal(percMat2, kmax)

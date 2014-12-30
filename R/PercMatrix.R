@@ -4,8 +4,7 @@
 #' @param path.length an integer between 2 to 4, representing the length of indirect pathways used in finding dominance interactions.
 #' @return a dataframe representing dominance certainty matrix.
 #' @examples
-#' PercMatrix(edgelist1)
-#' PercMatrix(edgelist2)
+#' PercOutput <- PercMatrix(SampleEdgelist, 2)
 
 PercMatrix <- function(data, path.length = 2) {
   
