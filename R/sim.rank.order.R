@@ -41,8 +41,8 @@ sim.rank.order <- function(data, kmax = 5){
   
   RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
                              IDindex = ranking)
-  IDList.index <- data.frame(IDindex = 1:length(names(df)), 
-                             ID = sort(as.numeric(names(df))))
+  IDList.index <- data.frame(IDindex = 1:length(names(data)), 
+                             ID = sort(as.numeric(names(data))))
   
   RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
   
