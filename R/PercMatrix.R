@@ -1,4 +1,4 @@
-#' Find the certainty of dominance interactions.
+#' Find the certainty of dominance interactions
 #' 
 #' @param data a data frame. Edgelist. With the first column named "Initiator"; the second column named "Recipient". 
 #' @param path.length an integer between 2 to 4, representing the length of indirect pathways used in finding dominance interactions.

@@ -1,4 +1,4 @@
-#' Find the certainty of dominance interactions.
+#' Find the rank order
 #' 
 #' @param data a data frame. the output from PercMatrix
 #' @param kmax an integer between 2 to 1000

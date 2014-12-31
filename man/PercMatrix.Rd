@@ -2,7 +2,7 @@
 % Please edit documentation in R/PercMatrix.R
 \name{PercMatrix}
 \alias{PercMatrix}
-\title{Find the certainty of dominance interactions.}
+\title{Find the certainty of dominance interactions}
 \usage{
 PercMatrix(data, path.length = 2)
 }
@@ -15,7 +15,7 @@ PercMatrix(data, path.length = 2)
 a dataframe representing dominance certainty matrix.
 }
 \description{
-Find the certainty of dominance interactions.
+Find the certainty of dominance interactions
 }
 \examples{
 PercOutput <- PercMatrix(SampleEdgelist, 2)

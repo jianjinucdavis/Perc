@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim.rank.order.R
 \name{sim.rank.order}
 \alias{sim.rank.order}
-\title{Find the certainty of dominance interactions.}
+\title{Find the rank order}
 \usage{
 sim.rank.order(data, kmax = 5)
 }
@@ -15,7 +15,7 @@ sim.rank.order(data, kmax = 5)
 a dataframe representing simulated rank order.
 }
 \description{
-Find the certainty of dominance interactions.
+Find the rank order
 }
 \examples{
 rank <- sim.rank.order(PercOutput, 5)
