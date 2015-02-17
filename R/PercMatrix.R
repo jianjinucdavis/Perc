@@ -6,6 +6,26 @@
 #' @examples
 #' PercOutput <- PercMatrix(SampleEdgelist, 2)
 
+##==== to do list ====
+# Input: 
+#    Conflict matrix or edge list (automatically detect type), 
+#     list of subjects with either numeric or character strings (optional), alpha value (optional; can have the function calculate it automatically)
+
+# Output:
+# * Dominance probability matrix with subject names as row/column names ordered by simulated annealing
+# * Costs of different optimal rank orders found + plot of simulated annealing costs
+# * Top X simulated annealing solutions found
+# * Subject IDs with rank in an Nx2 matrix
+# * Heat map of dominance probability matrix
+# * Transitivity, alpha, and counts of transitive/intransitive triangles
+# * Counts of dominance paths of each length
+# * Linearity test statistic + p-value/decision
+
+##==== Correction Notation ====
+#** Important correction needed!
+
+
+
 PercMatrix <- function(data, path.length = 2) {
   
   ## PercolationMatrix Function takes the input as an edgelist from 
@@ -19,7 +39,7 @@ PercMatrix <- function(data, path.length = 2) {
   ## preload IDpaths.R and transitivity.alpha.R
   stopifnot(path.length %in% c(2:4))
   
-  data = data[data$Initiator != 0 & data$Recipient != 0,]
+  data = data[data$Initiator != 0 & data$Recipient != 0,]  ## 
   
   ### Change "Initiator" and "Recipient" to the names of the column headers
   ### This will give you the sorted list of unique subject ID numbers
