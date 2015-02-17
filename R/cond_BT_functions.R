@@ -133,9 +133,9 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
   for(i in 2:N){
     for(j in 1:(i-1)){
       temp1 = (alpha * percMat[i,j] + beta)/(alpha * percMat[i,j] + 
-                                               alpha * percMat[j,i] + 2*beta)
+                                               alpha * percMat[j,i] + 2 * beta)
       temp2 = (alpha * percMat[j,i] + beta)/(alpha * percMat[i,j] + 
-                                               alpha * percMat[j,i] + 2*beta)
+                                               alpha * percMat[j,i] + 2 * beta)
       percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)
       percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)
       if(verbose){print(i)}
