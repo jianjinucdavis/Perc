@@ -51,3 +51,4 @@ as.conflictmat = function(edgelist, swap.order = FALSE){
 # to do: add more sample edgelists and matrices to data folder. 
 # test the codes using sample data
 # test the codes using large data set
+# documentation!!!
