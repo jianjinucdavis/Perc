@@ -1,3 +1,5 @@
+
+### 
 # as.conflictmat() takes in two arguments:
 #   edgelist: A (K x 2) matrix of edges, with the dominant entity in the 1st column
 #   swap.order: If the dominant entity is in the 2nd column, specify as TRUE.
@@ -19,20 +21,11 @@ as.conflictmat = function(edgelist, swap.order = FALSE){
   if(swap.order == TRUE){
     edgelist = edgelist[,2:1]
   }
-  # N = max(edgelist)
-  #? I tested this function using the sample edgelist under data file, 
-  #? it returns an error here. 
-  #? Does N refers to number of subjects here?
-  subjects = sort(unique(c(edgelist[,1], edgelist[,2])))
-  
-  N = length(subjects)
-  
+  N = max(edgelist)
   if(N > 10000){
     stop("Convert edge IDs to integers starting at 1.")
   }
   mat = matrix(0, N, N)
-  #! error here. "Error in mat[edgelist[i, 1], edgelist[i, 2]] : subscript out of bounds"
-  #! original code attached below for corrections.
   for(i in 1:nrow(edgelist)){
     mat[edgelist[i,1], edgelist[i,2]] = mat[edgelist[i,1], edgelist[i,2]] + 1
   }
@@ -40,9 +33,3 @@ as.conflictmat = function(edgelist, swap.order = FALSE){
   return(mat)
 }
 
-
-conf = matrix(0, N, N)
-for(j in 1:nrow(data)){
-  subject1 = which(subjects == data$Initiator[j])
-  subject2 = which(subjects == data$Recipient[j])
-  conf[subject1, subject2] = conf[subject1, subject2] + 1
