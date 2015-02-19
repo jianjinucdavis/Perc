@@ -1,5 +1,14 @@
+#' transform an edgelist into a matrix
+#' 
+#' @param edgelist a data frame. Edgelist. With the first column named "Initiator"; the second column named "Recipient". 
+#' @param path.length an integer between 2 to 4, representing the length of indirect pathways used in finding dominance interactions.
+#' @return a dataframe representing dominance certainty matrix.
+#' @examples
+#' PercOutput <- PercMatrix(SampleEdgelist, 2)
+
+
 # as.conflictmat() takes in two arguments:
-#   edgelist: A (K x 2) matrix of edges, with the dominant entity in the 1st column
+#   edgelist: A (K x 2) matrix of edges, with the dominant entity in the 1st column by default
 #   swap.order: If the dominant entity is in the 2nd column, specify as TRUE.
 # Outputs a matrix with [i,j]th entry equal to the number of times i dominates j.
 # Note: edgelist values should be between 1 and N, where N is the total number of entities.
@@ -7,35 +16,21 @@
 
 
 
-as.conflictmat = function(edgelist, swap.order = FALSE){
-  if(ncol(edgelist) == nrow(edgelist)){
-    class(mat) = c("conf.mat", "matrix")
-    return(mat)
-  }
-  
+edgelisttomatrix <- function(edgelist, swap.order = FALSE){
   if(ncol(edgelist) != 2){
     stop("Input a matrix with two columns.")
   }
   if(swap.order == TRUE){
     edgelist = edgelist[,2:1]
   }
-  # N = max(edgelist)
-  #? I tested this function using the sample edgelist under data file, 
-  #? it returns an error here. 
-  #? When IDs in edgelist are integers, 
-  #? max(edgelist) returns the largest number of ID rather than the number of IDs.
   subjects = sort(unique(c(edgelist[,1], edgelist[,2])))
   N = length(subjects)
   
   if(N > 10000){
-    stop("Convert edge IDs to integers starting at 1.")
+    stop("Convert edge IDs to integers starting at 1.") # ? what does this used for?
   }
   mat = matrix(0, N, N)
-  #! error here. "Error in mat[edgelist[i, 1], edgelist[i, 2]] : subscript out of bounds"
-# for(i in 1:nrow(edgelist)){
-#   mat[edgelist[i,1], edgelist[i,2]] = mat[edgelist[i,1], edgelist[i,2]] + 1
-# }
-  #! mat[edgelist[i,1], edgelist[i,2]] refers to wrong row/column numbers.
+  
   for(i in 1:nrow(edgelist)){
     subject1 = which(subjects == edgelist[i,1])
     subject2 = which(subjects == edgelist[i,2])
@@ -43,12 +38,28 @@ as.conflictmat = function(edgelist, swap.order = FALSE){
   }
   rownames(mat) = subjects
   colnames(mat) = subjects
-  class(mat) = c("conf.mat", "matrix")
+  
   return(mat)
+}
+
+#' convert to conflict matrix class
+#' df: a dataframe, either edgelist or matrix
+
+as.conflictmat = function(df, swap.order = FALSE){
+  if(ncol(df) == nrow(df)){
+    mat <- df
+    class(mat) = c("conf.mat", "matrix")
+    return(mat)
+  } else {
+    mat <- edgelisttomatrix(df, swap.order = FALSE)
+    class(mat) = c("conf.mat", "matrix")
+    return(mat) 
+  }
 }
 
 
 # to do: add more sample edgelists and matrices to data folder. 
+# to do: break this function into two functions. 1. edgelist --> matrix; 2. as.confmat
 # test the codes using sample data
 # test the codes using large data set
 # documentation!!!
