@@ -1,19 +1,13 @@
+#? Note: edgelist values should be between 1 and N, where N is the total number of entities.
+
 #' transform an edgelist into a matrix
 #' 
-#' @param edgelist a data frame. Edgelist. With the first column named "Initiator"; the second column named "Recipient". 
-#' @param path.length an integer between 2 to 4, representing the length of indirect pathways used in finding dominance interactions.
-#' @return a dataframe representing dominance certainty matrix.
+#' @param edgelist a 2-column dataframe/matrix of edges. The dominant entity is in the 1st column by default 
+#' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
+#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
+#' 
 #' @examples
-#' PercOutput <- PercMatrix(SampleEdgelist, 2)
-
-
-# as.conflictmat() takes in two arguments:
-#   edgelist: A (K x 2) matrix of edges, with the dominant entity in the 1st column by default
-#   swap.order: If the dominant entity is in the 2nd column, specify as TRUE.
-# Outputs a matrix with [i,j]th entry equal to the number of times i dominates j.
-# Note: edgelist values should be between 1 and N, where N is the total number of entities.
-# Also works to convert a matrix to conf.mat class
-
+#' rawmatrix <- edgelisttomatrix(SampleEdgelist, swap.order = FALSE)
 
 
 edgelisttomatrix <- function(edgelist, swap.order = FALSE){
@@ -42,12 +36,20 @@ edgelisttomatrix <- function(edgelist, swap.order = FALSE){
   return(mat)
 }
 
-#' convert to conflict matrix class
-#' df: a dataframe, either edgelist or matrix
+
+#' convert an edgelist or a dominance matrix to conf.mat class
+#' 
+#' @df either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
+#' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
+#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
+#' 
+#' @examples
+#' confmatrix <- as.conflictmat(SampleEdgelist, swap.order = FALSE)
+#' confmatrix <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
 
 as.conflictmat = function(df, swap.order = FALSE){
   if(ncol(df) == nrow(df)){
-    mat <- df
+    mat <- as.matrix(df)
     class(mat) = c("conf.mat", "matrix")
     return(mat)
   } else {
@@ -58,8 +60,4 @@ as.conflictmat = function(df, swap.order = FALSE){
 }
 
 
-# to do: add more sample edgelists and matrices to data folder. 
-# to do: break this function into two functions. 1. edgelist --> matrix; 2. as.confmat
-# test the codes using sample data
 # test the codes using large data set
-# documentation!!!
