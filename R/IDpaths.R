@@ -46,3 +46,4 @@ IDpaths = function(conf, i, len){
   isUnique = apply(ret, MARGIN = 1, function(b) {length(unique(b)) == len + 1})
   ret[isUnique,]    
 }
+
