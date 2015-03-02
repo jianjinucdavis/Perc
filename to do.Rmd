@@ -18,8 +18,8 @@ output: html_document
 ### kevin_functions.R
 
 * as.conflictmat -- done
-* countPaths
-* transitivity
+* countPaths -- Discussion needed
+* transitivity -- done
 * plot.conf.mat
 
 ----
