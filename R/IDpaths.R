@@ -46,8 +46,8 @@ IDpaths = function(conf, ID, len){
     prevLengths = effLengths
   }
   isUnique = apply(ret, MARGIN = 1, function(b) {length(unique(b)) == len + 1})
-  pathOutputmatrix <- ret[isUnique,]
-  for (i in 1:length(path.output)){
-    pathOutputmatrix[i] <- row.names(confmatrix)[path.output[i]]
-  }
+  #pathOutputmatrix <- ret[isUnique,]
+  #for (i in 1:length(path.output)){
+  #  pathOutputmatrix[i] <- row.names(confmatrix)[path.output[i]]
+  #}
 }
