@@ -8,7 +8,7 @@
 countPaths = function(allPaths){
   nOrders = length(allPaths)
   pathList = list()
-  N = max(sapply(allPaths, max))  #! sapply needs to be fixed
+  N = max(sapply(allPaths, max))  #! sapply needs to be fixed. #! N was not used.
   
   for(K in 1:nOrders){
     pathList[[K]] = as.conflictmat(allPaths[[K]][,c(1,(K+1))]) #! return error:"Error in a[[1]][, c(1, (1 + 1))] : incorrect number of dimensions"
@@ -16,6 +16,7 @@ countPaths = function(allPaths){
   pathList
 }
 
-# to do: to test from the very beginning; 
+# to do:allPaths is a matrix. allPaths[[K]] returns TRUE
 #         fix sapply
 # needs to be exported.
+# talk to Kevin about it!
