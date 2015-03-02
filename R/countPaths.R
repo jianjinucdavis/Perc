@@ -16,7 +16,14 @@ countPaths = function(allPaths){
   pathList
 }
 
-# to do:allPaths is a matrix. allPaths[[K]] returns TRUE
+# to do:allPaths is a matrix.
 #         fix sapply
 # needs to be exported.
-# talk to Kevin about it!
+# talk to Kevin about it. 
+# Details need to be discussed:
+# allPaths: output from IDPaths is a matrix. allPaths[[K]] returns a numeric vector of length 1.
+# The following subsetting [, c(1, (K + 1))] does not make sense.
+
+# countPaths = function(confmat) {
+#   
+# }
