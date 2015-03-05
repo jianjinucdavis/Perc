@@ -6,7 +6,7 @@ IDpaths = function(conf, ID, len){
   ### ID: the subject at the beginning of each dominance path
   ### len: the length of the dominance paths to be identified (len = order + 1)
   
-  i = which(row.names(confmatrix) == as.character(ID))
+  i = which(row.names(conf) == as.character(ID))
   
   if(sum(conf[i,] > 0) == 0) return(matrix(0, 0, len+1))
   # i = 1                            
