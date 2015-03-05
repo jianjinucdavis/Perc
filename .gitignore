@@ -2,7 +2,8 @@ packrat/lib*/
 .Rproj.user
 .Rhistory
 .Rapp.history
-.csv
+*.csv
+.DS_Store
 
 # no .a files
 *.a
