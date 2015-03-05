@@ -1,0 +1,63 @@
+---
+title: "RunMutipleData"
+author: "JJ"
+date: "March 2, 2015"
+output: html_document
+---
+
+
+
+```{r}
+library(Perc)
+
+# function help files
+
+?sim.rank.order
+?Perc
+?PercMatrix
+
+
+# load sample data into a list
+
+# data frames of a pattern
+DataList <- lapply(paste0(paste0("./data/Edgelist", 
+                 1:8), ".csv"), 
+           read.csv, header=TRUE,  dec = ".")
+str(DataList)
+
+# load all ".csv" files in the folder
+
+temp <- list.files(path = "./data/", pattern = "*.csv")
+myfiles <- lapply(paste0("./data/", temp), read.csv, header = T)
+
+
+# apply PercMatrix across multiple dataframes
+PercOutput.list <- list()
+for (i in 1:length(DataList)) {
+  PercOutput.list[[i]] <- PercMatrix(DataList[[i]], path.length = 2)
+  
+  cat("Dataframe processed:", i, "\n")
+}
+
+
+# apply sim.rank.order across output dataframes from PercMatrix
+
+for (i in 1:length(PerOutput.list)) {
+  rank.list[[i]] <- sim.rank.order(PerOutput.list[[i]], kmax = 5)
+  
+  # save each simulated rank order into a ".csv" file
+  write.csv(rank.list[[i]], paste0(paste0("simrankorder", as.character(i)), ".csv"))
+  cat("Dataframe processed:", i, "\n")
+}
+
+
+
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
