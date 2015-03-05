@@ -1,5 +1,3 @@
-#? Note: edgelist values should be between 1 and N, where N is the total number of entities.
-
 #' transform an edgelist into a matrix
 #' 
 #' @param edgelist a 2-column dataframe/matrix of edges. The dominant entity is in the 1st column by default 
@@ -21,7 +19,7 @@ edgelisttomatrix <- function(edgelist, swap.order = FALSE){
   N = length(subjects)
   
   if(N > 10000){
-    stop("Convert edge IDs to integers starting at 1.") # ? what does this used for?
+    stop("No more than 10000 unique subjects.")
   }
   mat = matrix(0, N, N)
   
@@ -39,7 +37,7 @@ edgelisttomatrix <- function(edgelist, swap.order = FALSE){
 
 #' convert an edgelist or a dominance matrix to conf.mat class
 #' 
-#' @df either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
+#' @param df either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
 #' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
 #' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
 #' 
