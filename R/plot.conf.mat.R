@@ -46,4 +46,4 @@ plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
   )
 }
 
-# to do: error: could not find function "levelplot"
+# to do: test on a large dataset.
