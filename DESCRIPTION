@@ -9,3 +9,6 @@ Maintainer: Jian Jin <jinjian.pku@gmail.com>
 Description: Find the certainty of dominance interactions with indirect interactions being considered.
 License: GNU 3
 LazyData: true
+Imports:
+  lattice
+  

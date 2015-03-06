@@ -1,11 +1,19 @@
-library("lattice")
-### plot.conf.mat() takes in three arguments.
-# a conflict matrix (or any square matrix) conf.mat()
-# a reordering of the rows/columns, specified by a permutation of 1:N
-# whether the agent names are specified in the rownames() of conf.mat()
-#    and the user would like them displayed on the heatmap
-
-
+#' generate heat map for a conflict matrix or dominance probability matrix
+#' 
+#' \code{plot.conf.mat} generate heat map for a conflict matrix or a dominance probability matrix
+#' 
+#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)
+#' @param ordering a reordering of the rows/columns, specified by a permutation of 1:N
+#' @param labels if TRUE, displaying the agent names as specified in the rownames() of conf.mat() on the heatmap
+#' @return A heatmap
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' perm2 <- conductance(confmatrix, 2)
+#' # plotting
+#' plot.conf.mat(perm2$p.hat)
 
 plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
   
@@ -37,7 +45,7 @@ plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
     y.values = rev(1:N)
   }
   
-  levelplot(t(conf.mat.ord)[,ncol(conf.mat.ord):1], col.regions = colors, 
+  lattice::levelplot(t(conf.mat.ord)[,ncol(conf.mat.ord):1], col.regions = colors, 
             xlab = "Loser", ylab = "Winner",
             scales=list(
               x=list(labels=lbls, at = x.values, rot = ifelse(labels == TRUE, 90, 0)),
