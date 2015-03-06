@@ -63,7 +63,8 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
       # if(verbose){print(i)}
     }
   }
-  
+  row.names(percMat2) <- row.names(conf)
+  colnames(percMat2) <- colnames(conf)
   return(list(imputed.conf = percMat, p.hat = percMat2))  
 }
 
