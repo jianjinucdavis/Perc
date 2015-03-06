@@ -1,1 +1,1 @@
-export(edgelisttomatrix, as.conflictmat, findIDpaths, findAllPaths, conductance, PercMatrix, sim.rank.order)
+export(edgelisttomatrix, as.conflictmat, findIDpaths, findAllPaths, conductance, countPaths, PercMatrix, sim.rank.order)

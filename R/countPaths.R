@@ -1,3 +1,17 @@
+#' find the number of paths from i to j for each order of dominance path.
+#' 
+#' \code{countPaths} Identifies the number of paths of length less than or equal to maxLength between all pairs of competitors 
+#' 
+#' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
+#' @return A list. Elements of the list are number of paths between all pairs of a given length.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find number of paths of length 3 or less
+#' npaths <- countPaths(confmatrix, 3)
+
 
 ### countPaths() takes in the output of the IDpaths function
 #   and returns a list of the same length of matrices.
