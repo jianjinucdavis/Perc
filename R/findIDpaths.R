@@ -1,12 +1,20 @@
-### Need the function IDpaths() to find all dominance paths.
+#' find all dominance paths of a certain length length for an individual 
+#' 
+#' \code{findIDpaths} identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by ID)
+#' 
+#' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param ID the subject at the beginning of each dominance path
+#' @param len the length of the dominance paths to be identified (len = order + 1)
+#' @return return all dominance paths of length (len) beginning at ID
+#' 
+#' @examples
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
 
-IDpaths = function(conf, ID, len){
-  ### IDpaths: identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by ID)
-  ### conf: N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
-  ### ID: the subject at the beginning of each dominance path
-  ### len: the length of the dominance paths to be identified (len = order + 1)
+
+findIDpaths = function(conf, ID, len = 2){
   
-  i = which(row.names(confmatrix) == as.character(ID))
+  i <- which(row.names(conf) == as.character(ID))
   
   if(sum(conf[i,] > 0) == 0) return(matrix(0, 0, len+1))
   # i = 1                            
@@ -46,8 +54,10 @@ IDpaths = function(conf, ID, len){
     prevLengths = effLengths
   }
   isUnique = apply(ret, MARGIN = 1, function(b) {length(unique(b)) == len + 1})
-  pathOutputmatrix <- ret[isUnique,]
-  for (i in 1:length(path.output)){
-    pathOutputmatrix[i] <- row.names(confmatrix)[path.output[i]]
+  pathMatrix <- ret[isUnique,]
+  pathOutputmatrix <- pathMatrix
+  for (i in 1:length(pathMatrix)){
+    pathOutputmatrix[i] <- row.names(conf)[pathMatrix[i]]
   }
+  return(pathOutputmatrix)
 }
