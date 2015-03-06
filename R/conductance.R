@@ -1,19 +1,24 @@
-###############################################################################
-### Description: Function to compute conductance dominance probabilities.
-### Input:
-###   conf - N-by-N conflict matrix whose (i,j)th element is the number of 
-###          times i defeated j
-###   maxLength - positive numeric integer indicating the maximum length
-###                of paths to identify
-###   alpha - positive numeric value
-###   beta - positive numeric value
-### Output: Returns a list with two elements.
-###   $imputed.conf - an N-by-N conflict matrix whose (i,j)th element is the
-###                   'effective' number of wins of i over j.
-###   $p.mat - an N-by-N numeric matrix whose (i,j)th element is the estimated
-###            conductance dominance probability.
-###############################################################################
-
+#' compute conductance dominance probabilities
+#' 
+#' \code{conductance} compute conductance dominance probabilities
+#' 
+#' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
+#' @param alpha a positive numeric value (more explanation)
+#' @param beta a positive numeric value (more explanation)
+#' @return a list of two elements. 
+#' imputed.conf. An N-by-N conflict matrix whose (i,j)th element is the 
+#'    'effective' number of wins of i over j.
+#' p.mat. An N-by-N numeric matrix whose (i,j)th element is the estimated 
+#'      conductance dominance probability.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' perm2 <- conductance(confmatrix, 2)
+#' perm2$imputed.conf
+#' perm2$p.hat
 
 conductance = function(conf, maxLength, alpha = 6, beta = 1){
   N = nrow(conf)
@@ -61,3 +66,7 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
   
   return(list(imputed.conf = percMat, p.hat = percMat2))  
 }
+
+# to do:
+# -- more explanations for alpha
+# -- more explanations for beta
