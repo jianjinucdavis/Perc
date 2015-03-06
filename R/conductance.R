@@ -32,7 +32,7 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
         percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] = 
           percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] + 
           ((alpha + beta)/(alpha + 2*beta)/mean(outdegree))^k
-        gc()
+        # gc()
       }
     }
   }
@@ -55,7 +55,7 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
                                                alpha * percMat[j,i] + 2 * beta)
       percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)
       percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)
-      if(verbose){print(i)}
+      # if(verbose){print(i)}
     }
   }
   
