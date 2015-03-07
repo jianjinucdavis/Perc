@@ -4,7 +4,6 @@
 #' 
 #' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @param alpha a positive numeric value (more explanation)
 #' @param beta a positive numeric value (more explanation)
 #' @return a list of two elements. 
 #' imputed.conf. An N-by-N conflict matrix whose (i,j)th element is the 
@@ -20,13 +19,18 @@
 #' perm2$imputed.conf
 #' perm2$p.hat
 
-conductance = function(conf, maxLength, alpha = 6, beta = 1){
+conductance = function(conf, maxLength, beta = 1){
   N = nrow(conf)
   
   ### percMat will contain direct + indirect information from dominance paths
   percMat = conf
   
   outdegree = rowSums(conf)
+  
+  # calculate alpha if not exist
+  conf.trans <- transitivity(conf)
+  alpha <- conf.trans$alpha
+
   
   if(sum(conf[row(conf) != col(conf)] == 0) > 0){
     paths = allPaths(conf, maxLength)
@@ -69,5 +73,5 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
 }
 
 # to do:
-# -- more explanations for alpha
+# -- more explanations for alpha. to add - allow user to set alpha
 # -- more explanations for beta
