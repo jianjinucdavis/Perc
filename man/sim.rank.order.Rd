@@ -4,10 +4,12 @@
 \alias{sim.rank.order}
 \title{Find the rank order}
 \usage{
-sim.rank.order(data, kmax = 5)
+sim.rank.order(data, num = 10, kmax = 5)
 }
 \arguments{
 \item{data}{a data frame. the output from PercMatrix}
+
+\item{num}{number of SimAnnealing (default is set at 10)}
 
 \item{kmax}{an integer between 2 to 1000}
 }
@@ -18,7 +20,11 @@ a dataframe representing simulated rank order.
 Find the rank order
 }
 \examples{
-rank <- sim.rank.order(PercOutput, 5)
-head(rank)
+# convert an edgelist to conflict matrix
+confmatrix <- as.conflictmat(SampleEdgelist)
+# find dominance probability matrix
+perm2 <- conductance(confmatrix, maxLength = 2)
+s.rank <- sim.rank.order(perm2$p.hat, num = 5, kmax = 5)
+head(s.rank)
 }
 
