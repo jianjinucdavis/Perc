@@ -2,9 +2,9 @@
 #' 
 #' \code{findIDpaths} identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by ID)
 #' 
-#' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
-#' @param ID the subject at the beginning of each dominance path
-#' @param len the length of the dominance paths to be identified (len = order + 1)
+#' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param ID a numeric or character object of length 1. the subject at the beginning of each dominance path.
+#' @param len a positive integer of length 1. the length of the dominance paths to be identified (len = order + 1)
 #' @return return all dominance paths of length (len) beginning at ID
 #' 
 #' @examples
