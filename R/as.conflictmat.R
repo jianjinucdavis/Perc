@@ -15,7 +15,8 @@ edgelisttomatrix <- function(edgelist, swap.order = FALSE){
   if(swap.order == TRUE){
     edgelist = edgelist[,2:1]
   }
-  subjects = sort(unique(c(edgelist[,1], edgelist[,2])))
+  subjects = unique(sort(as.matrix(edgelist))) # work better for IDs of character
+  # subjects = sort(unique(c(edgelist[,1], edgelist[,2])))
   N = length(subjects)
   
   if(N > 10000){
