@@ -1,9 +1,10 @@
 library(MASS)
-#library(BradleyTerry2)
 library(gtools)
 
 
-IDpaths = function(conf, i, len){
+#Function already appears in another file
+
+#IDpaths = function(conf, i, len){
   #############################################################################
   ### Description: function that identifies all unique dominance paths of 
   ###              order (len - 1) beginning at subject i
@@ -18,46 +19,46 @@ IDpaths = function(conf, i, len){
   ###
   #############################################################################
   
-  if(sum(conf[i,] > 0) == 0){
-    return(matrix(0, 0, len+1))
-  }
-  levels = list()
-  levels[[1]] = which(conf[i,] > 0)
-  for(j in 2:len){
-    levels[[j]] = lapply(unlist(levels[[j-1]]), function(k) which(conf[k,] > 0))
-  }
-  ret = matrix(0, length(unlist(levels[[len]])), len+1)
-  ret[,1] = i
-  ret[,len+1] = unlist(levels[[len]])
-  if(len == 2){
-    ret[,2] = rep(unlist(levels[[1]]), sapply(levels[[2]], length))
-  }
-  for(j in len:2){
-    currLengths = sapply(levels[[j]], length)
-    if(j < len){
-      effLengths = numeric(length(currLengths))
-      ctr = 1
-      for(d in 1:length(effLengths)){
-        if(currLengths[d] != 0){
-          effLengths[d] = sum(prevLengths[ctr:(ctr + currLengths[d] - 1)])
-        }
-        else{
-          effLengths[d] = 0
-        }
-        ctr = ctr + currLengths[d]
-      }
-    }
-    else{
-      effLengths = currLengths
-    }
-    if(length(currLengths) == 0){ return(matrix(0, 0, len+1))}
-    ret[,j] = rep(unlist(levels[[j-1]]), effLengths)
-    prevLengths = effLengths
-  }
-  isUnique = apply(ret, MARGIN = 1, function(b) {
-    length(unique(b)) == len + 1})
-  ret[isUnique,]
-}
+#   if(sum(conf[i,] > 0) == 0){
+#     return(matrix(0, 0, len+1))
+#   }
+#   levels = list()
+#   levels[[1]] = which(conf[i,] > 0)
+#   for(j in 2:len){
+#     levels[[j]] = lapply(unlist(levels[[j-1]]), function(k) which(conf[k,] > 0))
+#   }
+#   ret = matrix(0, length(unlist(levels[[len]])), len+1)
+#   ret[,1] = i
+#   ret[,len+1] = unlist(levels[[len]])
+#   if(len == 2){
+#     ret[,2] = rep(unlist(levels[[1]]), sapply(levels[[2]], length))
+#   }
+#   for(j in len:2){
+#     currLengths = sapply(levels[[j]], length)
+#     if(j < len){
+#       effLengths = numeric(length(currLengths))
+#       ctr = 1
+#       for(d in 1:length(effLengths)){
+#         if(currLengths[d] != 0){
+#           effLengths[d] = sum(prevLengths[ctr:(ctr + currLengths[d] - 1)])
+#         }
+#         else{
+#           effLengths[d] = 0
+#         }
+#         ctr = ctr + currLengths[d]
+#       }
+#     }
+#     else{
+#       effLengths = currLengths
+#     }
+#     if(length(currLengths) == 0){ return(matrix(0, 0, len+1))}
+#     ret[,j] = rep(unlist(levels[[j-1]]), effLengths)
+#     prevLengths = effLengths
+#   }
+#   isUnique = apply(ret, MARGIN = 1, function(b) {
+#     length(unique(b)) == len + 1})
+#   ret[isUnique,]
+# }
 
 
 
@@ -133,9 +134,9 @@ conductance = function(conf, maxLength, alpha = 6, beta = 1){
   for(i in 2:N){
     for(j in 1:(i-1)){
       temp1 = (alpha * percMat[i,j] + beta)/(alpha * percMat[i,j] + 
-                                               alpha * percMat[j,i] + 2 * beta)
+                                               alpha * percMat[j,i] + 2*beta)
       temp2 = (alpha * percMat[j,i] + beta)/(alpha * percMat[i,j] + 
-                                               alpha * percMat[j,i] + 2 * beta)
+                                               alpha * percMat[j,i] + 2*beta)
       percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)
       percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)
       if(verbose){print(i)}
@@ -209,7 +210,7 @@ BTLogLik = function(conf.mat, d, sumToOne = FALSE){
 sampleDist = function(prob.mle, num.comps, baseline, maxLength){
   n = nrow(prob.mle)  
   conf = sampleBTConf(n, prob.mle, varcov, num.comps)
-  conf.bt = BTMM(conf, baseline = baseline)
+  conf.bt = bradleyTerry(conf, baseline = baseline)
   conf.ord = order(conf.bt, decreasing = TRUE)
   conf.cond = conductance(conf, maxLength)
   d = bt.cond.dist(conf.cond$p.hat, convertToProb(conf.bt), conf.ord)
@@ -260,7 +261,8 @@ sampleBTConf = function(n, p.mat, num.comps){
 ###Output: vector of length N consiting of the MLE values of the dominance
 ###        indices.
 ###############################################################################
-BTMM = function(conf.mat, initial = NA, baseline = NA, stop.dif = .001){
+bradleyTerry = function(conf.mat, initial = NA, baseline = NA, 
+                        stop.dif = .001){
   m = nrow(conf.mat)
   if(length(initial) == 1){
     initial = rep(1/m, times = m)
@@ -294,8 +296,10 @@ BTMM = function(conf.mat, initial = NA, baseline = NA, stop.dif = .001){
   if(!is.na(baseline)){
     d = log(d) - log(d[baseline])
   }
-  attr(d, "iterations") = its
-  return(d)  
+  logLik = lik.new
+  attr(logLik, "iterations") = its
+  return(list(domInds = d, probMat = convertToProb(d, is.na(baseline)), 
+              logLik = logLik, ))  
 }
 
 
@@ -343,9 +347,9 @@ bt.cond.dist = function(m1, m2, ord){
 ###          BT model.
 ###  $p.val - p-value of the test.
 ###############################################################################
-condTest = function(conf.mat, baseline, maxLength = 3, reps = 1000){
+bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){
   n = nrow(conf.mat)
-  mle.d = BTMM(conf.mat, baseline = baseline)
+  mle.d = bradleyTerry(conf.mat, baseline = baseline)
   mle.probs = convertToProb(mle.d)
   mle.ord = order(mle.d, decreasing = TRUE)
   cond = conductance(conf.mat, maxLength)
