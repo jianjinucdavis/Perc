@@ -19,7 +19,7 @@
 #' perm2$imputed.conf
 #' perm2$p.hat
 
-conductance = function(conf, maxLength, beta = 1){
+conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   N = nrow(conf)
   
   ### percMat will contain direct + indirect information from dominance paths
@@ -29,7 +29,11 @@ conductance = function(conf, maxLength, beta = 1){
   
   # calculate alpha if not exist
   conf.trans <- transitivity(conf)
-  alpha <- conf.trans$alpha
+  if (is.null(alpha)) {
+    alpha <- conf.trans$alpha
+  }
+  # if alpha is larger than 500, use 500.
+  alpha <- min(alpha, 500)
   ####===================
   # alpha.temp <- conf.trans$alpha
   #
@@ -77,7 +81,7 @@ conductance = function(conf, maxLength, beta = 1){
                                                alpha * percMat[j,i] + 2 * beta)
       percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)
       percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)
-      # if(verbose){print(i)}
+      # if(verbose){print(i)}  # "Error: object 'verbose' not found"
     }
   }
   row.names(percMat2) <- row.names(conf)

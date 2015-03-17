@@ -12,7 +12,7 @@
 #' s.rank <- sim.rank.order(perm2$p.hat, num = 5, kmax = 5)
 #' head(s.rank)
 
-sim.rank.order <- function(data, num = 10, kmax = 5){
+sim.rank.order <- function(data, num = 10, alpha = NULL, kmax = 5){  # if null, take transitivity; if not null take specify
   # input df, a dataframe, the output from percolation function.
   
   # run the SimAnneal.R manually. 
