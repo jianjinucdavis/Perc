@@ -11,8 +11,12 @@
 ###  stop.dif - numeric value for difference in log likelihood value between
 ###             iterations.  Used as the convergence criterion for the 
 ###             algorithm.
-###Output: vector of length N consiting of the MLE values of the dominance
+###Output: 
+###  domInds - vector of length N consiting of the MLE values of the dominance
 ###        indices.
+###
+###  probMat - N-by-N numeric matrix of dominance probabilities estimated by the
+###         BT model
 ###############################################################################
 bradleyTerry = function(conf.mat, initial = NA, baseline = NA, 
                         stop.dif = .001){
@@ -52,5 +56,10 @@ bradleyTerry = function(conf.mat, initial = NA, baseline = NA,
   logLik = lik.new
   attr(logLik, "iterations") = its
   return(list(domInds = d, probMat = convertToProb(d, is.na(baseline)), 
-              logLik = logLik, ))  
+              logLik = logLik))  
 }
+
+
+# to do:
+#     -- documentation on outputs: logLik ?
+
