@@ -35,3 +35,7 @@ bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){
 }
 
 
+# to do:
+#     -- Function test return error: 
+#         "Error in exp(m1) : non-numeric argument to mathematical function"
+
