@@ -1,30 +1,4 @@
 
-
-###############################################################################
-### Description: function converts BT dominance indices into dominance a 
-###              matrix of dominance probabilities
-### Input: 
-###   d - numeric vector of dominance probabilities estimated by the BT model.
-###   sumToOne- logical, if TRUE indices are for the "sum to one" 
-###               parameterization of the BT model
-### Output: N-by-N numeric matrix of dominance probabilities estimated by the
-###         BT model
-###############################################################################
-
-convertToProb = function(d, sumToOne = FALSE){
-  n = length(d)
-  m1 = matrix(rep(d, times = n), nrow = n)
-  m2 = matrix(rep(d, times = n), nrow = n, byrow = TRUE)
-  if(sumToOne){
-    P = m1 / (m1 + m2)
-  }
-  else{
-    P = exp(m1) / (exp(m1) + exp(m2))
-  }
-  diag(P) = 0
-  return(P)
-}
-
 ###############################################################################
 ###Description: Computes the log-likelihood for the BT model.
 ###Input:
@@ -61,13 +35,12 @@ BTLogLik = function(conf.mat, d, sumToOne = FALSE){
 sampleDist = function(prob.mle, num.comps, baseline, maxLength){
   n = nrow(prob.mle)  
   conf = sampleBTConf(n, prob.mle, varcov, num.comps)
-  conf.bt = BTMM(conf, baseline = baseline)
+  conf.bt = bradleyTerry(conf, baseline = baseline)
   conf.ord = order(conf.bt, decreasing = TRUE)
   conf.cond = conductance(conf, maxLength)
   d = bt.cond.dist(conf.cond$p.hat, convertToProb(conf.bt), conf.ord)
   return(d)
 }
-
 
 
 ###############################################################################

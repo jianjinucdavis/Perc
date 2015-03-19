@@ -1,3 +1,4 @@
+
 ###############################################################################
 ###Description: Systemic test for the assumptions of the Bradley-Terry model,
 ###             transitivity and monotonic dominance. That is, if A > B and
@@ -16,9 +17,9 @@
 ###          BT model.
 ###  $p.val - p-value of the test.
 ###############################################################################
-condTest = function(conf.mat, baseline = NA, maxLength = 3, reps = 1000){
+bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){
   n = nrow(conf.mat)
-  mle.d = BTMM(conf.mat, baseline = baseline)
+  mle.d = bradleyTerry(conf.mat, baseline = baseline)
   mle.probs = convertToProb(mle.d)
   mle.ord = order(mle.d, decreasing = TRUE)
   cond = conductance(conf.mat, maxLength)
@@ -27,10 +28,10 @@ condTest = function(conf.mat, baseline = NA, maxLength = 3, reps = 1000){
   num.comps[upper.tri(num.comps)] = conf.mat[upper.tri(conf.mat)] + 
     t(conf.mat)[upper.tri(conf.mat)]
   num.comps[lower.tri(num.comps)] = t(num.comps)[lower.tri(num.comps)] 
-  # test.dist = replicate(reps, sampleDist(mle.probs, num.comps, baseline, 
-  #                                       maxLength, distance))
   test.dist = replicate(reps, sampleDist(mle.probs, num.comps, baseline, 
-                                       maxLength))
+                                         maxLength, distance))  
   return(list(stat = test.stat, dist = test.dist, 
               p.val = sum((test.dist>test.stat) / reps)))
 }
+
+
