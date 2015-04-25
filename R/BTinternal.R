@@ -34,11 +34,11 @@ BTLogLik = function(conf.mat, d, sumToOne = FALSE){
 ###############################################################################
 sampleDist = function(prob.mle, num.comps, baseline, maxLength){
   n = nrow(prob.mle)  
-  conf = sampleBTConf(n, prob.mle, varcov, num.comps)
+  conf = sampleBTConf(n, prob.mle, num.comps) # varcov not used
   conf.bt = bradleyTerry(conf, baseline = baseline)
-  conf.ord = order(conf.bt, decreasing = TRUE)
+  conf.ord = order(conf.bt[[1]], decreasing = TRUE)  # conf.bt --> conf.bt[[1]] - Error in order(conf.bt, decreasing = TRUE) : unimplemented type 'list' in 'orderVector1'
   conf.cond = conductance(conf, maxLength)
-  d = bt.cond.dist(conf.cond$p.hat, convertToProb(conf.bt), conf.ord)
+  d = bt.cond.dist(conf.cond$p.hat, convertToProb(conf.bt[[1]]), conf.ord) ## conf.bt --> conf.bt[[1]]
   return(d)
 }
 
@@ -61,9 +61,9 @@ sampleBTConf = function(n, p.mat, num.comps){
                                  p.mat[upper.tri(p.mat)])
   conf[lower.tri(conf)] = t(num.comps)[lower.tri(num.comps)] - 
     t(conf)[lower.tri(conf)]
-  if((sum(rowSums(conf) == 0) + sum(colSums(conf) == 0)) > 0){
-    sampleBTConf(n, p.mat, num.comps)
-  }
+  #if((sum(rowSums(conf) == 0) + sum(colSums(conf) == 0)) > 0){
+  #  sampleBTConf(n, p.mat, num.comps)
+  #}
   return(conf)
 }
 

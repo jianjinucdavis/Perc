@@ -17,11 +17,11 @@
 ###          BT model.
 ###  $p.val - p-value of the test.
 ###############################################################################
-bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){
+bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 5){  # temp revision, just to run fastly
   n = nrow(conf.mat)
   mle.d = bradleyTerry(conf.mat, baseline = baseline)
-  mle.probs = convertToProb(mle.d)
-  mle.ord = order(mle.d, decreasing = TRUE)
+  mle.probs = convertToProb(mle.d[[1]]) # use only domInds (vector of length N consiting of the MLE values of the dominance indices.)
+  mle.ord = order(mle.d[[1]], decreasing = TRUE)
   cond = conductance(conf.mat, maxLength)
   test.stat = bt.cond.dist(cond$p.hat, mle.probs, mle.ord)
   num.comps = matrix(0, nrow = n, ncol = n)
@@ -29,13 +29,11 @@ bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){
     t(conf.mat)[upper.tri(conf.mat)]
   num.comps[lower.tri(num.comps)] = t(num.comps)[lower.tri(num.comps)] 
   test.dist = replicate(reps, sampleDist(mle.probs, num.comps, baseline, 
-                                         maxLength, distance))  
+                                         maxLength))  # distance not used
   return(list(stat = test.stat, dist = test.dist, 
               p.val = sum((test.dist>test.stat) / reps)))
 }
 
 
 # to do:
-#     -- Function test return error: 
-#         "Error in exp(m1) : non-numeric argument to mathematical function"
-
+#     -- documentation

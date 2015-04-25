@@ -1,4 +1,3 @@
-
 ###############################################################################
 ###Description: Computes the MLE for the BT model using an MM algorithm
 ###Input:
