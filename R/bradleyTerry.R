@@ -1,3 +1,26 @@
+#' Computes the MLE for the BT model using an MM algorithm
+#' 
+#' \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
+#' 
+#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)
+#' @param initial initial values of dominance indices for the MM algorithm, if not supplied, the 0 vector will be the inital value.
+#' @param baseline index for agent to represent baseline dominance index set to 0.  If NA, the "sum-to-one" parameterization will be used.
+#' @param stop.dif numeric value for difference in log likelihood value between iterations.  Used as the convergence criterion for the algorithm.
+#' @return A list of length 3. 
+#' domInds is a vector of length N consiting of the MLE values of the dominance indices. 
+#' probMat is an N-by-N numeric matrix of dominance probabilities estimated by the BT model.
+#' logLik is the model fit.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' bt <- bradleyTerry(confmatrix)
+
+
+
+
+
 ###############################################################################
 ###Description: Computes the MLE for the BT model using an MM algorithm
 ###Input:
