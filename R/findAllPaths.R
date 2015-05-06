@@ -4,7 +4,7 @@
 #' 
 #' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @return A list. Elements of the list are all paths of a given length.
+#' @return A list of two elements. The first element of the list is the direct pathways found in the matrix. The second element contains are all paths from length 2 to the given length.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
@@ -14,15 +14,20 @@
 
 
 findAllPaths = function(conf, maxLength = 2){
-  paths = lapply(2:maxLength, FUN = function(l, conf){
-    do.call(rbind, lapply(1:nrow(conf), FUN = IDpaths, conf = conf, l = l))
-  }, conf = conf)  
+  allPathsOutput <- allPaths(conf, maxLength)
+#  paths = lapply(2:maxLength, FUN = function(l, conf){
+#    do.call(rbind, lapply(1:nrow(conf), FUN = IDpaths, conf = conf, l = l))
+#  }, conf = conf)
+  paths <- allPathsOutput[[2]]
   pathOutput <- paths
   for (i in 1:length(paths)){
     for (j in 1:length(paths[[i]]))
     pathOutput[[i]][j] <- row.names(conf)[paths[[i]][j]]
   }
-  return(pathOutput)
+  pathOutputAll <- list(which(conf > 0, arr.ind = TRUE), pathOutput)
+  names(pathOutputAll)[1] <- "direct pathways found in original matrix"
+  names(pathOutputAll)[2] <- "indirect pathways"
+  return(pathOutputAll)
   # return(list(which(conf > 0, arr.ind = TRUE), paths))
   #! Why is which(conf > 0, arr.ind = TRUE) useful
   #! > which(confmatrix > 0, arr.ind = TRUE)
