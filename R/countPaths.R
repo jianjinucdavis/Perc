@@ -55,4 +55,4 @@ countPaths = function(conf, maxLength = 2){
 
 # to do: 
 #  -- input: the output from allpath? not IDpath?
-#  -- name each element in the output list
+
