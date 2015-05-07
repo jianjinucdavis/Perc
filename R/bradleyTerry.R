@@ -77,7 +77,10 @@ bradleyTerry = function(conf.mat, initial = NA, baseline = NA,
   }
   logLik = lik.new
   attr(logLik, "iterations") = its
-  return(list(domInds = d, probMat = convertToProb(d, is.na(baseline)), 
+  probMat = convertToProb(d, is.na(baseline))
+  rownames(probMat) <- rownames(conf.mat)
+  colnames(probMat) <- colnames(conf.mat)
+  return(list(domInds = d, probMat = probMat, 
               logLik = logLik))  
 }
 
