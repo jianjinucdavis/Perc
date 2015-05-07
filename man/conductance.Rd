@@ -4,12 +4,14 @@
 \alias{conductance}
 \title{compute conductance dominance probabilities}
 \usage{
-conductance(conf, maxLength, beta = 1)
+conductance(conf, maxLength, alpha = NULL, beta = 1)
 }
 \arguments{
 \item{conf}{N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j}
 
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
+
+\item{alpha}{positive numeric value (more explanation)}
 
 \item{beta}{a positive numeric value (more explanation)}
 }

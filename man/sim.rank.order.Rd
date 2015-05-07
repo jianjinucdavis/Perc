@@ -4,7 +4,7 @@
 \alias{sim.rank.order}
 \title{Find the rank order}
 \usage{
-sim.rank.order(data, num = 10, kmax = 5)
+sim.rank.order(data, num = 10, alpha = NULL, kmax = 5)
 }
 \arguments{
 \item{data}{a data frame. the output from PercMatrix}

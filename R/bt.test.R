@@ -1,3 +1,24 @@
+#' Systemic test for the assumptions of the Bradley-Terry model
+#' 
+#' \code{bt.test} Systemic test for the assumptions of the Bradley-Terry model, transitivity and monotonic dominance. That is, if A > B and B > C then A > C and Pr(A beats C) > Pr(B beats C).
+#' 
+#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)
+#' @param baseline an integer between 1 and N inclusive identifying the agent with dominance index equal to zero.
+#' @param maxLength an integer indicating maximum path length used in conductance
+#' @param reps an integer indicating number of conflict matrices simulated to estimate the sampling distribution under the BT model.
+#' @return A list of length 3. 
+#' stat is value of the test statistic.
+#' dist is estimated sampling distribution of the test statistics under the BT model.
+#' p.val is p-value of the test.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # test the assumptions of the Bradley-Terry model
+#' condTestoutput <- bt.test(confmatrix)
+
+
+
 
 ###############################################################################
 ###Description: Systemic test for the assumptions of the Bradley-Terry model,
@@ -33,7 +54,3 @@ bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 5){  # temp rev
   return(list(stat = test.stat, dist = test.dist, 
               p.val = sum((test.dist>test.stat) / reps)))
 }
-
-
-# to do:
-#     -- documentation

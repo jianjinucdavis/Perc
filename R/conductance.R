@@ -4,6 +4,7 @@
 #' 
 #' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
+#' @param alpha positive numeric value (more explanation)
 #' @param beta a positive numeric value (more explanation)
 #' @return a list of two elements. 
 #' imputed.conf. An N-by-N conflict matrix whose (i,j)th element is the 

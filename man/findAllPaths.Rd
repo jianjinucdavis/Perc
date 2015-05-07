@@ -12,7 +12,7 @@ findAllPaths(conf, maxLength = 2)
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 }
 \value{
-A list. Elements of the list are all paths of a given length.
+A list of two elements. The first element of the list is the direct pathways found in the matrix. The second element contains are all paths from length 2 to the given length.
 }
 \description{
 \code{findAllPaths} Identifies all paths length less than or equal to maxLength between all pairs of competitors

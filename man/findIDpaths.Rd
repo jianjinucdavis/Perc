@@ -7,11 +7,11 @@
 findIDpaths(conf, ID, len = 2)
 }
 \arguments{
-\item{conf}{N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j}
+\item{conf}{an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j}
 
-\item{ID}{the subject at the beginning of each dominance path}
+\item{ID}{a numeric or character object of length 1. the subject at the beginning of each dominance path.}
 
-\item{len}{the length of the dominance paths to be identified (len = order + 1)}
+\item{len}{a positive integer of length 1. the length of the dominance paths to be identified (len = order + 1)}
 }
 \value{
 return all dominance paths of length (len) beginning at ID

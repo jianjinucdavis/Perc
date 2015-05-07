@@ -14,7 +14,7 @@
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)
-#' # find dominance probability matrix
+#' # Computes the MLE for the BT model
 #' bt <- bradleyTerry(confmatrix)
 
 
