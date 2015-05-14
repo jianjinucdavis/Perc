@@ -28,10 +28,15 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
   
   if (weighted == TRUE){
-    warning("make sure dyads in the edgelist are unique")
+    
     if (ncol(edgelist) != 3){
       stop("Input a matrix or dataframe with three columns, with the third column being Frequency of the interaction")
     }
+    
+    if (nrow(edgelist[,1:2]) != nrow(unique(edgelist[,1:2]))) {
+      stop("dyads in the edgelist are not unique; weighted edgelist should contain only unique dyads")
+    }
+    
     
     # transform the weighted edgelist into a matirx
     
