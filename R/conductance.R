@@ -91,5 +91,8 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 }
 
 # to do:
+# -- transform output: transformed matrix value: 0.5 - 1.0
+# -- individual level output
+# -- dyadic level output
 # -- more explanations for alpha. to add - allow user to set alpha
 # -- more explanations for beta
