@@ -4,12 +4,12 @@
 \alias{as.conflictmat}
 \title{convert an edgelist or a dominance matrix to conf.mat class}
 \usage{
-as.conflictmat(df, swap.order = FALSE)
+as.conflictmat(Data, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
-\item{df}{either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix.}
-
 \item{swap.order}{If the dominant entity is in the 2nd column, specify as TRUE.}
+
+\item{df}{either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix.}
 }
 \value{
 a named matrix with [i,j]th entry equal to the number of times i dominates j.

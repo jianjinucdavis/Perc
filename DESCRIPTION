@@ -1,7 +1,7 @@
 Package: Perc
 Type: Package
 Title: Using Percolation and Conductane to find information flow certainty in direct network
-Version: 0.0.9003
+Version: 0.0.9005
 Date: 2015-05-06
 Author: xxx
 Contributor: xxx 
@@ -11,6 +11,8 @@ License: GNU 3
 Copyright: Development Version within McCowan Lab
 LazyData: true
 Suggests: testthat,
-    knitr,
-      lattice
+      knitr,
+      lattice,
+      devtools,
+      reshape2
 VignetteBuilder: knitr

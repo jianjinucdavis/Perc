@@ -4,7 +4,7 @@
 \alias{edgelisttomatrix}
 \title{transform an edgelist into a matrix}
 \usage{
-edgelisttomatrix(edgelist, swap.order = FALSE)
+edgelisttomatrix(edgelist, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
 \item{edgelist}{a 2-column dataframe/matrix of edges. The dominant entity is in the 1st column by default}
@@ -19,5 +19,8 @@ transform an edgelist into a matrix
 }
 \examples{
 rawmatrix <- edgelisttomatrix(SampleEdgelist, swap.order = FALSE)
+
+# weighted edgelist
+# add example here!
 }
 

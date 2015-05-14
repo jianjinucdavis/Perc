@@ -90,6 +90,90 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   return(list(imputed.conf = percMat, p.hat = percMat2))  
 }
 
+#' dominance probability matrix value converter
+#' 
+#' \code{valueConverter} convert values in the dominance probability matrix into 0.5 - 1.0
+#' 
+#' @param matrix the second output from \code{conductance}
+#' @return a matrix of win-loss probability ranging from 0.5 - 1.0.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' perm2 <- conductance(confmatrix, 2)
+#' perm2$imputed.conf
+#' perm2$p.hat
+#' convertedValue <- valueConverter(perm2$p.hat)
+
+valueConverter <- function(matrix){
+  matrixAbove0.5 <- abs(0.5 - matrix) + 0.5
+  return(matrixAbove0.5)
+}
+
+#' dyadic long format converter
+#' 
+#' \code{dyadicLongConverter} convert dominance probability matrix into long format for each dyad
+#' 
+#' @param matrix the second output from \code{conductance}
+#' @return a dataframe of dyadic level win-loss probability.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' perm2 <- conductance(confmatrix, 2)
+#' perm2$imputed.conf
+#' perm2$p.hat
+#' dl <- dyadicLongConverter(perm2$p.hat)
+
+
+dyadicLongConverter <- function(matrix){
+  matrix[lower.tri(matrix, diag = TRUE)] <- NA
+  dp.df <- as.data.frame(matrix)
+  dp.df2 <- dp.df
+  dp.df2$rowID <- rownames(dp.df)
+  dp.long <- reshape2::melt(dp.df2, 
+                            id.vars = "rowID", 
+                            variable.name = "ID2",
+                            value.name = "ID1 Win Probability")
+  names(dp.long)[1] <- "ID1"
+  dpComplete <- dp.long[complete.cases(dp.long), ]
+  dpComplete[,"ID2 Win Probability"] <- 1 - dpComplete[,3]
+  return(dpComplete)
+}
+
+
+#' individual-level probability converter
+#' 
+#' \code{individualWinProb} convert dominance probability matrix into long format for each dyad
+#' 
+#' @param matrix the second output from \code{conductance}
+#' @return a dataframe. Averaging probability of win-loss relationship with all other individuals.
+#' 
+#' @examples
+#' # convert an edgelist to conflict matrix
+#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' # find dominance probability matrix
+#' perm2 <- conductance(confmatrix, 2)
+#' perm2$imputed.conf
+#' perm2$p.hat
+#' individualLevelOutput <- individualWinProb(perm2$p.hat)
+
+individualWinProb <- function(matrix){
+  matrixAbove0.5 <- valueConverter(matrix)
+  
+  Mean <- apply(data.frame(valueConverter(matrixAbove0.5)), 2, mean)
+  SD <- apply(data.frame(valueConverter(matrixAbove0.5)), 2, sd)
+  
+  attributes(Mean) <- NULL
+  attributes(SD) <- NULL
+  
+  individualProb <- data.frame(ID = rownames(matrix), Mean = Mean, SD = SD)
+  return(individualProb)
+}
+
+
 # to do:
 # -- transform output: transformed matrix value: 0.5 - 1.0
 # -- individual level output
