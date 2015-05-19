@@ -2,23 +2,23 @@
 % Please edit documentation in R/conductance.R
 \name{valueConverter}
 \alias{valueConverter}
-\title{dominance probability matrix value converter}
+\title{win-loss probability matrix value converter}
 \usage{
 valueConverter(matrix)
 }
 \arguments{
-\item{matrix}{the second output from \code{conductance}}
+\item{the}{win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
 a matrix of win-loss probability ranging from 0.5 - 1.0.
 }
 \description{
-\code{valueConverter} convert values in the dominance probability matrix into 0.5 - 1.0
+\code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
 }
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(SampleEdgelist)
-# find dominance probability matrix
+# find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 perm2$imputed.conf
 perm2$p.hat

@@ -7,18 +7,18 @@
 individualWinProb(matrix)
 }
 \arguments{
-\item{matrix}{the second output from \code{conductance}}
+\item{the}{win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
 a dataframe. Averaging probability of win-loss relationship with all other individuals.
 }
 \description{
-\code{individualWinProb} convert dominance probability matrix into long format for each dyad
+\code{individualWinProb} convert win-loss probability matrix into long format for each dyad
 }
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(SampleEdgelist)
-# find dominance probability matrix
+# find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 perm2$imputed.conf
 perm2$p.hat

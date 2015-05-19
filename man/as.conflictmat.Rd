@@ -7,9 +7,11 @@
 as.conflictmat(Data, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
-\item{swap.order}{If the dominant entity is in the 2nd column, specify as TRUE.}
+\item{Data}{either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix.}
 
-\item{df}{either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix.}
+\item{weighted}{If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}.}
+
+\item{swap.order}{If the dominant entity is in the 2nd column, specify as TRUE.}
 }
 \value{
 a named matrix with [i,j]th entry equal to the number of times i dominates j.
@@ -19,6 +21,7 @@ convert an edgelist or a dominance matrix to conf.mat class
 }
 \examples{
 confmatrix <- as.conflictmat(SampleEdgelist, swap.order = FALSE)
-confmatrix <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
+confmatrix2 <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
+confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 }
 

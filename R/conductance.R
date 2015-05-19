@@ -1,21 +1,29 @@
-#' compute conductance dominance probabilities
+#' compute win-loss probabilities
 #' 
-#' \code{conductance} compute conductance dominance probabilities
+#' \code{conductance} compute win-loss probabilities for all possible pairs
+#'  based upon the combined information from directed wins/losses and 
+#'  indirect win/loss pathways from the network.
 #' 
 #' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @param alpha positive numeric value (more explanation)
-#' @param beta a positive numeric value (more explanation)
+#' @param alpha positive numeric value (somehow related to the unit of each interaction)
+#' @param beta a positive numeric value (somehow related to beta distribution)
 #' @return a list of two elements. 
-#' imputed.conf. An N-by-N conflict matrix whose (i,j)th element is the 
+#' 
+#'  \code{imputed.conf} An N-by-N conflict matrix whose (i,j)th element is the 
 #'    'effective' number of wins of i over j.
-#' p.mat. An N-by-N numeric matrix whose (i,j)th element is the estimated 
-#'      conductance dominance probability.
+#'    
+#'  \code{p.mat} An N-by-N numeric matrix whose (i,j)th element is the estimated 
+#'      win-loss probability.
+#'      
+#' @details <describe this function in more details!>
+#' 
+#' @references <add citations here!>
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)
-#' # find dominance probability matrix
+#' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
@@ -23,7 +31,7 @@
 conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   N = nrow(conf)
   
-  ### percMat will contain direct + indirect information from dominance paths
+  ### percMat will contain direct + indirect information from win-loss paths
   percMat = conf
   
   outdegree = rowSums(conf)
@@ -71,7 +79,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   }
   
   
-  ### "percMat2" is the estimated dominance probability matrix
+  ### "percMat2" is the estimated win-loss probability matrix
   
   percMat2 = matrix(0, N, N)
   for(i in 2:N){
@@ -90,17 +98,17 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   return(list(imputed.conf = percMat, p.hat = percMat2))  
 }
 
-#' dominance probability matrix value converter
+#' win-loss probability matrix value converter
 #' 
-#' \code{valueConverter} convert values in the dominance probability matrix into 0.5 - 1.0
+#' \code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
 #' 
-#' @param matrix the second output from \code{conductance}
+#' @param the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a matrix of win-loss probability ranging from 0.5 - 1.0.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)
-#' # find dominance probability matrix
+#' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
@@ -113,15 +121,15 @@ valueConverter <- function(matrix){
 
 #' dyadic long format converter
 #' 
-#' \code{dyadicLongConverter} convert dominance probability matrix into long format for each dyad
+#' \code{dyadicLongConverter} convert win-loss probability matrix into long format for each dyad
 #' 
-#' @param matrix the second output from \code{conductance}
+#' @param the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe of dyadic level win-loss probability.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)
-#' # find dominance probability matrix
+#' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
@@ -146,15 +154,15 @@ dyadicLongConverter <- function(matrix){
 
 #' individual-level probability converter
 #' 
-#' \code{individualWinProb} convert dominance probability matrix into long format for each dyad
+#' \code{individualWinProb} convert win-loss probability matrix into long format for each dyad
 #' 
-#' @param matrix the second output from \code{conductance}
+#' @param the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe. Averaging probability of win-loss relationship with all other individuals.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)
-#' # find dominance probability matrix
+#' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
@@ -175,8 +183,5 @@ individualWinProb <- function(matrix){
 
 
 # to do:
-# -- transform output: transformed matrix value: 0.5 - 1.0
-# -- individual level output
-# -- dyadic level output
 # -- more explanations for alpha. to add - allow user to set alpha
 # -- more explanations for beta

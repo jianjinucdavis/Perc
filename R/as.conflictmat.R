@@ -1,14 +1,17 @@
 #' transform an edgelist into a matrix
 #' 
-#' @param edgelist a 2-column dataframe/matrix of edges. The dominant entity is in the 1st column by default 
+#' @param edgelist a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The dominant entity is in the 1st column by default. For weighted edgelist, the third column should be the weight. 
+#' @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
 #' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
-#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
+#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j. It is the matrix representation of the edgelist.
 #' 
 #' @examples
 #' rawmatrix <- edgelisttomatrix(SampleEdgelist, swap.order = FALSE)
 #' 
-#' # weighted edgelist
-#' # add example here!
+#' rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
+
+
+
 
 
 edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
@@ -49,7 +52,7 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   } else {
     
     if (ncol(edgelist) != 2){
-      stop("Input a matrix with two columns; if it is a weighted edgelist, use 'weighted = TRUE'")
+      stop("edgelist should be a dataframe or matrix of two columns. If it is a weighted edgelist, it should be a matrix or dataframe of 3 columns and use the argument 'weighted = TRUE'")
     }
     
     for(i in 1:nrow(edgelist)){
@@ -66,15 +69,17 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 }
 
 
-#' convert an edgelist or a dominance matrix to conf.mat class
+#' convert an edgelist or a dominance matrix to conf.mat class 
 #' 
-#' @param df either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
+#' @param Data either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
 #' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
+#' @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
 #' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
 #' 
 #' @examples
 #' confmatrix <- as.conflictmat(SampleEdgelist, swap.order = FALSE)
-#' confmatrix <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
+#' confmatrix2 <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
+#' confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 
 as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   if(ncol(Data) == nrow(Data)){
@@ -89,5 +94,3 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   }
 }
 
-
-# test the codes using large data set

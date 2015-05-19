@@ -2,7 +2,7 @@
 % Please edit documentation in R/conductance.R
 \name{conductance}
 \alias{conductance}
-\title{compute conductance dominance probabilities}
+\title{compute win-loss probabilities}
 \usage{
 conductance(conf, maxLength, alpha = NULL, beta = 1)
 }
@@ -11,26 +11,36 @@ conductance(conf, maxLength, alpha = NULL, beta = 1)
 
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 
-\item{alpha}{positive numeric value (more explanation)}
+\item{alpha}{positive numeric value (somehow related to the unit of each interaction)}
 
-\item{beta}{a positive numeric value (more explanation)}
+\item{beta}{a positive numeric value (somehow related to beta distribution)}
 }
 \value{
 a list of two elements.
-imputed.conf. An N-by-N conflict matrix whose (i,j)th element is the
+
+ \code{imputed.conf} An N-by-N conflict matrix whose (i,j)th element is the
    'effective' number of wins of i over j.
-p.mat. An N-by-N numeric matrix whose (i,j)th element is the estimated
-     conductance dominance probability.
+
+ \code{p.mat} An N-by-N numeric matrix whose (i,j)th element is the estimated
+     win-loss probability.
 }
 \description{
-\code{conductance} compute conductance dominance probabilities
+\code{conductance} compute win-loss probabilities for all possible pairs
+ based upon the combined information from directed wins/losses and
+ indirect win/loss pathways from the network.
+}
+\details{
+<describe this function in more details!>
 }
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(SampleEdgelist)
-# find dominance probability matrix
+# find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 perm2$imputed.conf
 perm2$p.hat
+}
+\references{
+<add citations here!>
 }
 
