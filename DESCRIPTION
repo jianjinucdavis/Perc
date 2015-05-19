@@ -7,7 +7,9 @@ Author: xxx
 Contributor: xxx 
 Maintainer: Jian Jin <jinjian.pku@gmail.com>
 Description: Find the certainty of dominance interactions with indirect interactions being considered.
-License: GNU 3
+Depends:
+    R (>= 3.0.2)
+License: GPL (>= 2)
 Copyright: Development Version within McCowan Lab
 LazyData: true
 Suggests: testthat,
