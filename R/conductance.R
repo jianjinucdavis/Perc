@@ -6,7 +6,7 @@
 #' 
 #' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @param alpha positive numeric value (somehow related to the unit of each interaction)
+#' @param alpha a positive numeric value (somehow related to the unit of each interaction)
 #' @param beta a positive numeric value (somehow related to beta distribution)
 #' @return a list of two elements. 
 #' 

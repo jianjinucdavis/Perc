@@ -7,7 +7,8 @@
 sim.rank.order(data, num = 10, alpha = NULL, kmax = 5)
 }
 \arguments{
-\item{data}{a data frame. the output from PercMatrix}
+\item{data}{a data frame or a matrix. the win-loss probability matrix
+which is the second output from \code{conductance}}
 
 \item{num}{number of SimAnnealing (default is set at 10)}
 
@@ -17,7 +18,10 @@ sim.rank.order(data, num = 10, alpha = NULL, kmax = 5)
 a dataframe representing simulated rank order.
 }
 \description{
-Find the rank order
+\code{sim.rank.order} find the rank order for the win-loss relationship
+}
+\details{
+<more information on simAnneal>
 }
 \examples{
 # convert an edgelist to conflict matrix
@@ -26,5 +30,8 @@ confmatrix <- as.conflictmat(SampleEdgelist)
 perm2 <- conductance(confmatrix, maxLength = 2)
 s.rank <- sim.rank.order(perm2$p.hat, num = 5, kmax = 5)
 head(s.rank)
+}
+\references{
+<add citations here!>
 }
 

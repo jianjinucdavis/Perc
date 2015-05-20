@@ -1,10 +1,11 @@
-#' find the number of paths from i to j for each order of dominance path.
+#' count paths between all pairs
 #' 
-#' \code{countPaths} Identifies the number of paths of length less than or equal to maxLength between all pairs of competitors 
+#' \code{countPaths} Identifies the number of paths of length 
+#' less than or equal to \code{maxLength} between all pairs 
 #' 
 #' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @return A list. Elements of the list are number of paths between all pairs of a given length.
+#' @return A list in which elements are number of paths between all pairs of a given length.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix

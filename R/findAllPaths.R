@@ -1,10 +1,16 @@
-#' Identifies all paths length less than or equal to a certain length between all pairs of competitors 
+#' Identifies all paths between all pairs of less than or 
+#' equal to a certain length
 #' 
-#' \code{findAllPaths} Identifies all paths length less than or equal to maxLength between all pairs of competitors 
+#' \code{findAllPaths} Identifies all paths length less than or equal 
+#' to \code{maxLength} between all pairs of competitors 
 #' 
 #' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @return A list of two elements. The first element of the list is the direct pathways found in the matrix. The second element contains are all paths from length 2 to the given length.
+#' @return A list of two elements. 
+#'  
+#'  \code{direct pathways found in original matrix}
+#'  
+#'  \code{indirect pathways} all paths from length 2 to the given length
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix

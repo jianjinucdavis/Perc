@@ -2,7 +2,7 @@
 % Please edit documentation in R/transitivity.R
 \name{transitivity}
 \alias{transitivity}
-\title{calculate transitivity measurements for a conflict matrix}
+\title{calculate transitivity measurements for a matrix}
 \usage{
 transitivity(conf)
 }
@@ -11,13 +11,21 @@ transitivity(conf)
 }
 \value{
 A list.
- transitive. The number of transitive triangles.
- intransitive. The number of intransitive triangles.
- transitivity. The order - 1 transitivity.
- alpha. The value of alpha corresponding to this value of transitivity.
+
+ \code{transitive}  The number of transitive triangles.
+
+ \code{intransitive} The number of intransitive triangles.
+
+ \code{transitivity} The order - 1 transitivity.
+
+ \code{alpha} The value of alpha corresponding to this value of transitivity.
 }
 \description{
-\code{transitivity} Identifies all paths length less than or equal to maxLength between all pairs of competitors
+\code{transitivity} Identifies all paths length less than or
+equal to \code{maxLength} between all pairs of competitors
+}
+\details{
+<more information on transitivity!>
 }
 \examples{
 # convert an edgelist to conflict matrix

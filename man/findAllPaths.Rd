@@ -2,7 +2,8 @@
 % Please edit documentation in R/findAllPaths.R
 \name{findAllPaths}
 \alias{findAllPaths}
-\title{Identifies all paths length less than or equal to a certain length between all pairs of competitors}
+\title{Identifies all paths between all pairs of less than or
+equal to a certain length}
 \usage{
 findAllPaths(conf, maxLength = 2)
 }
@@ -12,10 +13,15 @@ findAllPaths(conf, maxLength = 2)
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 }
 \value{
-A list of two elements. The first element of the list is the direct pathways found in the matrix. The second element contains are all paths from length 2 to the given length.
+A list of two elements.
+
+ \code{direct pathways found in original matrix}
+
+ \code{indirect pathways} all paths from length 2 to the given length
 }
 \description{
-\code{findAllPaths} Identifies all paths length less than or equal to maxLength between all pairs of competitors
+\code{findAllPaths} Identifies all paths length less than or equal
+to \code{maxLength} between all pairs of competitors
 }
 \examples{
 # convert an edgelist to conflict matrix

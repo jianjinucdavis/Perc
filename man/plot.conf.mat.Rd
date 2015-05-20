@@ -2,22 +2,24 @@
 % Please edit documentation in R/plot.conf.mat.R
 \name{plot.conf.mat}
 \alias{plot.conf.mat}
-\title{generate heat map for a conflict matrix or dominance probability matrix}
+\title{generate heat map for a matrix}
 \usage{
 \method{plot}{conf.mat}(conf.mat, ordering = NA, labels = FALSE)
 }
 \arguments{
-\item{conf.mat}{an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)}
+\item{conf.mat}{an N-by-N matrix. Either a conflict matrix or
+a win-loss probability matrix (the second element from \code{conductance} output)}
 
 \item{ordering}{a reordering of the rows/columns, specified by a permutation of 1:N}
 
-\item{labels}{if TRUE, displaying the agent names as specified in the rownames() of conf.mat() on the heatmap}
+\item{labels}{if TRUE, displaying the agent names as
+specified in the \code{rownames()} of \code{conf.mat()} on the heatmap}
 }
 \value{
 A heatmap
 }
 \description{
-\code{plot.conf.mat} generate heat map for a conflict matrix or a dominance probability matrix
+\code{plot.conf.mat} generate heat map for a matrix or a dominance probability matrix
 }
 \examples{
 # convert an edgelist to conflict matrix

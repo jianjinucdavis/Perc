@@ -2,7 +2,7 @@
 % Please edit documentation in R/countPaths.R
 \name{countPaths}
 \alias{countPaths}
-\title{find the number of paths from i to j for each order of dominance path.}
+\title{count paths between all pairs}
 \usage{
 countPaths(conf, maxLength = 2)
 }
@@ -12,10 +12,11 @@ countPaths(conf, maxLength = 2)
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 }
 \value{
-A list. Elements of the list are number of paths between all pairs of a given length.
+A list in which elements are number of paths between all pairs of a given length.
 }
 \description{
-\code{countPaths} Identifies the number of paths of length less than or equal to maxLength between all pairs of competitors
+\code{countPaths} Identifies the number of paths of length
+less than or equal to \code{maxLength} between all pairs
 }
 \examples{
 # convert an edgelist to conflict matrix

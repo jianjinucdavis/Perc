@@ -11,7 +11,7 @@ conductance(conf, maxLength, alpha = NULL, beta = 1)
 
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 
-\item{alpha}{positive numeric value (somehow related to the unit of each interaction)}
+\item{alpha}{a positive numeric value (somehow related to the unit of each interaction)}
 
 \item{beta}{a positive numeric value (somehow related to beta distribution)}
 }

@@ -1,9 +1,17 @@
 #' Find the rank order
 #' 
-#' @param data a data frame. the output from PercMatrix
+#' \code{sim.rank.order} find the rank order for the win-loss relationship
+#' 
+#' @param data a data frame or a matrix. the win-loss probability matrix 
+#' which is the second output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
 #' @param kmax an integer between 2 to 1000
 #' @return a dataframe representing simulated rank order.
+#' 
+#' @details <more information on simAnneal>
+#' 
+#' @references <add citations here!>
+#' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(SampleEdgelist)

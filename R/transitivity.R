@@ -1,14 +1,22 @@
-#' calculate transitivity measurements for a conflict matrix
+#' calculate transitivity measurements for a matrix
 #' 
-#' \code{transitivity} Identifies all paths length less than or equal to maxLength between all pairs of competitors 
+#' \code{transitivity} Identifies all paths length less than or 
+#' equal to \code{maxLength} between all pairs of competitors 
 #' 
 #' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' 
 #' @return A list.
-#'  transitive. The number of transitive triangles.
-#'  intransitive. The number of intransitive triangles.
-#'  transitivity. The order - 1 transitivity.
-#'  alpha. The value of alpha corresponding to this value of transitivity.
+#' 
+#'  \code{transitive}  The number of transitive triangles.
+#'  
+#'  \code{intransitive} The number of intransitive triangles.
+#'  
+#'  \code{transitivity} The order - 1 transitivity.
+#'  
+#'  \code{alpha} The value of alpha corresponding to this value of transitivity.
+#' 
+#' 
+#' @details <more information on transitivity!>
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix

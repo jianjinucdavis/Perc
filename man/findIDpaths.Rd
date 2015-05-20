@@ -2,7 +2,7 @@
 % Please edit documentation in R/findIDpaths.R
 \name{findIDpaths}
 \alias{findIDpaths}
-\title{find all dominance paths of a certain length length for an individual}
+\title{find all paths of a certain length for an individual}
 \usage{
 findIDpaths(conf, ID, len = 2)
 }
@@ -14,10 +14,10 @@ findIDpaths(conf, ID, len = 2)
 \item{len}{a positive integer of length 1. the length of the dominance paths to be identified (len = order + 1)}
 }
 \value{
-return all dominance paths of length (len) beginning at ID
+return all dominance paths of \code{length(len)} beginning at \code{ID}
 }
 \description{
-\code{findIDpaths} identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by ID)
+\code{findIDpaths} identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by \code{ID})
 }
 \examples{
 confmatrix <- as.conflictmat(SampleEdgelist)

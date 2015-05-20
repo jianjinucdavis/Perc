@@ -1,10 +1,12 @@
-#' generate heat map for a conflict matrix or dominance probability matrix
+#' generate heat map for a matrix
 #' 
-#' \code{plot.conf.mat} generate heat map for a conflict matrix or a dominance probability matrix
+#' \code{plot.conf.mat} generate heat map for a matrix or a dominance probability matrix
 #' 
-#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)
+#' @param conf.mat an N-by-N matrix. Either a conflict matrix or 
+#' a win-loss probability matrix (the second element from \code{conductance} output)
 #' @param ordering a reordering of the rows/columns, specified by a permutation of 1:N
-#' @param labels if TRUE, displaying the agent names as specified in the rownames() of conf.mat() on the heatmap
+#' @param labels if TRUE, displaying the agent names as 
+#' specified in the \code{rownames()} of \code{conf.mat()} on the heatmap
 #' @return A heatmap
 #' 
 #' @examples
