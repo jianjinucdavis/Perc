@@ -1,7 +1,7 @@
-#' SampleRawMatrix.
-#' dominance interactions between 16 monkeys
+#' sampleRawMatrix.
+#' dominance interactions between 39 monkeys
 #' 
-#' @format A 16 x 16 dataframe representing number of times that a row wins over a column
+#' @format A 39 x 39 matrix representing number of times that a row wins over a column
 #' 
 #' McCowan Lab sample data.
-"SampleEdgelist"
+"sampleRawMatrix"

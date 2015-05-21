@@ -1,11 +1,11 @@
-#' SampleEdgelist.
-#' dominance interactions among 98 monkeys
+#' sampleEdgelist.
+#' social interactions among 11 monkeys
 #' 
-#' @format A data frame of edgelist with 53940 rows and 2 variables: \code{Initiator}, \code{Recipient}
+#' @format A data frame of edgelist with 174 rows and 2 variables: \code{Iname}, \code{Rname}
 #' \describe{
-#'   \item{Initiator}{winner, animal ID}
-#'   \item{Recipient}{loser, animal ID}
+#'   \item{Iname}{winner, animal ID}
+#'   \item{Rname}{loser, animal ID}
 #'   ...
 #' }
 #' McCowan Lab sample data.
-"SampleEdgelist"
+"sampleEdgelist"

@@ -4,12 +4,12 @@
 \name{sampleWeightedEdgelist}
 \alias{sampleWeightedEdgelist}
 \title{sampleWeightedEdgelist.
-dominance interactions among 58 monkeys}
-\format{A data frame of edgelist with 50 rows and 3 variables: \code{Initiator}, \code{Recipient}, \code{CountSBT}
+dominance interactions among 29 monkeys}
+\format{A data frame of edgelist with 181 rows and 3 variables: \code{Initiator1}, \code{Recipient1}, \code{Freq}
 \describe{
-  \item{Initiator}{winner, animal ID}
-  \item{Recipient}{loser, animal ID}
-  \item{CountSBT}{Frequency, integer}
+  \item{Initiator1}{winner, monkey name}
+  \item{Recipient1}{loser, monkey name}
+  \item{Freq}{Frequency, count of interaction}
   ...
 }
 McCowan Lab sample data.}
@@ -18,7 +18,7 @@ sampleWeightedEdgelist
 }
 \description{
 sampleWeightedEdgelist.
-dominance interactions among 58 monkeys
+dominance interactions among 29 monkeys
 }
 \keyword{datasets}
 
