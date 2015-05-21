@@ -59,7 +59,7 @@ sim.rank.order <- function(data, num = 10, alpha = NULL, kmax = 5){  # if null, 
   RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
                              IDindex = ranking)
   IDList.index <- data.frame(IDindex = 1:length(colnames(data)), 
-                             ID = sort(as.numeric(colnames(data))))
+                             ID = sort(colnames(data)))
   
   RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
   

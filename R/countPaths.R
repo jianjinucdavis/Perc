@@ -43,7 +43,7 @@ countPaths = function(conf, maxLength = 2){
     pathList[[K]] = as.conflictmat(allPaths[[K]][,c(1,(K+1))]) #! return error:"Error in a[[1]][, c(1, (1 + 1))] : incorrect number of dimensions"
   }
    
-  cpNames  <- dimnames(confmatrix)[[1]][as.numeric(dimnames(pathList[[1]])[[1]])]
+  cpNames  <- dimnames(conf)[[1]][as.numeric(dimnames(pathList[[1]])[[1]])]
   
   for (i in 1:length(pathList)){
     dimnames(pathList[[i]])[[1]] <- cpNames

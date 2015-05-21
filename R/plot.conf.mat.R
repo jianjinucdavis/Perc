@@ -29,7 +29,7 @@ plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
   
   conf.mat.ord = conf.mat[ordering, ordering]
   ramp = colorRamp(c("white","blue", "orange", "red"))
-  colors = rgb(ramp(seq(0, 1, length = 1000)), max = 255)
+  colors = rgb(ramp(seq(0, 1, length = 1000)), maxColorValue = 255)
   
   N = nrow(conf.mat)
   
