@@ -56,9 +56,22 @@ findIDpaths = function(conf, ID, len = 2){
 #  isUnique = apply(ret, MARGIN = 1, function(b) {length(unique(b)) == len + 1})
 #  ret[isUnique,]
   pathMatrix <- IDpaths(conf, i, len)
-  pathOutputmatrix <- pathMatrix
-  for (i in 1:length(pathMatrix)){
-    pathOutputmatrix[i] <- row.names(conf)[pathMatrix[i]]
+  if (nrow(pathMatrix) == 0) {
+    return(
+      list(
+        pathMatrix, 
+        paste(
+          c("no pathways found starting at"),
+          ID,
+          sep = " "
+          )
+        )
+      )
+  } else {
+    pathOutputmatrix <- pathMatrix
+    for (j in 1:length(pathMatrix)){
+      pathOutputmatrix[j] <- row.names(conf)[pathMatrix[j]]
+    }
+    return(pathOutputmatrix)
   }
-  return(pathOutputmatrix)
 }
