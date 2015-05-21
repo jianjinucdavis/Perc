@@ -6,6 +6,7 @@
 #' which is the second output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
 #' @param kmax an integer between 2 to 1000
+#' @param alpha a positive numeric value (somehow related to the unit of each interaction)
 #' @return a dataframe representing simulated rank order.
 #' 
 #' @details <more information on simAnneal>

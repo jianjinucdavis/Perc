@@ -102,12 +102,12 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 #' 
 #' \code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
 #' 
-#' @param the win-loss matrix which is the second output from \code{conductance}. 
-#' @return matrix a matrix of win-loss probability ranging from 0.5 - 1.0.
+#' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
+#' @return a matrix of win-loss probability ranging from 0.5 - 1.0.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
-#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
@@ -128,7 +128,7 @@ valueConverter <- function(matrix){
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
-#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
@@ -161,7 +161,7 @@ dyadicLongConverter <- function(matrix){
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
-#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf

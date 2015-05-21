@@ -12,6 +12,8 @@ which is the second output from \code{conductance}}
 
 \item{num}{number of SimAnnealing (default is set at 10)}
 
+\item{alpha}{a positive numeric value (somehow related to the unit of each interaction)}
+
 \item{kmax}{an integer between 2 to 1000}
 }
 \value{

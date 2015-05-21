@@ -76,8 +76,8 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 #' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
 #' 
 #' @examples
-#' confmatrix <- as.conflictmat(SampleEdgelist, swap.order = FALSE)
-#' confmatrix2 <- as.conflictmat(SampleRawMatrix, swap.order = FALSE)
+#' confmatrix <- as.conflictmat(sampleEdgelist, swap.order = FALSE)
+#' confmatrix2 <- as.conflictmat(sampleRawMatrix, swap.order = FALSE)
 #' confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 
 as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){

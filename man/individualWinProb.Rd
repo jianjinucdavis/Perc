@@ -17,7 +17,7 @@ a dataframe. Averaging probability of win-loss relationship with all other indiv
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 perm2$imputed.conf

@@ -7,17 +7,17 @@
 valueConverter(matrix)
 }
 \arguments{
-\item{the}{win-loss matrix which is the second output from \code{conductance}.}
+\item{matrix}{the win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
-matrix a matrix of win-loss probability ranging from 0.5 - 1.0.
+a matrix of win-loss probability ranging from 0.5 - 1.0.
 }
 \description{
 \code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 perm2$imputed.conf
