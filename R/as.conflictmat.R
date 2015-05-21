@@ -10,10 +10,6 @@
 #' 
 #' rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 
-
-
-
-
 edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
   if (swap.order == TRUE){
@@ -36,8 +32,11 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
       stop("Input a matrix or dataframe with three columns, with the third column being Frequency of the interaction")
     }
     
-    if (nrow(edgelist[,1:2]) != nrow(unique(edgelist[,1:2]))) {
-      stop("dyads in the edgelist are not unique; weighted edgelist should contain only unique dyads")
+    if (anyDuplicated(edgelist[,1:2]) != 0) {
+      warning(
+        "dyads in the weighted edgelist are not unique; the sum of frequencies is taken for duplicated rows."
+        )
+      edgelist <- sumDuplicate(edgelist)
     }
     
     
@@ -94,3 +93,28 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   }
 }
 
+
+#### internal functions
+
+
+sumDuplicate <- function(weightedEdgelist) {
+  uniqueEdgelist <- unique(weightedEdgelist[,1:2])
+  for (i in 1:nrow(uniqueEdgelist)){
+    uniqueEdgelist[i,3] <- 
+      sum(
+        weightedEdgelist[
+          match.2coldf(weightedEdgelist[,1:2],  uniqueEdgelist[i,]),
+          3])
+  }
+  names(uniqueEdgelist) <- names(weightedEdgelist)
+  return(uniqueEdgelist)
+}
+
+
+match.2coldf <- function(dataframe, values) {
+  # dataframe should be of two columns
+  # values should be a vector of length 2, or a row of dataframe of two columns
+  rowIndex <- intersect(which(dataframe[,1] == values[[1]]),
+                        which(dataframe[,2] == values[[2]]))
+  return(rowIndex)
+}
