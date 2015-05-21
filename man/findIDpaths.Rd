@@ -20,7 +20,7 @@ return all dominance paths of \code{length(len)} beginning at \code{ID}
 \code{findIDpaths} identifies all unique dominance paths of order (len - 1) beginning at selected subject (given by \code{ID})
 }
 \examples{
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
 }
 

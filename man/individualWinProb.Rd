@@ -7,7 +7,7 @@
 individualWinProb(matrix)
 }
 \arguments{
-\item{the}{win-loss matrix which is the second output from \code{conductance}.}
+\item{matrix}{the win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
 a dataframe. Averaging probability of win-loss relationship with all other individuals.

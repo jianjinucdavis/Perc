@@ -7,7 +7,7 @@
 dyadicLongConverter(matrix)
 }
 \arguments{
-\item{the}{win-loss matrix which is the second output from \code{conductance}.}
+\item{matrix}{the win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
 a dataframe of dyadic level win-loss probability.

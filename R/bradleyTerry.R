@@ -13,7 +13,7 @@
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
-#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # Computes the MLE for the BT model
 #' bt <- bradleyTerry(confmatrix)
 

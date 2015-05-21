@@ -10,7 +10,7 @@ valueConverter(matrix)
 \item{the}{win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
-a matrix of win-loss probability ranging from 0.5 - 1.0.
+matrix a matrix of win-loss probability ranging from 0.5 - 1.0.
 }
 \description{
 \code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0

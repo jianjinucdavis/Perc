@@ -8,7 +8,7 @@
 #' @return return all dominance paths of \code{length(len)} beginning at \code{ID}
 #' 
 #' @examples
-#' confmatrix <- as.conflictmat(SampleEdgelist)
+#' confmatrix <- as.conflictmat(sampleEdgelist)
 #' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
 
 

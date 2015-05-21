@@ -25,7 +25,7 @@ to \code{maxLength} between all pairs of competitors
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # find all paths of legnth 3
 allp.3 <- findAllPaths(confmatrix, 3)
 }

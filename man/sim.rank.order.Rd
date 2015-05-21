@@ -25,7 +25,7 @@ a dataframe representing simulated rank order.
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # find dominance probability matrix
 perm2 <- conductance(confmatrix, maxLength = 2)
 s.rank <- sim.rank.order(perm2$p.hat, num = 5, kmax = 5)

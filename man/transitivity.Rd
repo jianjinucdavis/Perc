@@ -29,7 +29,7 @@ equal to \code{maxLength} between all pairs of competitors
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # transitivity calculation
 conftrans <- transitivity(confmatrix)
 conftrans$transitive

@@ -20,7 +20,7 @@ a named matrix with [i,j]th entry equal to the number of times i dominates j. It
 transform an edgelist into a matrix
 }
 \examples{
-rawmatrix <- edgelisttomatrix(SampleEdgelist, swap.order = FALSE)
+rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
 
 rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 }

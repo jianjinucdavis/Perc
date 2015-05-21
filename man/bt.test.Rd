@@ -26,7 +26,7 @@ p.val is p-value of the test.
 }
 \examples{
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(SampleEdgelist)
+confmatrix <- as.conflictmat(sampleEdgelist)
 # test the assumptions of the Bradley-Terry model
 condTestoutput <- bt.test(confmatrix)
 }
