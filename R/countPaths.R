@@ -33,6 +33,7 @@
 
 
 countPaths = function(conf, maxLength = 2){
+  if (maxLength < 2) stop("len should be no smaller than 2.")
 #  allPaths <- findAllPaths(conf, maxLength)
   allPaths <- allPaths(conf, maxLength)[[2]]
   nOrders = length(allPaths)

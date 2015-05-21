@@ -4,7 +4,7 @@
 #' 
 #' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
 #' @param ID a numeric or character object of length 1. the subject at the beginning of each dominance path.
-#' @param len a positive integer of length 1. the length of the dominance paths to be identified (len = order + 1)
+#' @param len a positive integer of length 1 greater than 2. the length of the dominance paths to be identified (len = order + 1)
 #' @return return all dominance paths of \code{length(len)} beginning at \code{ID}
 #' 
 #' @examples
@@ -13,7 +13,7 @@
 
 
 findIDpaths = function(conf, ID, len = 2){
-  
+  if (len < 2) stop("len should be greater than 2.")
   i <- which(row.names(conf) == as.character(ID))
   
 #  if(sum(conf[i,] > 0) == 0) return(matrix(0, 0, len+1))

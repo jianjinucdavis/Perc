@@ -20,6 +20,7 @@
 
 
 findAllPaths = function(conf, maxLength = 2){
+  if (maxLength < 2) stop("len should be no smaller than 2.")
   allPathsOutput <- allPaths(conf, maxLength)
 #  paths = lapply(2:maxLength, FUN = function(l, conf){
 #    do.call(rbind, lapply(1:nrow(conf), FUN = IDpaths, conf = conf, l = l))
