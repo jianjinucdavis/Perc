@@ -13,7 +13,7 @@
 
 
 findIDpaths = function(conf, ID, len = 2){
-  if (len < 2) stop("len should be greater than 2.")
+  if (len < 2) stop("len should be no smaller than 2.")
   i <- which(row.names(conf) == as.character(ID))
   
 #  if(sum(conf[i,] > 0) == 0) return(matrix(0, 0, len+1))
