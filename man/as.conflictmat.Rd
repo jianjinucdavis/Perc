@@ -2,22 +2,22 @@
 % Please edit documentation in R/as.conflictmat.R
 \name{as.conflictmat}
 \alias{as.conflictmat}
-\title{convert an edgelist or a dominance matrix to conf.mat class}
+\title{convert an edgelist or a win-loss matrix to conf.mat class}
 \usage{
 as.conflictmat(Data, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
-\item{Data}{either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix.}
+\item{Data}{either an edgelist of 2 column dataframe with the winner in the 1st column by default; or a win-loss matrix.}
 
 \item{weighted}{If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}.}
 
-\item{swap.order}{If the dominant entity is in the 2nd column, specify as TRUE.}
+\item{swap.order}{If the winner is in the 2nd column, specify as \code{TRUE}.}
 }
 \value{
-a named matrix with [i,j]th entry equal to the number of times i dominates j.
+a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}.
 }
 \description{
-convert an edgelist or a dominance matrix to conf.mat class
+convert an edgelist or a win-loss matrix to conf.mat class
 }
 \examples{
 confmatrix <- as.conflictmat(sampleEdgelist, swap.order = FALSE)

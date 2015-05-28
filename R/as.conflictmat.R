@@ -1,9 +1,10 @@
 #' transform an edgelist into a matrix
 #' 
-#' @param edgelist a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The dominant entity is in the 1st column by default. For weighted edgelist, the third column should be the weight. 
+#' @param edgelist a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The winner is in the 1st column by default. For weighted edgelist, the third column should be the weight. 
 #' @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
-#' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
-#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j. It is the matrix representation of the edgelist.
+#' @param swap.order If the winner is in the 2nd column, specify as \code{TRUE}.
+#' @return a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}. 
+#' It is the matrix representation of the edgelist.
 #' 
 #' @examples
 #' rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
@@ -68,12 +69,12 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 }
 
 
-#' convert an edgelist or a dominance matrix to conf.mat class 
+#' convert an edgelist or a win-loss matrix to conf.mat class 
 #' 
-#' @param Data either an edgelist of 2 column dataframe with the dominant entity in the 1st column by default; or a dominance matrix. 
-#' @param swap.order If the dominant entity is in the 2nd column, specify as TRUE.
+#' @param Data either an edgelist of 2 column dataframe with the winner in the 1st column by default; or a win-loss matrix. 
+#' @param swap.order If the winner is in the 2nd column, specify as \code{TRUE}.
 #' @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
-#' @return a named matrix with [i,j]th entry equal to the number of times i dominates j.
+#' @return a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}.
 #' 
 #' @examples
 #' confmatrix <- as.conflictmat(sampleEdgelist, swap.order = FALSE)

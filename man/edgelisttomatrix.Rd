@@ -7,14 +7,15 @@
 edgelisttomatrix(edgelist, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
-\item{edgelist}{a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The dominant entity is in the 1st column by default. For weighted edgelist, the third column should be the weight.}
+\item{edgelist}{a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The winner is in the 1st column by default. For weighted edgelist, the third column should be the weight.}
 
 \item{weighted}{If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}.}
 
-\item{swap.order}{If the dominant entity is in the 2nd column, specify as TRUE.}
+\item{swap.order}{If the winner is in the 2nd column, specify as \code{TRUE}.}
 }
 \value{
-a named matrix with [i,j]th entry equal to the number of times i dominates j. It is the matrix representation of the edgelist.
+a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}.
+It is the matrix representation of the edgelist.
 }
 \description{
 transform an edgelist into a matrix

@@ -4,21 +4,40 @@
 #'  based upon the combined information from directed wins/losses and 
 #'  indirect win/loss pathways from the network.
 #' 
-#' @param conf N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param conf N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j. It is the output from \code{as.conflictmat}
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
-#' @param alpha a positive numeric value (somehow related to the unit of each interaction)
-#' @param beta a positive numeric value (somehow related to beta distribution)
+#' @param alpha a positive integer that 
+#' reflects the influence of an observed win/loss interaction 
+#' on an underlying win-loss probability. 
+#' It is used in the calculation of the posterior distribution 
+#' for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j} +\beta, c_{i,j}+\beta)}{Beta*(\alpha * c_ij + \beta, c_ij + \beta)}. 
+#' In the absence of expertise to accurately estimate alpha, 
+#' it is estimated from the data.
+#' @param beta a positive numeric value that, like alpha, 
+#' reflects the influence of an observed win/loss interaction 
+#' on an underlying win-loss probability. 
+#' Both α and β are chosen such that \eqn{((\alpha + \beta)/(\alpha + 2\beta))}{((α + β)/(α + 2β))^2} is 
+#' equal to the order-1 transitivity of the observed network. 
+#' Therefore, β is commonly set to 1.
 #' @return a list of two elements. 
 #' 
-#'  \code{imputed.conf} An N-by-N conflict matrix whose (i,j)th element is the 
-#'    'effective' number of wins of i over j.
+#'  \item{imputed.conf}{An N-by-N conflict matrix whose \code{(i,j)}th element is the 
+#'    'effective' number of wins of \code{i} over \code{j}.}
 #'    
-#'  \code{p.mat} An N-by-N numeric matrix whose (i,j)th element is the estimated 
-#'      win-loss probability.
+#'  \item{p.mat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated 
+#'      win-loss probability.}
 #'      
-#' @details <describe this function in more details!>
+#' @details This function performs two major steps. 
+#' First, repeated random walks through the empirical network 
+#' identify all possible directed win-loss pathways 
+#' between each pair of nodes in the network. 
+#' Second, the information from both direct wins/losses and 
+#' pathways of win/loss interactions are combined into an estimate of 
+#' the underlying probability of \code{i} over \code{j}, for all \code{ij} pairs.
 #' 
-#' @references <add citations here!>
+#' @references Fushing H, McAssey M, Beisner BA, McCowan B. 2011. 
+#' Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom. 
+#' PLoS ONE 6(3):e17817.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
@@ -100,7 +119,8 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 
 #' win-loss probability matrix value converter
 #' 
-#' \code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
+#' \code{valueConverter} converts or transforms all values (which range from 0.0 to 1.0)
+#'  in the win-loss probability matrix into 0.5 - 1.0
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a matrix of win-loss probability ranging from 0.5 - 1.0.

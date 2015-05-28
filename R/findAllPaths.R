@@ -4,13 +4,13 @@
 #' \code{findAllPaths} Identifies all paths length less than or equal 
 #' to \code{maxLength} between all pairs of competitors 
 #' 
-#' @param conf an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j
+#' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
 #' @return A list of two elements. 
 #'  
-#'  \code{direct pathways found in original matrix}
+#'  \item{direct pathways}{direct pathways found in original matrix}
 #'  
-#'  \code{indirect pathways} all paths from length 2 to the given length
+#'  \item{indirect pathways}{a list of all paths from length 2 to the given length}
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
@@ -32,7 +32,7 @@ findAllPaths = function(conf, maxLength = 2){
     pathOutput[[i]][j] <- row.names(conf)[paths[[i]][j]]
   }
   pathOutputAll <- list(which(conf > 0, arr.ind = TRUE), pathOutput)
-  names(pathOutputAll)[1] <- "direct pathways found in original matrix"
+  names(pathOutputAll)[1] <- "direct pathways"
   names(pathOutputAll)[2] <- "indirect pathways"
   return(pathOutputAll)
   # return(list(which(conf > 0, arr.ind = TRUE), paths))

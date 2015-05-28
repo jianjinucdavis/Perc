@@ -19,12 +19,12 @@ specified in the \code{rownames()} of \code{conf.mat()} on the heatmap}
 A heatmap
 }
 \description{
-\code{plot.conf.mat} generate heat map for a matrix or a dominance probability matrix
+\code{plot.conf.mat} generate heat map for a matrix or a win-loss probability matrix
 }
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
-# find dominance probability matrix
+# find win-loss probability matrix
 perm2 <- conductance(confmatrix, 2)
 # plotting
 plot.conf.mat(perm2$p.hat)

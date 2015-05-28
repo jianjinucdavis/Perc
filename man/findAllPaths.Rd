@@ -8,16 +8,16 @@ equal to a certain length}
 findAllPaths(conf, maxLength = 2)
 }
 \arguments{
-\item{conf}{an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j}
+\item{conf}{an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}}
 
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 }
 \value{
 A list of two elements.
 
- \code{direct pathways found in original matrix}
+ \item{direct pathways}{direct pathways found in original matrix}
 
- \code{indirect pathways} all paths from length 2 to the given length
+ \item{indirect pathways}{a list of all paths from length 2 to the given length}
 }
 \description{
 \code{findAllPaths} Identifies all paths length less than or equal

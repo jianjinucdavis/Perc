@@ -7,7 +7,7 @@
 bradleyTerry(conf.mat, initial = NA, baseline = NA, stop.dif = 0.001)
 }
 \arguments{
-\item{conf.mat}{an N-by-N matrix. Either a conflict matrix or a dominance probability matrix (the second element from \code{conductance} output)}
+\item{conf.mat}{an N-by-N matrix. Either a conflict matrix or a win-loss probability matrix (the second element from \code{conductance} output)}
 
 \item{initial}{initial values of dominance indices for the MM algorithm, if not supplied, the 0 vector will be the inital value.}
 
@@ -17,17 +17,25 @@ bradleyTerry(conf.mat, initial = NA, baseline = NA, stop.dif = 0.001)
 }
 \value{
 A list of length 3.
-domInds is a vector of length N consiting of the MLE values of the dominance indices.
-probMat is an N-by-N numeric matrix of dominance probabilities estimated by the BT model.
-logLik is the model fit.
+ \item{domInds}{a vector of length N consiting of the MLE values of the dominance indices.}
+ \item{probMat}{an N-by-N numeric matrix of win-loss probabilities estimated by the BT model.}
+ \item{logLik}{the model fit.}
 }
 \description{
 \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
+}
+\details{
+<more information on bradleyTerry!>
 }
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
 # Computes the MLE for the BT model
 bt <- bradleyTerry(confmatrix)
+}
+\references{
+Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.
+
+   Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
 }
 

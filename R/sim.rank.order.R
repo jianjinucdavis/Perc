@@ -1,12 +1,18 @@
 #' Find the rank order
 #' 
-#' \code{sim.rank.order} find the rank order for the win-loss relationship
+#' \code{simRankOrder} find the rank order for the win-loss relationship
 #' 
 #' @param data a data frame or a matrix. the win-loss probability matrix 
 #' which is the second output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
 #' @param kmax an integer between 2 to 1000
-#' @param alpha a positive numeric value (somehow related to the unit of each interaction)
+#' @param alpha a positive integer that 
+#' reflects the influence of an observed win/loss interaction 
+#' on an underlying win-loss probability. 
+#' It is used in the calculation of the posterior distribution 
+#' for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j} +\beta, c_{i,j}+\beta)}{Beta*(\alpha * c_ij + \beta, c_ij + \beta)}. 
+#' In the absence of expertise to accurately estimate alpha, 
+#' it is estimated from the data.
 #' @return a dataframe representing simulated rank order.
 #' 
 #' @details <more information on simAnneal>
@@ -18,10 +24,12 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find dominance probability matrix
 #' perm2 <- conductance(confmatrix, maxLength = 2)
-#' s.rank <- sim.rank.order(perm2$p.hat, num = 5, kmax = 5)
+#' s.rank <- simRankOrder(perm2$p.hat, num = 5, kmax = 5)
 #' head(s.rank)
+#' 
+#' 
 
-sim.rank.order <- function(data, num = 10, alpha = NULL, kmax = 5){  # if null, take transitivity; if not null take specify
+simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 5){  # if null, take transitivity; if not null take specify
   # input df, a dataframe, the output from percolation function.
   
   # run the SimAnneal.R manually. 

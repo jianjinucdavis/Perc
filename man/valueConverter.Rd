@@ -13,7 +13,8 @@ valueConverter(matrix)
 a matrix of win-loss probability ranging from 0.5 - 1.0.
 }
 \description{
-\code{valueConverter} convert values in the win-loss probability matrix into 0.5 - 1.0
+\code{valueConverter} converts or transforms all values (which range from 0.0 to 1.0)
+ in the win-loss probability matrix into 0.5 - 1.0
 }
 \examples{
 # convert an edgelist to conflict matrix

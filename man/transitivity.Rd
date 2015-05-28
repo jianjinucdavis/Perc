@@ -7,18 +7,18 @@
 transitivity(conf)
 }
 \arguments{
-\item{conf}{an N-by-N conflict matrix whose (i,j)th element is the number of times i defeated j}
+\item{conf}{an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}}
 }
 \value{
-A list.
+A list of four elements.
 
- \code{transitive}  The number of transitive triangles.
+ \item{transitive}{The number of transitive triangles.}
 
- \code{intransitive} The number of intransitive triangles.
+ \item{intransitive}{The number of intransitive triangles.}
 
- \code{transitivity} The order - 1 transitivity.
+ \item{transitivity}{The order - 1 transitivity.}
 
- \code{alpha} The value of alpha corresponding to this value of transitivity.
+ \item{alpha}{The value of alpha corresponding to this value of transitivity.}
 }
 \description{
 \code{transitivity} Identifies all paths length less than or
