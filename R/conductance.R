@@ -24,7 +24,7 @@
 #'  \item{imputed.conf}{An N-by-N conflict matrix whose \code{(i,j)}th element is the 
 #'    'effective' number of wins of \code{i} over \code{j}.}
 #'    
-#'  \item{p.mat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated 
+#'  \item{p.hat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated 
 #'      win-loss probability.}
 #'      
 #' @details This function performs two major steps. 

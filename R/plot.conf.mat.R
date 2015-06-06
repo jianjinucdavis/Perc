@@ -42,7 +42,7 @@ plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
     lbls = rev(seq(tickdist, N, tickdist))
   }
   else{
-    lbls = rownames(conf.mat)
+    lbls = rownames(conf.mat.ord)
     x.values = 1:N
     y.values = rev(1:N)
   }

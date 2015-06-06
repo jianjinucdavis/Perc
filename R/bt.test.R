@@ -53,7 +53,7 @@
 ###          BT model.
 ###  $p.val - p-value of the test.
 ###############################################################################
-bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 5){  # temp revision, just to run fastly
+bt.test = function(conf.mat, baseline = 1, maxLength = 3, reps = 1000){  # temp revision, just to run fastly
   n = nrow(conf.mat)
   mle.d = bradleyTerry(conf.mat, baseline = baseline)
   mle.probs = convertToProb(mle.d[[1]]) # use only domInds (vector of length N consiting of the MLE values of the dominance indices.)

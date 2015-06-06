@@ -24,12 +24,13 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find dominance probability matrix
 #' perm2 <- conductance(confmatrix, maxLength = 2)
-#' s.rank <- simRankOrder(perm2$p.hat, num = 5, kmax = 5)
+#' # Note: It takes a while to run the simRankOrder.
+#' s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
 #' head(s.rank)
 #' 
 #' 
 
-simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 5){  # if null, take transitivity; if not null take specify
+simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
   # input df, a dataframe, the output from percolation function.
   
   # run the SimAnneal.R manually. 
