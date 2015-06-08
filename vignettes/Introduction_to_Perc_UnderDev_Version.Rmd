@@ -1,5 +1,5 @@
 ---
-title: "PercIntro"
+title: "Introduction to Perc Package"
 author: "JJ"
 date: "May 8, 2015"
 output: word_document
@@ -15,6 +15,19 @@ Dominance uncertainty basically is characterized by the directional consistency 
 The R package we develop implement the percolation-conductance algorithm to quantify dominance uncertainty from data on dyadic interactions. By applying simple R functions, researchers will be able to quantify dominance uncertainty with the help of the package running complicated computations to find global directional consistency of information flow between dyadic interactions from raw data. The goal of this tutorial is to show how to quantify win-loss uncertainty from raw data.
 
 ### User Manual
+
+#### Notes
+##### plug in heading to refer to different steps of analysis.
+##### conductance output: from 0-1 --> probability; 0.5 - 1 --> certainty
+##### how to phrase what type of the network (); better way to phrase dominance/ win-loss probability matrix (Maybe use ranking, define it, and give examples "like ranking in primate dominance, ranking in chest, seeding in basketball")
+##### plot.conf.mat: plot using ID ordered by sim.rank.
+##### plot.conf.prob.diagnosis: binary one, allow users to specify the value, ordered by sim.rank
+##### findIDpaths, when print pathKuai, print less.
+
+
+##### for future development: countPaths for whole network at particular len
+##### for future: differences between DominanceProbability$imputed.conf for different lengths to give an idea on changes in information gains for adding each path length.
+
 The prefered argument for the function `as.conflictmat` is a "`matrix`" or "`data.frame`". Raw data should be edgelists or matrix which are records for directed dyadic win-loss interactions. The most simple and commonly used raw data is a edgelist of two columns, with the first columns being the winner and the second column being the loser. Duplicates are allowed in this edgelist because multiple interactions between a pair are represented by multiple rows of the same winner and loser. Below is an example of a two column edgelist.
 
 ```{r}
@@ -39,7 +52,10 @@ sampleRawMatrix[1:5, 1:5]
 
 It is very important to note that raw data on dyadic win-loss interactions are directional. By default, winners are in the first column of an edgelist and losers are in the second column. In a raw win-loss matrix, row names are assumed to be the winner. Values in a raw win-loss matrix describe that for how many times the corresponding row ID win over the corresponding column ID.
 
-The function `as.conflictmat` is used to import raw data for further analysis.  
+The function `as.conflictmat` is used to import raw data for further analysis. 
+
+* Note: Explain "conflict matrix" is very specifically refered to a class in R. It is the class of an R object. The content of a conflict matrix is the same as the win-loss raw matrix.
+
 ```{r}
 # convert an two-column edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
@@ -66,15 +82,52 @@ Then we used the function `conductance` to find dominance probability matrix, wh
 ```{r}
 DominanceProbability <- conductance(confmatrix, maxLength = 2)
 # Dominance Uncertainty: displaying dominance probability matrix of 5 oldest animals.
+confmatrix[1:5, 1:5]
+DominanceProbability$imputed.conf[1:5, 1:5]
+DominanceProbability.3$imputed.conf[1:5, 1:5]
 DominanceProbability$p.hat[1:5, 1:5]
 ```
 
+##### ==== Regarding Rank ==========
 You could examine the win-loss probability matrix visually by generating a heatmap using `plot.conf.mat` function.
 
 ```{r}
 # plotting
 plot.conf.mat(DominanceProbability$p.hat, labels = TRUE)
 ```
+
+A long-format representation of the matrix is easier. The function `dyadicLongConverter` convert win-loss uncertainty to long format.  
+
+```{r}
+# displaying the first 10 rows of the converted long format win-loss probability.
+dyadicLongConverter(DominanceProbability$p.hat)[1:10,]
+```
+Note, directionality of the win-loss probability is preserved in long format.
+
+Simulated rank order is computed by the function `sim.rank.order`.
+
+```{r}
+# find simRankOrder
+s.rank <- simRankOrder(DominanceProbability$p.hat, num = 10, kmax = 10)
+head(s.rank)
+
+
+
+```
+
+# get ordered plot
+
+```{r}
+
+
+plot.conf.mat(DominanceProbability$p.hat, ordering = s.rank$ID, labels = TRUE)
+
+
+
+```
+
+
+###### ===== Regarding Dominance Certainty; remove directionality ======
 
 The win-loss probability matrix sometimes need to be transformed for further explorations. We provide functions to faciliate such transformations. The function `valueConverter` converts all values to values between 0.5 - 1.0, which, in essence,  focus on win-loss certainty by removing directionality of the win-loss relationship. For example,
 
@@ -83,13 +136,7 @@ The win-loss probability matrix sometimes need to be transformed for further exp
 valueConverter(DominanceProbability$p.hat)[1:5, 1:5]
 ```
 
-A matrix sometimes is not the easiest data format for further explorations. A long-format representation of the matrix is easier. The function `dyadicLongConverter` convert win-loss uncertainty to long format.  
-
-```{r}
-# displaying the first 10 rows of the converted long format win-loss probability.
-dyadicLongConverter(DominanceProbability$p.hat)[1:10,]
-```
-Note, directionality of the win-loss probability is preserved in long format.
+A matrix sometimes is not the easiest data format for further explorations. 
 
 When individual-level win-loss relationship uncertainty of the focus of your question, the function `individualWinProb` computes the mean and standard deviation for individual-level win-loss probability. 
 ```{r}
@@ -97,13 +144,8 @@ individualWinProb(DominanceProbability$p.hat)[1:10,]
 ```
 The mean values are between 0.5-1.0, with 0.5 meaning absolute uncertainty and 1.0 with absolute certainty in win-loss relationships.
 
-Simulated rank order is computed by the function `sim.rank.order`.
 
-```{r}
-# find simRankOrder
-s.rank <- sim.rank.order(DominanceProbability$p.hat, num = 5, kmax = 5)
-head(s.rank)
-```
+
 
 The `Perc` package also provide funtions to compute transitivity.
 ```{r}
@@ -116,6 +158,7 @@ conftrans$alpha           # alpha
 ```
 
 
+##### ====== descriptive network analysis ======
 
 In addition, the "`Perc`" package also provide functions that allow you to explore indirect pathways of the network generated from the directed dyadic the win-loss interactions conveniently.
 
@@ -124,43 +167,13 @@ You could find pathways of **particular length** that **starting** at a particul
 ```{r}
 # Testing findIDpaths.R
 ?findIDpaths
+
+pathKuai <- findIDpaths(confmatrix, "Kuai", len = 3)
+pathKuai
+
+# When there's no pathway starting at a particular individual, you'll get an output like the example below: 
 pathKalani <- findIDpaths(confmatrix, ID = "Kalani", len = 2)
 pathKalani
 
-pathKuai <- findIDpaths(confmatrix, "Kuai", 3)
-pathKuai
+
 ```
-
-** Introduce findAllPaths and countPaths**
-
-You could also find all pathways of length equal to or less than `n` using the function `findAllPaths`. For example,
-```{r}
-allp.3 <- findAllPaths(confmatrix, 3)
-str(allp.3)
-```
-
-This function is very convenient in getting all pathways of length `n` or less. In the list `findAllPaths` returned, the first element is a matrix listing direct pathways. The second element is a list of matrices representing indirect pathways. 
-
-In the first element, the value in the first column `row` indicates the position of the start of the direct pathway in the raw matrix. The value in the second column `col` indicates the position of the end of the direct pathway in the raw matrix. The row names of the matrix indicates the corresponding ID.
-
-```{r}
-head(allp.3[[1]])
-```
-
-
-```{r}
-head(allp.3[[2]][[1]])
-allp.3[[1]][which(rownames(allp.3[[1]]) == "Kale"), ]
-
-confmatrix[1:2, 1:10]
-head(allp.3[[1]])
-str(allp.3[[2]])
-# find number of paths of length 3 or less
-# ?countPaths
-# npaths <- countPaths(confmatrix, 3)
-# head(npaths[[1]])
-# head(npaths[[2]])
-```
-
-
-
