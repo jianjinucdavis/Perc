@@ -4,7 +4,7 @@
 \alias{simRankOrder}
 \title{Find the rank order}
 \usage{
-simRankOrder(data, num = 10, alpha = NULL, kmax = 5)
+simRankOrder(data, num = 10, alpha = NULL, kmax = 1000)
 }
 \arguments{
 \item{data}{a data frame or a matrix. the win-loss probability matrix
@@ -23,7 +23,9 @@ it is estimated from the data.}
 \item{kmax}{an integer between 2 to 1000}
 }
 \value{
-a dataframe representing simulated rank order.
+a list of two dataframes.
+   \item{SimulatedRankOrder}{a dataframe representing simulated rank order.}
+   \item{Costs}{the cost of each simulated annealing run}
 }
 \description{
 \code{simRankOrder} find the rank order for the win-loss relationship
@@ -36,7 +38,8 @@ a dataframe representing simulated rank order.
 confmatrix <- as.conflictmat(sampleEdgelist)
 # find dominance probability matrix
 perm2 <- conductance(confmatrix, maxLength = 2)
-s.rank <- simRankOrder(perm2$p.hat, num = 5, kmax = 5)
+# Note: It takes a while to run the simRankOrder.
+s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
 head(s.rank)
 }
 \references{

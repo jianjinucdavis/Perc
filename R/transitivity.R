@@ -1,7 +1,6 @@
 #' calculate transitivity measurements for a matrix
 #' 
-#' \code{transitivity} Identifies all paths length less than or 
-#' equal to \code{maxLength} between all pairs of competitors 
+#' \code{transitivity} calculate transitivity measurements for a matrix 
 #' 
 #' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}
 #' 
@@ -11,7 +10,7 @@
 #'  
 #'  \item{intransitive}{The number of intransitive triangles.}
 #'  
-#'  \item{transitivity}{The order - 1 transitivity.}
+#'  \item{transitivity}{transitivity, the proportion of transitive triangles.}
 #'  
 #'  \item{alpha}{The value of alpha corresponding to this value of transitivity.}
 #' 

@@ -16,13 +16,12 @@ A list of four elements.
 
  \item{intransitive}{The number of intransitive triangles.}
 
- \item{transitivity}{The order - 1 transitivity.}
+ \item{transitivity}{transitivity, the proportion of transitive triangles.}
 
  \item{alpha}{The value of alpha corresponding to this value of transitivity.}
 }
 \description{
-\code{transitivity} Identifies all paths length less than or
-equal to \code{maxLength} between all pairs of competitors
+\code{transitivity} calculate transitivity measurements for a matrix
 }
 \details{
 <more information on transitivity!>

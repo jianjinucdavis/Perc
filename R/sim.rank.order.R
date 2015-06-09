@@ -13,7 +13,9 @@
 #' for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j} +\beta, c_{i,j}+\beta)}{Beta*(\alpha * c_ij + \beta, c_ij + \beta)}. 
 #' In the absence of expertise to accurately estimate alpha, 
 #' it is estimated from the data.
-#' @return a dataframe representing simulated rank order.
+#' @return a list of two dataframes. 
+#'    \item{SimulatedRankOrder}{a dataframe representing simulated rank order.}
+#'    \item{Costs}{the cost of each simulated annealing run}
 #' 
 #' @details <more information on simAnneal>
 #' 
@@ -27,8 +29,6 @@
 #' # Note: It takes a while to run the simRankOrder.
 #' s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
 #' head(s.rank)
-#' 
-#' 
 
 simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
   # input df, a dataframe, the output from percolation function.
@@ -63,6 +63,8 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   sim.ann.all <- unlist(do.call(rbind, lapply(sim.ann.list, function(x)x[2])))
   Index.sim.ann <- which(sim.ann.all == min(sim.ann.all))[1]
   
+  CostOutput <- data.frame(simAnnealRun = c(1:num), Cost = sim.ann.all)
+  
   ranking = sim.ann.list[[Index.sim.ann]]$Ordb
   
   RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
@@ -74,5 +76,6 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   
   Rank <- RankingID[,c("SubjectRanking", "ID")]
   Rank.ordered <- Rank[order(Rank$SubjectRanking), ]
-  return(Rank.ordered)
+  # return(Rank.ordered)
+  return(list(SimulatedRankOrder = Rank.ordered, Costs = CostOutput))
 }

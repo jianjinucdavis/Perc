@@ -83,7 +83,11 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 
 as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   if(ncol(Data) == nrow(Data)){
-    mat <- as.matrix(Data)
+    if (swap.order == TRUE) {
+      mat <- t(as.matrix(Data))
+    } else{
+      mat <- as.matrix(Data)
+    }
     class(mat) = c("conf.mat", "matrix")
     return(mat)
   } else {

@@ -144,7 +144,7 @@ valueConverter <- function(matrix){
 #' \code{dyadicLongConverter} convert win-loss probability matrix into long format for each dyad
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
-#' @return a dataframe of dyadic level win-loss probability.
+#' @return a dataframe of dyadic level win-loss probability and ranking certainty.
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
@@ -168,6 +168,7 @@ dyadicLongConverter <- function(matrix){
   names(dp.long)[1] <- "ID1"
   dpComplete <- dp.long[complete.cases(dp.long), ]
   dpComplete[,"ID2 Win Probability"] <- 1 - dpComplete[,3]
+  dpComplete$RankingCertainty <- abs(0.5 - dpComplete[,4]) + 0.5
   return(dpComplete)
 }
 

@@ -10,7 +10,7 @@ dyadicLongConverter(matrix)
 \item{matrix}{the win-loss matrix which is the second output from \code{conductance}.}
 }
 \value{
-a dataframe of dyadic level win-loss probability.
+a dataframe of dyadic level win-loss probability and ranking certainty.
 }
 \description{
 \code{dyadicLongConverter} convert win-loss probability matrix into long format for each dyad

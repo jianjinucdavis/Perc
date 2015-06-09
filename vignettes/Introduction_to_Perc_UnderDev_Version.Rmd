@@ -8,27 +8,17 @@ output: word_document
 Rank relationships amongst members of a social group are most commonly represented as an ordered list of individuals that are ranked from highest to lowest. Numerous methods exist to identify this rank order, and most methods fall under one of two approaches: (1) finding the appropriate ranking by reordering the rows and columns of a win/loss matrix or (2) calculating a cardinal dominance index which ranks individuals by the proportion of others dominated, both of which are based upon a data set of agonistic and/or submissive interactions. Such methods produce a linear rank order, whether or not the society is expected to have a linear hierarchy or whether the data fit the assumption of linearity (which is particularly problematic when calculating cardinal ranks (Shev et al 2012)). Most researchers agree that the dominance structure of animal societies is likely to be more complex than simple linearity, but few, if any, methods exist for quantifying nonlinear structure. We present a new network-based method, called Percolation and Conductance, that permits nonlinear structure to emerge via estimates of network-wide directional consistency in the flow of dominance interactions and detection of blocks of dominance ambiguity that are indicative of nonlinear segments of a hierarchy. An additional benefit of this method is the ability to quantify dyadic-level dominance certainty. Dyadic dominance potentials are calculated using multiple indirect dominance pathways in the network (via common third parties) to infer missing data in the win/loss matrix and enhance the calculation of dominance potentials from direct interactions. Greater consistency in the direction of transitive dominance pathways from A to B (e.g. via pathway through C, D, and/or E) result in higher certainty that A outranks B, whereas greater evidence of inconsistent direction (e.g. some directed pathways go from A to B whereas other directed pathways go from B to A) result in dominance ambiguity. Because the number of indirect pathways is typically exponentially larger than direct win/loss interactions, one can be relatively confident that dyads with ambiguous dominance potentials are truly ambiguous due to evidence of directional inconsistency in their network pathways rather than lack of data. 
 
 
-Quantifying dominance uncertainty is computation complicated and requires researchers to have a sophisticated computational background to process the data. To make quantifying dominance uncertainty easily accessible, our group in collaboration with collaboraters in UC Davis Statistics Deparment develop an R package to make quantifying dominance uncertainty readily accessible to researchers.
+  Rank order using the percolation-conductance method is based on a matrix that combines information from direct win/loss interactions with information from indirect pathways as described above to create a matrix of probabilities that the row individual outranks the column individual. Percolation-conductance finds these multi-step, directed pathways between all pairs of nodes by performing a series of random walks through the network. A simulated annealing process explores possible rank orders (from the space of all possible rank orders) – the more simulated annealing runs that are performed, a larger number of possible rank orders are explored, meaning that the best possible rank order is more likely to be found.  The starting location of simulated annealing is determined by the total wins per individual in the matrix. Multiple simulated annealing steps are required to arrive at the optimal rank order, keeping in mind that multiple rank orders may be equally good if there are nonlinear segments in the hierarchy. The heat map function (plot.conf.mat) will plot the ranking and can allow for the detection of non-linear dominance structures. A block of individuals with probabilities near 0.5 indicates a subgroup of individuals whose relationships are not clearly defined. A second metric yielded by this method, dominance uncertainty, reflects the directional consistency of information flow through the direct and indirect pathways in a directed and weighted network.
 
-
-Dominance uncertainty basically is characterized by the directional consistency of information flow on dominant relationships. Percolation-conductance, which used a beta random field finds multi-step, directed pathways between all pairs of nodes, was used to assess the global directional consistency of information flow between dyadic interactions.
-The R package we develop implement the percolation-conductance algorithm to quantify dominance uncertainty from data on dyadic interactions. By applying simple R functions, researchers will be able to quantify dominance uncertainty with the help of the package running complicated computations to find global directional consistency of information flow between dyadic interactions from raw data. The goal of this tutorial is to show how to quantify win-loss uncertainty from raw data.
+  The Percolation-Conductance method of quantifying rank and dominance uncertainty is computation complicated and requires researchers to have a sophisticated computational background to process the data. Our group, in collaboration with collaboraters in UC Davis Statistics Deparment, developed an R package that implements the percolation-conductance algorithm on directed dyadic interactions. By applying simple R functions, researchers will be able to quantify rank order and dominance uncertainty with the help of the package. The goal of this tutorial is to show how to quantify rank and dominance uncertainty from win-loss raw data.
 
 ### User Manual
 
-#### Notes
-##### plug in heading to refer to different steps of analysis.
-##### conductance output: from 0-1 --> probability; 0.5 - 1 --> certainty
-##### how to phrase what type of the network (); better way to phrase dominance/ win-loss probability matrix (Maybe use ranking, define it, and give examples "like ranking in primate dominance, ranking in chest, seeding in basketball")
-##### plot.conf.mat: plot using ID ordered by sim.rank.
-##### plot.conf.prob.diagnosis: binary one, allow users to specify the value, ordered by sim.rank
-##### findIDpaths, when print pathKuai, print less.
+#### Importing Data
+The function `as.conflictmat` is used to import raw edgelists or matrices for further analysis. Raw edgelists or matrices are records for directed dyadic win-loss interactions. The prefered R data types for `as.conflictmat` are "`matrix`" and "`data.frame`". Raw edgelists or matrices can be imported as R data type of either `data.frame` or `matrix` to be used in `as.conflictmat`. 
 
-
-##### for future development: countPaths for whole network at particular len
-##### for future: differences between DominanceProbability$imputed.conf for different lengths to give an idea on changes in information gains for adding each path length.
-
-The prefered argument for the function `as.conflictmat` is a "`matrix`" or "`data.frame`". Raw data should be edgelists or matrix which are records for directed dyadic win-loss interactions. The most simple and commonly used raw data is a edgelist of two columns, with the first columns being the winner and the second column being the loser. Duplicates are allowed in this edgelist because multiple interactions between a pair are represented by multiple rows of the same winner and loser. Below is an example of a two column edgelist.
+##### Preparing raw data
+The most simple and commonly used raw data is a **edgelist of two columns** consisting all dyadic win-loss interactions, with the first columns being the winner and the second column being the loser. Duplicates are allowed in this two-column edgelist because multiple interactions between a pair are represented by multiple rows of the same winner and loser. Below is an example of a two-column edgelist.
 
 ```{r}
 library(Perc)
@@ -36,144 +26,173 @@ library(Perc)
 head(sampleEdgelist, 5)
 ```
 
-A weighted edgelist is also allowed as raw data edgelist. It is a "`matrix`" or "`data.frame`" of three columns, with the first two columns being winner IDs and loser IDs respectively and the third column being the frequency of the win-loss interaction between the winner and the loser. An example of a weighted edgelsit is shown below:
+**A weighted edgelist** is also allowed as raw edgelist data. It is a "`matrix`" or "`data.frame`" of three columns, with the first two columns being winner IDs and loser IDs respectively and the third column being the frequency of the win-loss interaction between the winner and the loser. An example of a weighted edgelsit is shown below:
 
 ```{r}
 # displaying the first 5 rows of the example data.
 head(sampleWeightedEdgelist, 5)
 ```
 
-In addition, a matrix representing dyadic win-loss interaction is also accepted as raw data. For example,
+In addition, **a matrix representing dyadic win-loss interaction** is also accepted as raw data. For example,
 
 ```{r}
 # displaying the first 5 rows and columns
 sampleRawMatrix[1:5, 1:5]
 ```
 
-It is very important to note that raw data on dyadic win-loss interactions are directional. By default, winners are in the first column of an edgelist and losers are in the second column. In a raw win-loss matrix, row names are assumed to be the winner. Values in a raw win-loss matrix describe that for how many times the corresponding row ID win over the corresponding column ID.
 
-The function `as.conflictmat` is used to import raw data for further analysis. 
+##### Importing your raw data
+The function `as.conflictmat` is used to import raw data of any accepted format, transform raw data to a "`conflict matrix`" for further analysis. "`conflict matrix`" is very specifically refered to a class in R. If your raw data is an edgelist of either two- or three- column, it will transform the your raw edgelist to a matrix in which counts representing for how many times a row wins over a column. Running this on a win-loss matrix creates an identical conflict matrix. This is required for all data formats to create R object of class conflict matrix.
 
-* Note: Explain "conflict matrix" is very specifically refered to a class in R. It is the class of an R object. The content of a conflict matrix is the same as the win-loss raw matrix.
-
+Below is an example on transforming a two-column edgelist:
 ```{r}
 # convert an two-column edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
 
 # displaying the first 5 rows and columns of the converted matrix
 confmatrix[1:5, 1:5]
-
-# convert a win-loss matrix to conflict matrix
-confmatrix2 <- as.conflictmat(sampleRawMatrix)
 ```
 
-You'll need to specify `weighted = TRUE` if your raw data is a weighted edgelist. 
+Below is an example on transforming a raw win-loss matrix:
+```{r}
+# convert a win-loss matrix to conflict matrix
+confmatrix2 <- as.conflictmat(sampleRawMatrix)
 
+# displaying the first 5 rows and columns of the converted matrix
+confmatrix2[1:5, 1:5]
+```
+
+
+When importing weighted edgelist (three-column), you'll need to specify `weighted = TRUE` if your raw data is a weighted edgelist. Below is an example:
 ```{r}
 confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE)
 ```
 
-Directionality is really important when you import data. You could specify `swap.order = TRUE` in `as.conflictmat` if winners are in the second column of your edgelist. But if your raw data is a matrix, you will need to make sure row IDs are winners. 
+**Directionality** is very importnat when using the function `as.conflictmat` to import raw data. By default, winners (sources) are in the first column and loses (targets) are in the second column for edgelists. Row names are assumed to be the winner for a raw win-loss matrix. Values in a raw win-loss matrix describe that for how many times the corresponding row ID win over the corresponding column ID. If the directionality in your raw data happens to be opposite from the default, you could specify `swap.order = TRUE` in `as.conflictmat`. It will tell R that the directionality in your raw data is the opposite of default setting. Running `as.conflictmat` on your raw data with `swap.order = TRUE` will automatically correct the directionality when transforming your raw data to a `conflict matrix`. Here is an example,
 
-To find dominance probability for all pairs, we first transform an edgelist into a matrix representing the dyadic interactions.
+```{r}
+# displaying the first 5 rows and columns of the raw win-loss matrix
+sampleRawMatrix[1:5, 1:5]
 
-Then we used the function `conductance` to find dominance probability matrix, which describes dominance uncertainty, with values closer to 0.5 being most uncertain. If a value is less than 0.5, the corresponding row ID is more likely to lose against the corresponding column ID; if a value is greater than 0.5, the corresponding row ID is more likely to win over the corresponding column ID.
+# use swap.order = TRUE when running as.conflictmat.
+confmatrix4 <- as.conflictmat(sampleRawMatrix, swap.order = TRUE)
+
+# displaying the first 5 rows and columns of the converted matrix
+confmatrix4[1:5, 1:5]
+
+```
+
+#### Examining the network
+
+Before computing the dominance probability and finding the best rank order, you want to know whether or not long pathways are present in your data, and if present, whether or not these long pathways can be useful for gathering additional information about rank relationships.
+
+You could find pathways of **particular length** that **starting** at a particular node (ID). For example,
+
+```{r}
+# Testing findIDpaths.R
+pathKuai <- findIDpaths(confmatrix, "Kuai", len = 3)
+# Displaying the first 5 rows of pathKuai
+pathKuai[1:5, ]
+
+# When there's no pathway starting at a particular individual, you'll get an output like the example below: 
+pathKalani <- findIDpaths(confmatrix, ID = "Kalani", len = 2)
+pathKalani
+```
+
+You could also use `transitivity` to find out information on transitivity, a measure of how consistent or inconsistent the flow of information is through the network as a whole.  This procedure looks for the number of triangles (e.g. A→B→C→A) and determines whether or not they are transitive. 
+
+```{r}
+conftrans <- transitivity(confmatrix)
+conftrans$transitive      # number of transitive triangles
+conftrans$intransitive    # number of intransitive triangles
+conftrans$transitivity    # transitivity
+conftrans$alpha           # alpha
+```
+
+The function `transitivity` allow estimation for `alpha`, which is a value used in the conductance procedure to weight the information from the indirect pathways.  The higher the transitivity of a network (the higher the alpha), the greater the weight the conductance procedure will give the indirect pathways.
+
+#### Finding Rank Order
+
+After transforming your raw data in an R object of `conflict matrix` class, we will use the function `conductance` to find all indirect pathways of a particular length (defined by `maxLength`) and update the conflict matrix. The maximum length of indirect pathways should be decided based on the data.  We use a max length of 4 for our dominance rank. This yields the dominance probability matrix which represents the probability the row outranks the column. Values in the matrix are from 0 - 1, with 0.5 being the most uncertain. If a value is less than 0.5, the corresponding row ID is more likely to lose against the corresponding column ID; if a value is greater than 0.5, the corresponding row ID is more likely to win over the corresponding column ID.
+
 
 ```{r}
 DominanceProbability <- conductance(confmatrix, maxLength = 2)
-# Dominance Uncertainty: displaying dominance probability matrix of 5 oldest animals.
+```
+
+`DominanceProbability` is a list of 2 elements. The first element, named `imputed.conf` is the updated conflict matrix which incorporates information from indirect pathways from the original conflict matrix. Comparing the original conflict matrix with the updated conflict matrix will show the information that is gained through the indirect pathways: 
+
+```{r}
+# displaying the first 5 rows and columns of the original conflict matrix
 confmatrix[1:5, 1:5]
+# displaying the first 5 rows and columns of the imputed conflict matrix
 DominanceProbability$imputed.conf[1:5, 1:5]
-DominanceProbability.3$imputed.conf[1:5, 1:5]
+```
+
+The second element of `DominanceProbability` the dominance probability matrix, named `p.hat`. Here's how you could pull out the dominance probability matrix:
+
+```{r}
+# displaying the first 5 rows and columns of the dominance probability matrix
 DominanceProbability$p.hat[1:5, 1:5]
 ```
 
-##### ==== Regarding Rank ==========
-You could examine the win-loss probability matrix visually by generating a heatmap using `plot.conf.mat` function.
+When you want to use dominance probability matrix for further analysis, often a long-format representation of the matrix is easier. The function `dyadicLongConverter` convert win-loss uncertainty to long format.  
 
 ```{r}
-# plotting
-plot.conf.mat(DominanceProbability$p.hat, labels = TRUE)
+# displaying the first 5 rows of the converted long format win-loss probability.
+dyadicLongConverter(DominanceProbability$p.hat)[1:5, ]
 ```
 
-A long-format representation of the matrix is easier. The function `dyadicLongConverter` convert win-loss uncertainty to long format.  
 
-```{r}
-# displaying the first 10 rows of the converted long format win-loss probability.
-dyadicLongConverter(DominanceProbability$p.hat)[1:10,]
-```
-Note, directionality of the win-loss probability is preserved in long format.
-
-Simulated rank order is computed by the function `sim.rank.order`.
+Simulated rank order is computed using a simulated annealing algorithm by running the function `simRankOrder` on `DominanceProbability$p.hat`. The argument `num` is the number of simulated annealing runs to generate best rank order. The argument `kmax` tells you how long (perhaps iterations) the simulated annealing function looks around for a local optimum to find the best rank order. By default, `kmax = 1000` was used. But it takes a long time to run when using `kmax = 1000`. The example below uses kmax = 10 just because it runs quickly and it is enough to illustrate the process, however this value is not recommended when processing real data. Here is how to use `simRankOrder` to find the simulated rank order:
 
 ```{r}
 # find simRankOrder
 s.rank <- simRankOrder(DominanceProbability$p.hat, num = 10, kmax = 10)
-head(s.rank)
-
-
-
 ```
 
-# get ordered plot
+The function `s.rank` returns a list containing simulated rank order and Costs for each simulated annealing run. The best rank order will be the one with the lowest cost.
+```{r}
+# displaying the first 5 rows of the simulated rank order
+s.rank$SimulatedRankOrder[1:5, ]
+
+# displaying cost for each simulated annealing run
+s.rank$Costs
+```
+
+After finding the simulated rank order, you can apply the rank order to your dominance probability matrix in order to generate a heatmap with its rows and columns ordered by rank.  This heatmap will highlight areas of non-linear dominance rank (i.e. areas that are brown in the example below).  A block of individuals with probabilities near 0.5 indicates a subgroup of individuals whose relationships are not clearly defined.
 
 ```{r}
-
-
-plot.conf.mat(DominanceProbability$p.hat, ordering = s.rank$ID, labels = TRUE)
-
-
-
+plot.conf.mat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE)
 ```
 
 
-###### ===== Regarding Dominance Certainty; remove directionality ======
+##### Regarding Dominance Certainty
 
-The win-loss probability matrix sometimes need to be transformed for further explorations. We provide functions to faciliate such transformations. The function `valueConverter` converts all values to values between 0.5 - 1.0, which, in essence,  focus on win-loss certainty by removing directionality of the win-loss relationship. For example,
+Besides ranking information, the undirected certainty information in dominance relationship is also important. The values in the dominance probability matrix range from 0-1 indicating both the direction of the relationship and the certainty of the relationship. The function `valueConverter` converts all values to values between 0.5 - 1.0, which, in essence, removes directionality from the relationship leaving a single metric of dominance certainty (0.5 indicates total uncertainty and 1.0 indicates total certainty). For example,
 
 ```{r}
 # displaying the first 5 rows and columns of the converted matrix
 valueConverter(DominanceProbability$p.hat)[1:5, 1:5]
 ```
 
-A matrix sometimes is not the easiest data format for further explorations. 
+When you want to understand dyadic level dominance uncertainty, you could get the information from `dyadicLongConverter`. For example,
+```{r}
+# displaying the first 5 rows of Ranking Certainty
+dyadicLongConverter(DominanceProbability$p.hat)[1:5, c("ID1", "ID2", "RankingCertainty")]
+```
 
-When individual-level win-loss relationship uncertainty of the focus of your question, the function `individualWinProb` computes the mean and standard deviation for individual-level win-loss probability. 
+When individual-level win-loss relationship uncertainty is the focus of your question, the function `individualWinProb` computes the mean and standard deviation for individual-level win-loss probability. 
+
 ```{r}
 individualWinProb(DominanceProbability$p.hat)[1:10,]
 ```
-The mean values are between 0.5-1.0, with 0.5 meaning absolute uncertainty and 1.0 with absolute certainty in win-loss relationships.
 
-
-
-
-The `Perc` package also provide funtions to compute transitivity.
-```{r}
-conftrans <- transitivity(confmatrix)
-conftrans$transitive      # number of transitive triangles
-conftrans$intransitive    # number of intransitive triangles
-conftrans$transitivity    # number of order - 1 transitivity
-conftrans$alpha           # alpha
-
-```
-
-
-##### ====== descriptive network analysis ======
-
-In addition, the "`Perc`" package also provide functions that allow you to explore indirect pathways of the network generated from the directed dyadic the win-loss interactions conveniently.
-
-You could find pathways of **particular length** that **starting** at a particular node (ID). For example,
-
-```{r}
-# Testing findIDpaths.R
-?findIDpaths
-
-pathKuai <- findIDpaths(confmatrix, "Kuai", len = 3)
-pathKuai
-
-# When there's no pathway starting at a particular individual, you'll get an output like the example below: 
-pathKalani <- findIDpaths(confmatrix, ID = "Kalani", len = 2)
-pathKalani
-
-
-```
+=======
+#### Notes
+##### how to phrase what type of the network (); better way to phrase dominance/ win-loss probability matrix (Maybe use ranking, define it, and give examples "like ranking in primate dominance, ranking in chest, seeding in basketball")
+##### plot.conf.prob.diagnosis: binary one, allow users to specify the value, ordered by sim.rank
+##### for future development: countPaths for whole network at particular len
+##### for future: differences between DominanceProbability$imputed.conf for different lengths to give an idea on changes in information gains for adding each path length.
+##### update count paths
+##### 
