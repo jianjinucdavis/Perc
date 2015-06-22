@@ -17,7 +17,7 @@
 #' # plotting
 #' plot.conf.mat(perm2$p.hat)
 
-plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
+plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE, ...){
   
   if(length(rownames(conf.mat)) == 0){
     labels = FALSE
@@ -56,4 +56,4 @@ plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE){
   )
 }
 
-# to do: test on a large dataset.
+
