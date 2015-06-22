@@ -42,6 +42,15 @@ sampleRawMatrix[1:5, 1:5]
 
 
 ##### Importing your raw data
+
+Before showing you how to use any function, we want to briefly introduce how you could get help by accessing help file for each function. In R, you could access help file for any function using `?function`. For example,
+```{r}
+?as.conflictmat
+?subset
+```
+When you run `?as.conflictmat`, the help file will show up automatically. Note, you'll need to load `Perc` package first (by running `library(Perc)`) so that R could access `as.conflictmat`.
+
+
 The function `as.conflictmat` is used to import raw data of any accepted format, transform raw data to a "`conflict matrix`" for further analysis. "`conflict matrix`" is very specifically refered to a class in R. If your raw data is an edgelist of either two- or three- column, it will transform the your raw edgelist to a matrix in which counts representing for how many times a row wins over a column. Running this on a win-loss matrix creates an identical conflict matrix. This is required for all data formats to create R object of class conflict matrix.
 
 Below is an example on transforming a two-column edgelist:
@@ -128,6 +137,29 @@ confmatrix[1:5, 1:5]
 # displaying the first 5 rows and columns of the imputed conflict matrix
 DominanceProbability$imputed.conf[1:5, 1:5]
 ```
+
+Examining information gained through indirect pathways will provide you information to decide what is the appropriate `maxLength` for your data. You could examine the information gained through indirect pathways by substracting the original conflict matrix from imputed conflict matrix. The information gained could visually examined by generating a corresponding heatmap using the function `plot.conf.mat`.
+
+```{r}
+# substracting the original conflict matrix from imputed conflict matrix.
+informationGain <- DominanceProbability$imputed.conf - confmatrix
+
+# examine the first five rows and columns of the informationGain
+informationGain[1:5, 1:5]
+
+# generating a heatmap representing information gained by using informatio from indirect pathways.
+plot.conf.mat(informationGain, ordering = NA, labels = TRUE)
+```
+
+As we could see from the heatmap, using `maxLength = 2` does provide us more information than the original raw conflict matrix that we imported from the raw data. In real analysis, you may want to consider using `maxLength = 3` or even more and repeat this diagnosis process to examine the information gain. This will allow you to have a better idea on what is the appropriate `maxLength` for your data.
+
+For example, if you want to examine whether or not `maxLength = 3` provide more information than `maxLength = 2`. Here is an example:
+```{r}
+DominanceProbabilityLength3 <- conductance(confmatrix, maxLength = 3)
+informationGain2 <- DominanceProbabilityLength3$imputed.conf - DominanceProbability$imputed.conf
+plot.conf.mat(informationGain2, ordering = NA, labels = TRUE)
+```
+As we can see in this heatmap that using `maxLength = 3` still gives you some more information. In real analysis, you may want to repeat the analysis and try `maxLength = 4`. In addition, you may also want to consider your alpha value to decide how much you want to trust those long pathways.
 
 The second element of `DominanceProbability` the dominance probability matrix, named `p.hat`. Here's how you could pull out the dominance probability matrix:
 
