@@ -4,7 +4,7 @@
 \alias{plot.conf.mat}
 \title{generate heat map for a matrix}
 \usage{
-\method{plot}{conf.mat}(conf.mat, ordering = NA, labels = FALSE)
+\method{plot}{conf.mat}(conf.mat, ordering = NA, labels = FALSE, ...)
 }
 \arguments{
 \item{conf.mat}{an N-by-N matrix. Either a conflict matrix or
