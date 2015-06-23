@@ -50,7 +50,7 @@ countPaths = function(conf, maxLength = 2){
     dimnames(pathList[[i]])[[1]] <- cpNames
     dimnames(pathList[[i]])[[2]] <- cpNames
   }
-  
+  names(pathList) <- paste("path length", c(2:maxLength), sep = ":")
   return(pathList)
 }
 
