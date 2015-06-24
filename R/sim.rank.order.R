@@ -59,23 +59,27 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   # sim.ann.all <- c(sim.ann1[[2]], sim.ann2[[2]], sim.ann3[[2]], sim.ann4[[2]],
   #                  sim.ann5[[2]], sim.ann6[[2]], sim.ann7[[2]], sim.ann8[[2]],
   #                 sim.ann9[[2]], sim.ann10[[2]])
-  
+  # all costs
   sim.ann.all <- unlist(do.call(rbind, lapply(sim.ann.list, function(x)x[2])))
+  # find the lowest
   Index.sim.ann <- which(sim.ann.all == min(sim.ann.all))[1]
   
+  # export costs for each simAnnealRun
   CostOutput <- data.frame(simAnnealRun = c(1:num), Cost = sim.ann.all)
   
   ranking = sim.ann.list[[Index.sim.ann]]$Ordb
-  
   RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
                              IDindex = ranking)
   IDList.index <- data.frame(IDindex = 1:length(colnames(data)), 
-                             ID = sort(colnames(data)))
-  
+                             ID = sort(colnames(data)), stringsAsFactors = FALSE)
   RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
   
   Rank <- RankingID[,c("SubjectRanking", "ID")]
   Rank.ordered <- Rank[order(Rank$SubjectRanking), ]
+  
+  # find all rank order (Ordb)
+  allRankOrder <- lapply(sim.ann.list, function(x)x[[3]])
+  
   # return(Rank.ordered)
   return(list(SimulatedRankOrder = Rank.ordered, Costs = CostOutput))
 }
