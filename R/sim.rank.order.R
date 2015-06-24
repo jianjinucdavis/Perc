@@ -29,7 +29,9 @@
 #' perm2 <- conductance(confmatrix, maxLength = 2)
 #' # Note: It takes a while to run the simRankOrder.
 #' s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
-#' head(s.rank)
+#' s.rank$BestSimulatedRankOrder
+#' s.rank$Costs
+#' s.rank$AllSimulatedRankOrder
 
 simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
   # input df, a dataframe, the output from percolation function.
@@ -85,7 +87,7 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   allRankOrder <- lapply(sim.ann.list, function(x)x[[3]])
   allRankList <- lapply(allRankOrder, function(x)rankDF(ranking = x, data = data, output = "all"))
   allRankonlyList <- lapply(allRankList, function(x)x[,1])
-  RanksDF <- data.frame(do.call(cbind, yyy))
+  RanksDF <- data.frame(do.call(cbind, allRankonlyList))
   names(RanksDF) <- paste0("SimAnnealRun", c(1:num))
   allRankingDF <- data.frame(ID = allRankList[[1]]$ID, RanksDF)
 

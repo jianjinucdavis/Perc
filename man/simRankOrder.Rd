@@ -41,7 +41,9 @@ confmatrix <- as.conflictmat(sampleEdgelist)
 perm2 <- conductance(confmatrix, maxLength = 2)
 # Note: It takes a while to run the simRankOrder.
 s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
-head(s.rank)
+s.rank$BestSimulatedRankOrder
+s.rank$Costs
+s.rank$AllSimulatedRankOrder
 }
 \references{
 <add citations here!>
