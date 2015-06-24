@@ -48,4 +48,7 @@ s.rank$AllSimulatedRankOrder
 \references{
 <add citations here!>
 }
+\seealso{
+\code{\link{conductance}} \code{\link{transitivity}}
+}
 

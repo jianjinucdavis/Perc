@@ -7,6 +7,7 @@
 #' @param len a positive integer of length 1 greater than 2. the length of the win-loss paths to be identified (\eqn{len = order + 1})
 #' @return return all win-loss paths of \code{length(len)} beginning at \code{ID}
 #' 
+#' @seealso \code{\link{findAllPaths}} \code{\link{countPaths}}
 #' @examples
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)

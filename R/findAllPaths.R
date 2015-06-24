@@ -12,6 +12,7 @@
 #'  
 #'  \item{indirect pathways}{a list of all paths from length 2 to the given length}
 #' 
+#' @seealso \code{\link{countPaths}} \code{\link{findIDpaths}} \code{\link{transitivity}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)

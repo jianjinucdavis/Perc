@@ -228,6 +228,6 @@ individualWinProb(DominanceProbability$p.hat)[1:10,]
 #### Notes
 ##### how to phrase what type of the network (); better way to phrase dominance/ win-loss probability matrix (Maybe use ranking, define it, and give examples "like ranking in primate dominance, ranking in chest, seeding 
 ##### for future development: countPaths for whole network at particular len
-##### for future differences between DominanceProbability$imputed.conf for different lengths to give an idea on changes in information gains for adding each path length.
+
 ##### update count paths
 ##### 

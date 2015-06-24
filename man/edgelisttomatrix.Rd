@@ -25,4 +25,7 @@ rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
 
 rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 }
+\seealso{
+\code{\link{conductance}}
+}
 

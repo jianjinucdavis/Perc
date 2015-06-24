@@ -22,6 +22,8 @@
 #' 
 #' @references <add citations here!>
 #' 
+#' @seealso \code{\link{conductance}} \code{\link{transitivity}}
+#' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)

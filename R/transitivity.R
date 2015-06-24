@@ -17,6 +17,7 @@
 #' 
 #' @details <more information on transitivity!>
 #' 
+#' @seealso \code{\link{countPaths}} \code{\link{findIDpaths}} 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)

@@ -23,4 +23,7 @@ return all win-loss paths of \code{length(len)} beginning at \code{ID}
 confmatrix <- as.conflictmat(sampleEdgelist)
 path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
 }
+\seealso{
+\code{\link{findAllPaths}} \code{\link{countPaths}}
+}
 

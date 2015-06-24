@@ -4,7 +4,9 @@
 #' @param prob.mat dominance probability matrix
 #' @param cutoff a numeric value between 0.5 to 1. 
 #' A value that is equal or greater than the cutoff is considered of high certainty.
+#' @param ... Further argument may be supplied and processed by \code{levelplot}.
 #' 
+#' @seealso \code{\link{plot.conf.mat}}
 
 plotProbDiagnosis <- function(prob.mat, cutoff = 0.75, ...) {
   if (!(all(prob.mat >= 0) & all(prob.mat <= 1)))

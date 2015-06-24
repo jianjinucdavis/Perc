@@ -36,4 +36,7 @@ conftrans$intransitive
 conftrans$transitivity
 conftrans$alpha
 }
+\seealso{
+\code{\link{countPaths}} \code{\link{findIDpaths}}
+}
 

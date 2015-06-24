@@ -7,8 +7,9 @@
 #' @param ordering a reordering of the rows/columns, specified by a permutation of 1:N
 #' @param labels if TRUE, displaying the agent names as 
 #' specified in the \code{rownames()} of \code{conf.mat()} on the heatmap
+#' @param ... Further argument may be supplied and processed by \code{levelplot}.
 #' @return A heatmap
-#' 
+#' @seealso \code{\link{as.conflictmat}} \code{\link{conductance}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)

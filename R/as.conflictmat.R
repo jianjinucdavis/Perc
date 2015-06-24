@@ -6,6 +6,8 @@
 #' @return a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}. 
 #' It is the matrix representation of the edgelist.
 #' 
+#' @seealso \code{\link{conductance}}
+#' 
 #' @examples
 #' rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
 #' 

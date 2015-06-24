@@ -12,9 +12,14 @@ plotProbDiagnosis(prob.mat, cutoff = 0.75, ...)
 
 \item{cutoff}{a numeric value between 0.5 to 1.
 A value that is equal or greater than the cutoff is considered of high certainty.}
+
+\item{...}{Further argument may be supplied and processed by \code{levelplot}.}
 }
 \description{
 Diagnosis Plot
 \code{plotProbDiagnosis} generate heat map for dominance probability matrix
+}
+\seealso{
+\code{\link{plot.conf.mat}}
 }
 
