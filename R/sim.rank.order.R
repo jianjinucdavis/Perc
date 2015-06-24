@@ -14,8 +14,9 @@
 #' In the absence of expertise to accurately estimate alpha, 
 #' it is estimated from the data.
 #' @return a list of two dataframes. 
-#'    \item{SimulatedRankOrder}{a dataframe representing simulated rank order.}
+#'    \item{BestSimulatedRankOrder}{a dataframe representing the best simulated rank order.}
 #'    \item{Costs}{the cost of each simulated annealing run}
+#'    \item{AllSimulatedRankOrder}{a dataframe representing all simulated rank orders.}
 #' 
 #' @details <more information on simAnneal>
 #' 
@@ -68,18 +69,30 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   CostOutput <- data.frame(simAnnealRun = c(1:num), Cost = sim.ann.all)
   
   ranking = sim.ann.list[[Index.sim.ann]]$Ordb
-  RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
-                             IDindex = ranking)
-  IDList.index <- data.frame(IDindex = 1:length(colnames(data)), 
-                             ID = sort(colnames(data)), stringsAsFactors = FALSE)
-  RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
   
-  Rank <- RankingID[,c("SubjectRanking", "ID")]
-  Rank.ordered <- Rank[order(Rank$SubjectRanking), ]
+  # use find All Rank Order.R
+  bestRankOrder <- rankDF(ranking = ranking, data = data, output = "best")
+  # RankingOrder <- data.frame(SubjectRanking = 1:length(ranking), 
+  #                             IDindex = ranking)
+  # IDList.index <- data.frame(IDindex = 1:length(colnames(data)), 
+  #                             ID = sort(colnames(data)), stringsAsFactors = FALSE)
+  # RankingID <- merge(RankingOrder, IDList.index, by = "IDindex")
+  
+  # Rank <- RankingID[,c("SubjectRanking", "ID")]
+  # Rank.ordered <- Rank[order(Rank$SubjectRanking), ]
   
   # find all rank order (Ordb)
   allRankOrder <- lapply(sim.ann.list, function(x)x[[3]])
-  
+  allRankList <- lapply(allRankOrder, function(x)rankDF(ranking = x, data = data, output = "all"))
+  allRankonlyList <- lapply(allRankList, function(x)x[,1])
+  RanksDF <- data.frame(do.call(cbind, yyy))
+  names(RanksDF) <- paste0("SimAnnealRun", c(1:num))
+  allRankingDF <- data.frame(ID = allRankList[[1]]$ID, RanksDF)
+
   # return(Rank.ordered)
-  return(list(SimulatedRankOrder = Rank.ordered, Costs = CostOutput))
+  return(
+    list(BestSimulatedRankOrder = bestRankOrder, 
+         Costs = CostOutput, 
+         AllSimulatedRankOrder = allRankingDF)
+    )
 }

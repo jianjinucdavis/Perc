@@ -24,8 +24,9 @@ it is estimated from the data.}
 }
 \value{
 a list of two dataframes.
-   \item{SimulatedRankOrder}{a dataframe representing simulated rank order.}
+   \item{BestSimulatedRankOrder}{a dataframe representing the best simulated rank order.}
    \item{Costs}{the cost of each simulated annealing run}
+   \item{AllSimulatedRankOrder}{a dataframe representing all simulated rank orders.}
 }
 \description{
 \code{simRankOrder} find the rank order for the win-loss relationship
