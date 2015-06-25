@@ -1,4 +1,4 @@
-# plot.conf.prob.diagnosis: binary one, allow users to specify the value, ordered by sim.rank
+# plotProbDiagnosis: binary one, allow users to specify the value, ordered by sim.rank
 #' Diagnosis Plot
 #' \code{plotProbDiagnosis} generate heat map for dominance probability matrix
 #' @param prob.mat dominance probability matrix
@@ -6,7 +6,7 @@
 #' A value that is equal or greater than the cutoff is considered of high certainty.
 #' @param ... Further argument may be supplied and processed by \code{levelplot}.
 #' 
-#' @seealso \code{\link{plot.conf.mat}}
+#' @seealso \code{\link{plotConfmat}}
 
 plotProbDiagnosis <- function(prob.mat, cutoff = 0.75, ...) {
   if (!(all(prob.mat >= 0) & all(prob.mat <= 1)))
@@ -23,5 +23,5 @@ plotProbDiagnosis <- function(prob.mat, cutoff = 0.75, ...) {
     c(0, 1)
     )
   
-  plot.conf.mat(matrix, ordering = NA, labels = FALSE, col.regions = c("white", "black"))
+  plotConfmat(matrix, ordering = NA, labels = FALSE, col.regions = c("white", "black"))
 }

@@ -10,15 +10,15 @@
 #' reflects the influence of an observed win/loss interaction 
 #' on an underlying win-loss probability. 
 #' It is used in the calculation of the posterior distribution 
-#' for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j} +\beta, c_{i,j}+\beta)}{Beta*(\alpha * c_ij + \beta, c_ij + \beta)}. 
+#' for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j} +\beta, c_{i,j}+\beta)}. 
 #' In the absence of expertise to accurately estimate alpha, 
 #' it is estimated from the data.
 #' @param beta a positive numeric value that, like alpha, 
 #' reflects the influence of an observed win/loss interaction 
 #' on an underlying win-loss probability. 
-#' Both α and β are chosen such that \eqn{((\alpha + \beta)/(\alpha + 2\beta))}{((α + β)/(α + 2β))^2} is 
+#' Both \eqn{\alpha} and \eqn{\beta} are chosen such that \eqn{((\alpha + \beta)/(\alpha + 2\beta))^2} is 
 #' equal to the order-1 transitivity of the observed network. 
-#' Therefore, β is commonly set to 1.
+#' Therefore, \eqn{\beta} is commonly set to 1.
 #' @return a list of two elements. 
 #' 
 #'  \item{imputed.conf}{An N-by-N conflict matrix whose \code{(i,j)}th element is the 

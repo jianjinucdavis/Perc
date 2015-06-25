@@ -1,6 +1,6 @@
 #' generate heat map for a matrix
 #' 
-#' \code{plot.conf.mat} generate heat map for a matrix or a win-loss probability matrix
+#' \code{plotConfmat} generate heat map for a matrix or a win-loss probability matrix
 #' 
 #' @param conf.mat an N-by-N matrix. Either a conflict matrix or 
 #' a win-loss probability matrix (the second element from \code{conductance} output)
@@ -16,9 +16,9 @@
 #' # find win-loss probability matrix
 #' perm2 <- conductance(confmatrix, 2)
 #' # plotting
-#' plot.conf.mat(perm2$p.hat)
+#' plotConfmat(perm2$p.hat)
 
-plot.conf.mat = function(conf.mat, ordering = NA, labels = FALSE, ...){
+plotConfmat = function(conf.mat, ordering = NA, labels = FALSE, ...){
   
   if(length(rownames(conf.mat)) == 0){
     labels = FALSE
