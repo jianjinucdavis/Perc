@@ -15,6 +15,10 @@
 
 edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
+  if (ncol(edgelist) > 3) {
+    stop("edgelist should be of 2 column, or 3-column for weighted edgelist")
+  }
+  
   if (swap.order == TRUE){
     edgelist[, 1:2] <- edgelist[, 2:1]
   }
