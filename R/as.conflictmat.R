@@ -25,7 +25,7 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
   if (any(edgelist[,1] == edgelist[,2])) {
     rowIndex <- which(edgelist[,1] == edgelist[,2])
-    stop(paste("check your raw data at row number", rowIndex, ". The initiator and the recipient should not be the same."))
+    stop(paste("check your raw data at row number", paste(rowIndex, collapse = ","), ". The initiator and the recipient should not be the same."))
   }
   
   subjects = unique(sort(as.matrix(edgelist[,1:2]))) # work better for IDs of character
@@ -98,6 +98,11 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   }
   
   if (ncol(Data) == nrow(Data)){
+    # if values on diagonal are not all zeros, return error.
+    if (any(diag(as.matrix(Data)) != 0)){
+      index <- which(diag(as.matrix(Data)) != 0)
+      stop(paste("check your raw win-loss matrix at Row", paste(index, collapse = ","), "and column", paste(index, collapse = ","), "; Non-zero values are not allowed on the diagonal in your raw win-loss matrix."))
+    }
     if (swap.order == TRUE) {
       mat <- t(as.matrix(Data))
     } else{

@@ -1,9 +1,7 @@
 context("Importing Data Tests")
 
 
-# test classes are right
 
-# test errors
 test_that("edgelists of more than 3 columns are not allowed", {
   testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[1:10],
                               col3 = sample(1:10, 10, replace = TRUE),
@@ -30,8 +28,19 @@ test_that("the initiator and the recipient should not be the same", {
   expect_error(as.conflictmat(testEdgelist1, weighted = TRUE))
 })
 
+test_that("returns conf.mat", {
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1])
+  expect_is(as.conflictmat(testEdgelist1), "conf.mat")
+})
+
+test_that("diagonal of the raw win-loss matrix should be zeros", {
+  testMatrix1 <- matrix(sample(1:100, 100, TRUE), 10, 10)
+  diag(testMatrix1) <- sample(c(0, 1), 10, TRUE, prob = c(0.9, 0.1))
+  expect_error(as.conflictmat(testMatrix1))
+})
 
 
+# to do: using expect_equal_to_reference to test that "outputs are correct".
 # test_that("outputs are correct", {
   
 #   edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE), 

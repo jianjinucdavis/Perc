@@ -48,6 +48,9 @@
 #' perm2$p.hat
 
 conductance = function(conf, maxLength, alpha = NULL, beta = 1){
+  
+  # to do: add a line, make sure conf is of conf.mat
+  
   N = nrow(conf)
   
   ### percMat will contain direct + indirect information from win-loss paths
@@ -157,6 +160,7 @@ valueConverter <- function(matrix){
 
 
 dyadicLongConverter <- function(matrix){
+  
   matrix[lower.tri(matrix, diag = TRUE)] <- NA
   dp.df <- as.data.frame(matrix)
   dp.df2 <- dp.df
