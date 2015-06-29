@@ -23,6 +23,11 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
     edgelist[, 1:2] <- edgelist[, 2:1]
   }
   
+  if (any(edgelist[,1] == edgelist[,2])) {
+    rowIndex <- which(edgelist[,1] == edgelist[,2])
+    stop(paste("check your raw data at row number", rowIndex, ". The initiator and the recipient should not be the same."))
+  }
+  
   subjects = unique(sort(as.matrix(edgelist[,1:2]))) # work better for IDs of character
   # subjects = sort(unique(c(edgelist[,1], edgelist[,2])))
   N = length(subjects)
@@ -88,7 +93,11 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 #' confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 
 as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
-  if(ncol(Data) == nrow(Data)){
+  if (ncol(Data) > 3 & ncol(Data) != nrow(Data)) {
+    stop("check your raw data: A edgelist should be of either 2 or 3 columns. If it is a win-loss matrix, the column number should be equal to row number.")
+  }
+  
+  if (ncol(Data) == nrow(Data)){
     if (swap.order == TRUE) {
       mat <- t(as.matrix(Data))
     } else{
@@ -97,7 +106,6 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
     class(mat) = c("conf.mat", "matrix")
     return(mat)
   } else {
-    
     mat <- edgelisttomatrix(Data, weighted, swap.order)
     class(mat) = c("conf.mat", "matrix")
     return(mat) 
