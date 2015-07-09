@@ -28,10 +28,10 @@ findAllPaths = function(conf, maxLength = 2){
   }
   
   # check if maxLength is correct
-  if (maxLength < 2) stop("maxLength should be no smaller than 2.")
-  if (maxLength > 6) stop("maxLength should be no smaller than 2.")
-  if(len %% as.integer(len) != 0) {
-    stop("'len' needs to be an integer.")
+  if (maxLength < 2) stop("'maxLength' should be no smaller than 2.")
+  if (maxLength > 6) stop("'maxLength' should be no greater than 6.")
+  if(maxLength %% as.integer(maxLength) != 0) {
+    stop("'maxLength' needs to be an integer.")
   }
   
   allPathsOutput <- allPaths(conf, maxLength)
