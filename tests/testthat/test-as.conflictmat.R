@@ -34,6 +34,7 @@ test_that("returns conf.mat", {
 })
 
 test_that("diagonal of the raw win-loss matrix should be zeros", {
+  set.seed(1)
   testMatrix1 <- matrix(sample(1:100, 100, TRUE), 10, 10)
   diag(testMatrix1) <- sample(c(0, 1), 10, TRUE, prob = c(0.9, 0.1))
   expect_error(as.conflictmat(testMatrix1))
@@ -41,16 +42,16 @@ test_that("diagonal of the raw win-loss matrix should be zeros", {
 
 
 # to do: using expect_equal_to_reference to test that "outputs are correct".
-# test_that("outputs are correct", {
-  
-#   edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE), 
-#                           col2 = sample(letters[1:26], 100, replace = TRUE), 
-#                          stringsAsFactors = FALSE)
-#   edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
+test_that("outputs are correct", {
+   set.seed(1)
+   edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE), 
+                           col2 = sample(letters[1:26], 100, replace = TRUE), 
+                          stringsAsFactors = FALSE)
+   edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
 
 #   edgelist1 <- data.frame(x = letters[1:5], y = letters[6:2])
-#   a <- as.conflictmat(edgelist1)
-#   expect_equal_to_reference(a, file = "output1.rds")
-#  })
-# test warnings
+
+   expect_equal_to_reference(as.conflictmat(edgelist1), file = "output1.rds")
+ })
+
 
