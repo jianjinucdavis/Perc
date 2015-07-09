@@ -21,7 +21,19 @@
 
 
 findAllPaths = function(conf, maxLength = 2){
-  if (maxLength < 2) stop("len should be no smaller than 2.")
+  
+  # check if conf is correct
+  if (!("conf.mat" %in% class(conf))){
+    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+  }
+  
+  # check if maxLength is correct
+  if (maxLength < 2) stop("maxLength should be no smaller than 2.")
+  if (maxLength > 6) stop("maxLength should be no smaller than 2.")
+  if(len %% as.integer(len) != 0) {
+    stop("'len' needs to be an integer.")
+  }
+  
   allPathsOutput <- allPaths(conf, maxLength)
 #  paths = lapply(2:maxLength, FUN = function(l, conf){
 #    do.call(rbind, lapply(1:nrow(conf), FUN = IDpaths, conf = conf, l = l))
@@ -36,18 +48,6 @@ findAllPaths = function(conf, maxLength = 2){
   names(pathOutputAll)[1] <- "direct pathways"
   names(pathOutputAll)[2] <- "indirect pathways"
   return(pathOutputAll)
-  # return(list(which(conf > 0, arr.ind = TRUE), paths))
-  #! Why is which(conf > 0, arr.ind = TRUE) useful
-  #! > which(confmatrix > 0, arr.ind = TRUE)
-  #!        row col
-  #! 35510   3   4
-  #! 36011   7   4
-  #! 36406  19   4
-  #! 36504  25   4
-  #! 39243  41   4
-  #! 39687  44   4
-  #! 39800  46   4
-  
 }
 
 # to do: 
