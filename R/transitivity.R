@@ -35,6 +35,10 @@
 
 transitivity = function(conf){
   
+  if (!("conf.mat" %in% class(conf))){
+    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+  }
+  
   N = nrow(conf)
   
   
