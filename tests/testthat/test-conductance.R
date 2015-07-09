@@ -26,7 +26,7 @@ test_that("input 'conf' is of 'conf.mat'", {
                "Turn conf into a 'conf.mat' using 'as.conflictmat'.")
 })
 
-<<<<<<< HEAD
+
 test_that("return error for incorrect maxLength", {
   #set.seed(1)
   #edgelist1 <- data.frame(col1 = sample(letters[1:15], 200, replace = TRUE), 
@@ -65,16 +65,3 @@ test_that("outputs are correct", {
   expect_equal_to_reference(conductance(testMatrix2, maxLength = 3), file = "conductanceOutput2.rds")
   expect_equal_to_reference(conductance(testMatrix2, maxLength = 4), file = "conductanceOutput3.rds")
 })
-=======
-test_that("input 'conf' is of 'conf.mat'", {
-  set.seed(1)
-  edgelist1 <- data.frame(col1 = sample(letters[1:15], 200, replace = TRUE), 
-                          col2 = sample(letters[1:15], 200, replace = TRUE), 
-                          stringsAsFactors = FALSE)
-  edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
-  testMatrix1 <- as.conflictmat(edgelist1)
-  expect_is(conductance(testMatrix1, maxLength = 2), "list")
-  expect_equal(length(conductance(testMatrix1, maxLength = 2)), 2)
-})
-
->>>>>>> 8984cdbacfed2acd3a29db0db6a72959ed25d383
