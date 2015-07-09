@@ -1,3 +1,4 @@
+# To do: when "no pathways found starting at ID", return a character vector, instead of a list.
 #' find all paths of a certain length for an individual 
 #' 
 #' \code{findIDpaths} identifies all unique win-loss paths of order \eqn{(len - 1)} beginning at selected subject (given by \code{ID})
