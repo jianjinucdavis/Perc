@@ -77,21 +77,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   }
   # if alpha is larger than 500, use 500.
   alpha <- min(alpha, 500)
-  ####===================
-  # alpha.temp <- conf.trans$alpha
-  #
-  ## allows for completely transitive matrices by approximating Inf alpha with a huge alpha of 500  
   
-  # alpha.checker <- function(o_o){
-  #   if (o_o == Inf) {
-  #     return(500)
-  #   } else {
-  #     return(o_o)
-  #   }
-  # }
-  
-  # alpha <- alpha.checker(alpha.temp)
-  ####=====
   if(sum(conf[row(conf) != col(conf)] == 0) > 0){
     paths = allPaths(conf, maxLength)
     
