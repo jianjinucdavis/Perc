@@ -5,7 +5,7 @@
 #'  indirect win/loss pathways from the network.
 #' 
 #' @param conf N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j. It is the output from \code{as.conflictmat}
-#' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
+#' @param maxLength an integer greater than 1 and less than 7, indicating the maximum length of paths to identify. 
 #' @param alpha a positive integer that 
 #' reflects the influence of an observed win/loss interaction 
 #' on an underlying win-loss probability. 
@@ -49,10 +49,20 @@
 
 conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   
-  # to do: add a line, make sure conf is of conf.mat
+  # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
     stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
   }
+  
+  if(maxLength < 2 | maxLength > 6) {
+    stop("'maxLength' should be an integer greater than 1 and less than 7.")
+  }
+  
+  # making sure maxLength is an integer
+  if(maxLength %% as.integer(maxLength) != 0) {
+    stop("'maxLength' needs to be an integer.")
+  }
+  
   N = nrow(conf)
   
   ### percMat will contain direct + indirect information from win-loss paths
