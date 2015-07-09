@@ -50,7 +50,9 @@
 conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   
   # to do: add a line, make sure conf is of conf.mat
-  
+  if (!("conf.mat" %in% class(conf))){
+    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+  }
   N = nrow(conf)
   
   ### percMat will contain direct + indirect information from win-loss paths
