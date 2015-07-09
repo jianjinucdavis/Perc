@@ -3,7 +3,7 @@
 # testthat if len is of right format -- checked
 # testthat if ID is found in matrix  -- checked
 # testthat output is of right format -- checked 
-# testthat output is correct. 
+# testthat output is correct.        -- checked
 
 
 context("Testing findIDpaths Function")
@@ -48,8 +48,9 @@ test_that("output is a matrix of len + 1 column, or a list of two if no paths fo
 })
 
 
-
 test_that("outputs are correct", {
   
   expect_equal_to_reference(findIDpaths(testMatrix2, "a", len = 2), file = "findIDpathsOutput1.rds")
+  expect_equal_to_reference(findIDpaths(testMatrix2, "a", len = 3), file = "findIDpathsOutput2.rds")
+  expect_equal_to_reference(findIDpaths(testMatrix2, "a", len = 4), file = "findIDpathsOutput3.rds")
 })
