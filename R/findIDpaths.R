@@ -14,7 +14,23 @@
 
 
 findIDpaths = function(conf, ID, len = 2){
+  
+  # making sure conf is of conf.mat
+  if (!("conf.mat" %in% class(conf))){
+    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+  }
+  
+  # making sure that len is of correct format
   if (len < 2) stop("len should be no smaller than 2.")
+  if (len > 6) stop("len should be no greater than 6.")
+  if(len %% as.integer(len) != 0) {
+    stop("'len' needs to be an integer.")
+  }
+  
+  if (!(as.character(ID) %in% row.names(conf))) {
+    stop("ID not found in the conflict matrix. Making sure the ID and the conflict matrix are correct.")
+  }
+  
   i <- which(row.names(conf) == as.character(ID))
   
 #  if(sum(conf[i,] > 0) == 0) return(matrix(0, 0, len+1))
