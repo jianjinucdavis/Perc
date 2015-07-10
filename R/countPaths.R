@@ -33,7 +33,18 @@
 
 
 countPaths = function(conf, maxLength = 2){
-  if (maxLength < 2) stop("len should be no smaller than 2.")
+  # check if conf is correct
+  if (!("conf.mat" %in% class(conf))){
+    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+  }
+  
+  # check if maxLength is correct
+  if (maxLength < 2) stop("'maxLength' should be no smaller than 2.")
+  if (maxLength > 6) stop("'maxLength' should be no greater than 6.")
+  if(maxLength %% as.integer(maxLength) != 0) {
+    stop("'maxLength' needs to be an integer.")
+  }
+  
 #  allPaths <- findAllPaths(conf, maxLength)
   allPaths <- allPaths(conf, maxLength)[[2]]
   nOrders = length(allPaths)
