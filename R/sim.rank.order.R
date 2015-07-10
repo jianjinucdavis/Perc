@@ -2,7 +2,7 @@
 #' 
 #' \code{simRankOrder} find the rank order for the win-loss relationship
 #' 
-#' @param data a data frame or a matrix. the win-loss probability matrix 
+#' @param data a matrix. the win-loss probability matrix 
 #' which is the second output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
 #' @param kmax an integer between 2 to 1000
@@ -36,10 +36,21 @@
 #' s.rank$AllSimulatedRankOrder
 
 simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
-  # input df, a dataframe, the output from percolation function.
+  # the output from percolation function.
+  if (!(is.matrix(data))) {
+    stop("The second element 'p.hat' from the output of 'conductance' should be used.")
+  }
+  
+  if (any(data) < 0){
+    stop("Values smaller than 0 detected. Please check your data. The second element 'p.hat' from the output of 'conductance' should be used.")
+  }
+  
+  if (any(data) > 1){
+    stop("Values greater than 1 detected. Please check your data. The second element 'p.hat' from the output of 'conductance' should be used.")
+  }
   
   # run the SimAnneal.R manually. 
-  percMat2 <- as.matrix(data) 
+  percMat2 <- data 
   ### Run the simulated annealing many times, since it sometimes gets 
   ### stuck in local minima.
   
