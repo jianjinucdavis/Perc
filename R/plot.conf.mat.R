@@ -20,6 +20,11 @@
 
 plotConfmat = function(conf.mat, ordering = NA, labels = FALSE, ...){
   
+  # making sure input is correct
+  if (!(is.matrix(conf.mat))) {
+    stop("conf.mat should be a matrix.")
+  }
+  
   if(length(rownames(conf.mat)) == 0){
     labels = FALSE
   }
