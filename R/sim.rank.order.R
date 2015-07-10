@@ -41,11 +41,11 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
     stop("The second element 'p.hat' from the output of 'conductance' should be used.")
   }
   
-  if (any(data) < 0){
+  if (any(data < 0)){
     stop("Values smaller than 0 detected. Please check your data. The second element 'p.hat' from the output of 'conductance' should be used.")
   }
   
-  if (any(data) > 1){
+  if (any(data > 1)){
     stop("Values greater than 1 detected. Please check your data. The second element 'p.hat' from the output of 'conductance' should be used.")
   }
   
