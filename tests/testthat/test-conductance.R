@@ -31,9 +31,10 @@ test_that("return error for incorrect maxLength", {
 })
 
 test_that("output is a list of length 2", {
-  
-  expect_is(conductance(testMatrix2, maxLength = 2), "list")
-  expect_equal(length(conductance(testMatrix2, maxLength = 2)), 2)
+  conductanceOutput <- conductance(testMatrix2, maxLength = 2)
+  expect_is(conductanceOutput, "list")
+  expect_equal(length(conductanceOutput), 2)
+  expect_output(str(conductanceOutput), "List of 2")
 })
 
 
