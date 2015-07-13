@@ -4,7 +4,7 @@
 #'  based upon the combined information from directed wins/losses and 
 #'  indirect win/loss pathways from the network.
 #' 
-#' @param conf N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j. It is the output from \code{as.conflictmat}
+#' @param conf a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.
 #' @param maxLength an integer greater than 1 and less than 7, indicating the maximum length of paths to identify. 
 #' @param alpha a positive integer that 
 #' reflects the influence of an observed win/loss interaction 
