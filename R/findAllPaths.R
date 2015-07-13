@@ -4,7 +4,7 @@
 #' \code{findAllPaths} Identifies all paths length less than or equal 
 #' to \code{maxLength} between all pairs of competitors 
 #' 
-#' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}
+#' @param conf a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
 #' @return A list of two elements. 
 #'  
