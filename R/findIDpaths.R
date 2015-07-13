@@ -1,13 +1,12 @@
 #' find all paths of a certain length for an individual 
 #' 
-#' \code{findIDpaths} identifies all unique win-loss paths of order \eqn{(len - 1)} beginning at selected subject (given by \code{ID})
+#' \code{findIDpaths} identifies all unique win-loss pathways of order \eqn{(len - 1)} beginning at selected \code{ID}
 #' 
-#' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j
-#' @param ID a numeric or character object of length 1. the subject at the beginning of each win-loss path.
+#' @param conf a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.
+#' @param ID a numeric or character vector of length 1. It specifys the subject at the beginning of each pathway.
 #' @param len a positive integer of length 1 greater than 2. the length of the win-loss paths to be identified (\eqn{len = order + 1})
 #' @return return all win-loss paths of \code{length(len)} beginning at \code{ID}
-#' 
-#' @seealso \code{\link{findAllPaths}} \code{\link{countPaths}}
+#' @seealso \code{\link{as.conflictmat}}, \code{\link{findAllPaths}}, \code{\link{countPaths}}
 #' @examples
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
