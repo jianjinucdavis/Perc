@@ -1,9 +1,9 @@
-#' Find the rank order
+#' Find rank order using simulated annealing
 #' 
 #' \code{simRankOrder} find the rank order for the win-loss relationship
 #' 
 #' @param data a matrix. the win-loss probability matrix 
-#' which is the second output from \code{conductance}
+#' which is the second element of the output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
 #' @param kmax an integer between 2 to 1000
 #' @param alpha a positive integer that 
