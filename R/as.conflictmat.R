@@ -82,7 +82,7 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 
 #' convert to a matrix of \code{conf.mat} class
 #' 
-#' @description convert an edgelist or a win-loss raw matrix to a matrix of \code{conf.mat} class
+#' \code{as.conflictmat} convert an edgelist or a win-loss raw matrix to a matrix of \code{conf.mat} class
 #' @param Data either a dataframe or a matrix representing raw win-loss interactions using either an edgelist or a matrix. 
 #' By default, winners are represented by IDs in the 1st column for an edgelist, and by row IDs for a matrix. 
 #' Frequency of interactions for each dyad can be represented either by multiple occurrences of the dyad for a 2-column edgelist, or
