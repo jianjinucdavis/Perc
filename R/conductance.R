@@ -136,6 +136,11 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 #' convertedValue <- valueConverter(perm2$p.hat)
 
 valueConverter <- function(matrix){
+  
+  if (!(is.matrix(matrix))) {
+    stop("Only matrix is accepted as input.")
+  }
+  
   matrixAbove0.5 <- abs(0.5 - matrix) + 0.5
   return(matrixAbove0.5)
 }
@@ -146,7 +151,7 @@ valueConverter <- function(matrix){
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe of dyadic level win-loss probability and ranking certainty.
-#' 
+#' @details values on the diagonal of the matrix are not included in the converted long-format data.
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -158,7 +163,9 @@ valueConverter <- function(matrix){
 
 
 dyadicLongConverter <- function(matrix){
-  
+  if (!(is.matrix(matrix))) {
+    stop("Only matrix is accepted as input.")
+  }
   matrix[lower.tri(matrix, diag = TRUE)] <- NA
   dp.df <- as.data.frame(matrix)
   dp.df2 <- dp.df
@@ -192,6 +199,11 @@ dyadicLongConverter <- function(matrix){
 #' individualLevelOutput <- individualWinProb(perm2$p.hat)
 
 individualWinProb <- function(matrix){
+  
+  if (!(is.matrix(matrix))) {
+    stop("Only matrix is accepted as input.")
+  }
+  
   matrixAbove0.5 <- valueConverter(matrix)
   
   Mean <- apply(data.frame(valueConverter(matrixAbove0.5)), 2, mean)
