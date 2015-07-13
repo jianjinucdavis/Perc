@@ -36,15 +36,15 @@ test_that("return error for incorrect ID", {
   expect_error(findIDpaths(testMatrix2, "AB", len = 3), "ID not found in the conflict matrix. Making sure the ID and the conflict matrix are correct.")
 })
 
-test_that("output is a matrix of len + 1 column, or a list of two if no paths found starting at ID", {
+test_that("output is a matrix of len + 1 column, or a message if no paths found starting at ID", {
   
   expect_is(findIDpaths(testMatrix2, "a", len = 2), "matrix")
   expect_equal(dim(findIDpaths(testMatrix2, "a", len = 2))[2], 3)
   expect_equal(dim(findIDpaths(testMatrix2, "a", len = 4))[2], 5)
   testMatrix3 <- testMatrix2
   testMatrix3[1,] <- 0
-  expect_is(findIDpaths(testMatrix3, "a", len = 2), "list")
-  expect_equal(findIDpaths(testMatrix3, "a", len = 2)[[2]], "no pathways found starting at a")
+  # expect_is(findIDpaths(testMatrix3, "a", len = 2), "list")
+  expect_message(findIDpaths(testMatrix3, "a", len = 2), "no pathways found starting at a")
 })
 
 

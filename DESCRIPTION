@@ -1,9 +1,10 @@
 Package: Perc
 Type: Package
 Title: Using Percolation and Conductane to find information flow certainty in direct network
-Version: 0.0.9009
+Version: 0.0.9010
 Date: 2015-05-06
 Author: Kevin Fujii, Aaron Shev, Jian Jin, Brianne Beisner, Brenda McCowan, Fushing Hsieh
+Contributor:
 Maintainer: Jian Jin <jinjian.pku@gmail.com>
 Description: Find the certainty of dominance interactions with indirect interactions being considered.
 Depends: 

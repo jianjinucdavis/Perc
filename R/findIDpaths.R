@@ -1,4 +1,3 @@
-# To do: when "no pathways found starting at ID", return a character vector, instead of a list.
 #' find all paths of a certain length for an individual 
 #' 
 #' \code{findIDpaths} identifies all unique win-loss paths of order \eqn{(len - 1)} beginning at selected subject (given by \code{ID})
@@ -75,16 +74,17 @@ findIDpaths = function(conf, ID, len = 2){
 #  ret[isUnique,]
   pathMatrix <- IDpaths(conf, i, len)
   if (nrow(pathMatrix) == 0) {
-    return(
-      list(
-        pathMatrix, 
-        paste(
-          c("no pathways found starting at"),
-          ID,
-          sep = " "
-          )
-        )
-      )
+    message(c("no pathways found starting at "), ID)
+    #return(
+    #  list(
+    #    pathMatrix, 
+    #    paste(
+    #      c("no pathways found starting at"),
+    #      ID,
+    #      sep = " "
+    #      )
+    #    )
+    #  )
   } else {
     pathOutputmatrix <- pathMatrix
     for (j in 1:length(pathMatrix)){
