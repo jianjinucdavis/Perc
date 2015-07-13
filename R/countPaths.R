@@ -3,7 +3,8 @@
 #' \code{countPaths} Identifies the number of paths of length 
 #' less than or equal to \code{maxLength} between all pairs 
 #' 
-#' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}
+#' @param conf a matrix of conf.mat class. 
+#' An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
 #' @return A list in which elements are number of paths between all pairs of a given length.
 #' 
