@@ -28,16 +28,13 @@
 #' conftrans$transitivity
 #' conftrans$alpha
 
-
-
-
-
-
 transitivity = function(conf){
   
+  # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
-    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+    conf = as.conflictmat(conf)
   }
+  
   
   N = nrow(conf)
   
