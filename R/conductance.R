@@ -51,7 +51,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   
   # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
-    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+    conf = as.conflictmat(conf)
   }
   
   if(maxLength < 2 | maxLength > 6) {

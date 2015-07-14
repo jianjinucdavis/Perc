@@ -22,9 +22,9 @@
 
 findAllPaths = function(conf, maxLength = 2){
   
-  # check if conf is correct
+  # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
-    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+    conf = as.conflictmat(conf)
   }
   
   # check if maxLength is correct

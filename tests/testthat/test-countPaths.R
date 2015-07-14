@@ -15,12 +15,7 @@ edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
 testMatrix2 <- as.conflictmat(edgelist1)
 
 
-test_that("input 'conf' is of 'conf.mat'", {
-  
-  testMatrix1 <- edgelisttomatrix(edgelist1)
-  expect_error(countPaths(testMatrix1, maxLength = 2),
-               "Turn conf into a 'conf.mat' using 'as.conflictmat'.")
-})
+
 
 test_that("return error for incorrect maxLength", {
   

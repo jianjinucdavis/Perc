@@ -16,7 +16,7 @@ findIDpaths = function(conf, ID, len = 2){
   
   # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
-    stop("Turn conf into a 'conf.mat' using 'as.conflictmat'.")
+    conf = as.conflictmat(conf)
   }
   
   # making sure that len is of correct format
