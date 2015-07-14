@@ -9,7 +9,7 @@
 #' @seealso \code{\link{as.conflictmat}}, \code{\link{findAllPaths}}, \code{\link{countPaths}}
 #' @examples
 #' confmatrix <- as.conflictmat(sampleEdgelist)
-#' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
+#' path38891 <- findIDpaths(confmatrix, ID = "Kuai", len = 2)
 #' @export
 
 
