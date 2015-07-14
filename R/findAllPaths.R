@@ -18,6 +18,7 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find all paths of legnth 3
 #' allp.3 <- findAllPaths(confmatrix, 3)
+#' @export
 
 
 findAllPaths = function(conf, maxLength = 2){

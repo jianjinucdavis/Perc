@@ -13,6 +13,7 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find number of paths of length 3 or less
 #' npaths <- countPaths(confmatrix, 3)
+#' @export
 
 
 ### countPaths() takes in the output of the IDpaths function

@@ -7,9 +7,9 @@
 conductance(conf, maxLength, alpha = NULL, beta = 1)
 }
 \arguments{
-\item{conf}{N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j. It is the output from \code{as.conflictmat}}
+\item{conf}{a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.}
 
-\item{maxLength}{a positive numeric integer greater than 1 and less than 7, indicating the maximum length of paths to identify.}
+\item{maxLength}{an integer greater than 1 and less than 7, indicating the maximum length of paths to identify.}
 
 \item{alpha}{a positive integer that
 reflects the influence of an observed win/loss interaction

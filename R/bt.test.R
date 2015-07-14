@@ -31,8 +31,7 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # test the assumptions of the Bradley-Terry model
 #' condTestoutput <- bt.test(confmatrix)
-
-
+#' @export
 
 
 ###############################################################################

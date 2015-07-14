@@ -7,11 +7,6 @@
 #' It is the matrix representation of the edgelist.
 #' 
 #' @seealso \code{\link{conductance}}
-#' 
-#' @examples
-#' rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
-#' 
-#' rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 
 edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
@@ -108,6 +103,7 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
 #' confmatrix <- as.conflictmat(sampleEdgelist, swap.order = FALSE)
 #' confmatrix2 <- as.conflictmat(sampleRawMatrix, swap.order = FALSE)
 #' confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
+#' @export
 
 as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   if (ncol(Data) > 3 & ncol(Data) != nrow(Data)) {

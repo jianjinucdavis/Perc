@@ -34,6 +34,7 @@
 #' s.rank$BestSimulatedRankOrder
 #' s.rank$Costs
 #' s.rank$AllSimulatedRankOrder
+#' @export
 
 simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
   # the output from percolation function.

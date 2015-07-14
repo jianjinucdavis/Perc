@@ -9,7 +9,7 @@
 #' specified in the \code{rownames()} of \code{conf.mat()} on the heatmap
 #' @param ... Further argument may be supplied and processed by \code{levelplot}.
 #' @return A heatmap
-#' @seealso \code{\link{as.conflictmat}} \code{\link{conductance}}
+#' @seealso \code{\link{as.conflictmat}}, \code{\link{conductance}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -17,6 +17,7 @@
 #' perm2 <- conductance(confmatrix, 2)
 #' # plotting
 #' plotConfmat(perm2$p.hat)
+#' @export
 
 plotConfmat = function(conf.mat, ordering = NA, labels = FALSE, ...){
   

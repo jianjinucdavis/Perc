@@ -32,6 +32,6 @@ perm2 <- conductance(confmatrix, 2)
 plotConfmat(perm2$p.hat)
 }
 \seealso{
-\code{\link{as.conflictmat}} \code{\link{conductance}}
+\code{\link{as.conflictmat}}, \code{\link{conductance}}
 }
 

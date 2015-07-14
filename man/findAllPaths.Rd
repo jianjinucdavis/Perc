@@ -8,7 +8,7 @@ equal to a certain length}
 findAllPaths(conf, maxLength = 2)
 }
 \arguments{
-\item{conf}{an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}}
+\item{conf}{a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.}
 
 \item{maxLength}{a positive numeric integer indicating the maximum length of paths to identify}
 }

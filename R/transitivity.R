@@ -27,6 +27,7 @@
 #' conftrans$intransitive
 #' conftrans$transitivity
 #' conftrans$alpha
+#' @export
 
 transitivity = function(conf){
   

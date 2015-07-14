@@ -46,6 +46,7 @@
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
+#' @export
 
 conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   
@@ -134,6 +135,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 #' perm2$imputed.conf
 #' perm2$p.hat
 #' convertedValue <- valueConverter(perm2$p.hat)
+#' @export
 
 valueConverter <- function(matrix){
   
@@ -160,6 +162,7 @@ valueConverter <- function(matrix){
 #' perm2$imputed.conf
 #' perm2$p.hat
 #' dl <- dyadicLongConverter(perm2$p.hat)
+#' @export
 
 
 dyadicLongConverter <- function(matrix){
@@ -197,6 +200,7 @@ dyadicLongConverter <- function(matrix){
 #' perm2$imputed.conf
 #' perm2$p.hat
 #' individualLevelOutput <- individualWinProb(perm2$p.hat)
+#' @export
 
 individualWinProb <- function(matrix){
   

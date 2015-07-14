@@ -20,11 +20,6 @@ It is the matrix representation of the edgelist.
 \description{
 transform an edgelist into a matrix
 }
-\examples{
-rawmatrix <- edgelisttomatrix(sampleEdgelist, swap.order = FALSE)
-
-rawmatrix2 <- edgelisttomatrix(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
-}
 \seealso{
 \code{\link{conductance}}
 }

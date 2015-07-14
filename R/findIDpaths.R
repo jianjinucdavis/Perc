@@ -10,6 +10,7 @@
 #' @examples
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' path38891 <- findIDpaths(confmatrix, ID = 38891, len = 2)
+#' @export
 
 
 findIDpaths = function(conf, ID, len = 2){

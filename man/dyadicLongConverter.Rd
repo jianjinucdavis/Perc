@@ -15,6 +15,9 @@ a dataframe of dyadic level win-loss probability and ranking certainty.
 \description{
 \code{dyadicLongConverter} convert win-loss probability matrix into long format for each dyad
 }
+\details{
+values on the diagonal of the matrix are not included in the converted long-format data.
+}
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)

@@ -2,13 +2,13 @@
 % Please edit documentation in R/sim.rank.order.R
 \name{simRankOrder}
 \alias{simRankOrder}
-\title{Find the rank order}
+\title{Find rank order using simulated annealing}
 \usage{
 simRankOrder(data, num = 10, alpha = NULL, kmax = 1000)
 }
 \arguments{
-\item{data}{a data frame or a matrix. the win-loss probability matrix
-which is the second output from \code{conductance}}
+\item{data}{a matrix. the win-loss probability matrix
+which is the second element of the output from \code{conductance}}
 
 \item{num}{number of SimAnnealing (default is set at 10)}
 
