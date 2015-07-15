@@ -1,12 +1,12 @@
-#' transform an edgelist into a matrix
-#' 
-#' @param edgelist a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The winner is in the 1st column by default. For weighted edgelist, the third column should be the weight. 
-#' @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
-#' @param swap.order If the winner is in the 2nd column, specify as \code{TRUE}.
-#' @return a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}. 
-#' It is the matrix representation of the edgelist.
-#' 
-#' @seealso \code{\link{conductance}}
+# transform an edgelist into a matrix
+# 
+# @param edgelist a 2-column (or 3-column for weighted edgelist) dataframe/matrix of edges. The winner is in the 1st column by default. For weighted edgelist, the third column should be the weight. 
+# @param weighted If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}. 
+# @param swap.order If the winner is in the 2nd column, specify as \code{TRUE}.
+# @return a named matrix with \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}. 
+# It is the matrix representation of the edgelist.
+# 
+# @seealso \code{\link{conductance}}
 
 edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
