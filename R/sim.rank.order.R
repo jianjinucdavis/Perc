@@ -18,9 +18,8 @@
 #'    \item{Costs}{the cost of each simulated annealing run}
 #'    \item{AllSimulatedRankOrder}{a dataframe representing all simulated rank orders.}
 #' 
-#' @details <more information on simAnneal>
 #' 
-#' @references <add citations here!>
+#' @references Fushing, H., McAssey, M. P., Beisner, B., & McCowan, B. (2011). Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom. PLoS One, 6(3), e17817-e17817.
 #' 
 #' @seealso \code{\link{conductance}} \code{\link{transitivity}}
 #' 

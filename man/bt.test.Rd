@@ -32,9 +32,6 @@ A list of 3 elements.
  That is, if \eqn{A > B} and \eqn{B > C} then \eqn{A > C} and
  \eqn{Pr(A beats C)} > \eqn{Pr(B beats C)}.
 }
-\details{
-<more information>
-}
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)

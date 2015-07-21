@@ -11,7 +11,6 @@
 #'  \item{probMat}{an N-by-N numeric matrix of win-loss probabilities estimated by the BT model.}
 #'  \item{logLik}{the model fit.}
 #'  
-#'  @details <more information on bradleyTerry!>
 #'  
 #'  @references 
 #'    Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.

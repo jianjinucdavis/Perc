@@ -31,9 +31,6 @@ a list of two dataframes.
 \description{
 \code{simRankOrder} find the rank order for the win-loss relationship
 }
-\details{
-<more information on simAnneal>
-}
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
@@ -46,7 +43,7 @@ s.rank$Costs
 s.rank$AllSimulatedRankOrder
 }
 \references{
-<add citations here!>
+Fushing, H., McAssey, M. P., Beisner, B., & McCowan, B. (2011). Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom. PLoS One, 6(3), e17817-e17817.
 }
 \seealso{
 \code{\link{conductance}} \code{\link{transitivity}}

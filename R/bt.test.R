@@ -19,7 +19,6 @@
 #'  \item{dist}{estimated sampling distribution of the test statistics under the BT model.}
 #'  \item{p.val}{p-value of the test}
 #' 
-#' @details <more information>
 #' 
 #' @references 
 #'  Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.

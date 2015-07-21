@@ -24,9 +24,6 @@ A list of length 3.
 \description{
 \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
 }
-\details{
-<more information on bradleyTerry!>
-}
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
