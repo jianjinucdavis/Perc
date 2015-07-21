@@ -24,4 +24,7 @@ perm2$imputed.conf
 perm2$p.hat
 individualLevelOutput <- individualWinProb(perm2$p.hat)
 }
+\seealso{
+\code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{dyadicLongConverter}}
+}
 

@@ -25,4 +25,7 @@ perm2$imputed.conf
 perm2$p.hat
 convertedValue <- valueConverter(perm2$p.hat)
 }
+\seealso{
+\code{\link{conductance}}, \code{\link{individualWinProb}}, \code{\link{dyadicLongConverter}}
+}
 

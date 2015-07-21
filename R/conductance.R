@@ -130,7 +130,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a matrix of win-loss probability ranging from 0.5 - 1.0.
-#' 
+#' @seealso \code{\link{conductance}}, \code{\link{individualWinProb}}, \code{\link{dyadicLongConverter}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -158,6 +158,7 @@ valueConverter <- function(matrix){
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe of dyadic level win-loss probability and ranking certainty.
 #' @details values on the diagonal of the matrix are not included in the converted long-format data.
+#' @seealso \code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{individualWinProb}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -195,6 +196,8 @@ dyadicLongConverter <- function(matrix){
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe. Averaging probability of win-loss relationship with all other individuals.
+#' 
+#' @seealso \code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{dyadicLongConverter}}
 #' 
 #' @examples
 #' # convert an edgelist to conflict matrix
