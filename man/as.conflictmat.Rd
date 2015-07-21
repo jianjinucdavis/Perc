@@ -7,14 +7,14 @@
 as.conflictmat(Data, weighted = FALSE, swap.order = FALSE)
 }
 \arguments{
-\item{Data}{either a dataframe or a matrix representing raw win-loss interactions using either an edgelist or a matrix.
+\item{Data}{either a dataframe or a matrix, representing raw win-loss interactions using either an edgelist or a matrix.
 By default, winners are represented by IDs in the 1st column for an edgelist, and by row IDs for a matrix.
 Frequency of interactions for each dyad can be represented either by multiple occurrences of the dyad for a 2-column edgelist, or
-by a third column specifying the frequency for a 3-column edgelist.}
+by a third column specifying the frequency of the interaction for a 3-column edgelist.}
 
-\item{weighted}{If the edgelist is a 3-column weighted edgelist, use \code{weighted = TRUE}.}
+\item{weighted}{If the edgelist is a 3-column edgelist in which weight was specified by frequency, use \code{weighted = TRUE}.}
 
-\item{swap.order}{If the winner is in the 2nd column, specify as \code{TRUE}.}
+\item{swap.order}{If the winner is placed in the 2nd column for an edgelist or as the column name for a matrix, specify as \code{TRUE}. By default, winners are placed in the first column of an edgelist or in the row names of a matrix.}
 }
 \value{
 a named matrix with the \code{[i,j]}th entry equal to the number of times \code{i} wins over \code{j}.
@@ -28,12 +28,8 @@ a class of R objects. It is required to use \code{as.conflictmat} to convert you
 raw edgelist or raw win-loss matrix into a matrix of \code{conf.mat} object before
 using other functions to find (in)direct pathways and computing dominance probabilities.
 
-For a 2-column edgelist, each row represent one occurrence of interaction between the intiator and the recipient. Multiple
-occurrences of interactions are represented by the frequency of this interaction.
-For a 3-column edgelist, the frequency of interaction is represented by the third column.
-Note, for a 3-column edgelist, each dyad must be unique. If more than one rows are found with the same initiator and recipient,
-sum of the frequencies will be taken to represent the freqency of interactions between this unique dyad with a warning message prompt your attention to the accuracy of your raw data.
-By default, the first column is considered as the initiator or winner, and the second column is considered as the recipient or loser.
+Note, when using a 3-column edgelist (e.g. a weighted edgelist) to represent raw win-loss interactions, each dyad must be unique. If more than one rows are found with the same initiator and recipient,
+sum of the frequencies will be taken to represent the freqency of interactions between this unique dyad. A warning message will prompt your attention to the accuracy of your raw data when duplicate dyads were found in a three-column edgelist.
 }
 \examples{
 confmatrix <- as.conflictmat(sampleEdgelist, swap.order = FALSE)
@@ -41,6 +37,6 @@ confmatrix2 <- as.conflictmat(sampleRawMatrix, swap.order = FALSE)
 confmatrix3 <- as.conflictmat(sampleWeightedEdgelist, weighted = TRUE, swap.order = FALSE)
 }
 \seealso{
-\code{\link{findIDpaths}} \code{\link{countPaths}} \code{\link{transitivity}} \code{\link{conductance}}
+\code{\link{findIDpaths}}, \code{\link{countPaths}}, \code{\link{transitivity}}, \code{\link{conductance}}
 }
 

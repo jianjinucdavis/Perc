@@ -8,6 +8,8 @@
 #' @param maxLength a positive numeric integer indicating the maximum length of paths to identify
 #' @return A list in which elements are number of paths between all pairs of a given length.
 #' 
+#' @seealso \code{\link{as.conflictmat}}, \code{\link{findIDpaths}}, \code{\link{transitivity}}, \code{\link{conductance}}
+#' 
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)

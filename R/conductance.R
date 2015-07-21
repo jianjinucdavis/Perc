@@ -25,7 +25,9 @@
 #'    'effective' number of wins of \code{i} over \code{j}.}
 #'    
 #'  \item{p.hat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated 
-#'      win-loss probability.}
+#'      win-loss probability. 
+#'      Three functions (\code{\link{valueConverter}}, \code{\link{individualWinProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability 
+#'      into other formats that are easier for further analysis of win-loss probability. }
 #'      
 #' @details This function performs two major steps. 
 #' First, repeated random walks through the empirical network 
@@ -34,6 +36,8 @@
 #' Second, the information from both direct wins/losses and 
 #' pathways of win/loss interactions are combined into an estimate of 
 #' the underlying probability of \code{i} over \code{j}, for all \code{ij} pairs.
+#' 
+#' @seealso \code{\link{as.conflictmat}}, \code{\link{findIDpaths}}, \code{\link{transitivity}}, \code{\link{simRankOrder}}
 #' 
 #' @references Fushing H, McAssey M, Beisner BA, McCowan B. 2011. 
 #' Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom. 

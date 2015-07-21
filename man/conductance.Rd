@@ -33,7 +33,9 @@ a list of two elements.
    'effective' number of wins of \code{i} over \code{j}.}
 
  \item{p.hat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated
-     win-loss probability.}
+     win-loss probability.
+     Three functions (\code{\link{valueConverter}}, \code{\link{individualWinProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability
+     into other formats that are easier for further analysis of win-loss probability. }
 }
 \description{
 \code{conductance} compute win-loss probabilities for all possible pairs
@@ -61,5 +63,8 @@ perm2$p.hat
 Fushing H, McAssey M, Beisner BA, McCowan B. 2011.
 Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom.
 PLoS ONE 6(3):e17817.
+}
+\seealso{
+\code{\link{as.conflictmat}}, \code{\link{findIDpaths}}, \code{\link{transitivity}}, \code{\link{simRankOrder}}
 }
 

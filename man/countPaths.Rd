@@ -25,4 +25,7 @@ confmatrix <- as.conflictmat(sampleEdgelist)
 # find number of paths of length 3 or less
 npaths <- countPaths(confmatrix, 3)
 }
+\seealso{
+\code{\link{as.conflictmat}}, \code{\link{findIDpaths}}, \code{\link{transitivity}}, \code{\link{conductance}}
+}
 
