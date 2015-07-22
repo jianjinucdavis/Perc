@@ -92,6 +92,5 @@ bradleyTerry = function(conf.mat, initial = NA, baseline = NA,
 }
 
 
-# to do:
-#     -- documentation on outputs: logLik ?
+
 
