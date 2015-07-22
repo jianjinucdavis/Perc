@@ -1,14 +1,19 @@
 ---
 title: "Introduction to Perc Package"
-author: "JJ"
-date: "May 8, 2015"
-output: word_document
+author: "Jian Jin, Brianne A. Beisner, Jessica J. Vandeleest, Kevin Fujii, Aaron Shev, Brenda McCowan, Fushing Hsieh, "
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to Perc Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
-### Introduction
+
+## Introduction
 Rank relationships amongst members of a social group are most commonly represented as an ordered list of individuals that are ranked from highest to lowest. Numerous methods exist to identify this rank order, and most methods fall under one of two approaches: (1) finding the appropriate ranking by reordering the rows and columns of a win/loss matrix or (2) calculating a cardinal dominance index which ranks individuals by the proportion of others dominated, both of which are based upon a data set of agonistic and/or submissive interactions. Such methods produce a linear rank order, whether or not the society is expected to have a linear hierarchy or whether the data fit the assumption of linearity (which is particularly problematic when calculating cardinal ranks (Shev et al 2012)). Most researchers agree that the dominance structure of animal societies is likely to be more complex than simple linearity, but few, if any, methods exist for quantifying nonlinear structure. We present a new network-based method, called Percolation and Conductance, that permits nonlinear structure to emerge via estimates of network-wide directional consistency in the flow of dominance interactions and detection of blocks of dominance ambiguity that are indicative of nonlinear segments of a hierarchy. An additional benefit of this method is the ability to quantify dyadic-level dominance certainty. Dyadic dominance potentials are calculated using multiple indirect dominance pathways in the network (via common third parties) to infer missing data in the win/loss matrix and enhance the calculation of dominance potentials from direct interactions. Greater consistency in the direction of transitive dominance pathways from A to B (e.g. via pathway through C, D, and/or E) result in higher certainty that A outranks B, whereas greater evidence of inconsistent direction (e.g. some directed pathways go from A to B whereas other directed pathways go from B to A) result in dominance ambiguity. Because the number of indirect pathways is typically exponentially larger than direct win/loss interactions, one can be relatively confident that dyads with ambiguous dominance potentials are truly ambiguous due to evidence of directional inconsistency in their network pathways rather than lack of data. 
 
 
-### Rationale
+## Rationale
 
 
 
@@ -16,7 +21,7 @@ Rank relationships amongst members of a social group are most commonly represent
 
   The Percolation-Conductance method of quantifying rank and dominance uncertainty is computation complicated and requires researchers to have a sophisticated computational background to process the data. Our group, in collaboration with collaboraters in UC Davis Statistics Deparment, developed an R package that implements the percolation-conductance algorithm on directed dyadic interactions. By applying simple R functions, researchers will be able to quantify rank order and dominance uncertainty with the help of the package. The goal of this tutorial is to show how to quantify rank and dominance uncertainty from win-loss raw data.
 
-### User Manual
+## User Manual
 
 #### Importing Data
 The function `as.conflictmat` is used to import raw edgelists or matrices for further analysis. Raw edgelists or matrices are records for directed dyadic win-loss interactions. The prefered R data types for `as.conflictmat` are "`matrix`" and "`data.frame`". Raw edgelists or matrices can be imported as R data type of either `data.frame` or `matrix` to be used in `as.conflictmat`. 
@@ -152,7 +157,7 @@ informationGain <- DominanceProbability$imputed.conf - confmatrix
 informationGain[1:5, 1:5]
 
 # generating a heatmap representing information gained by using informatio from indirect pathways.
-plot.conf.mat(informationGain, ordering = NA, labels = TRUE)
+plotConfmat(informationGain, ordering = NA, labels = TRUE)
 ```
 
 As we could see from the heatmap, using `maxLength = 2` does provide us more information than the original raw conflict matrix that we imported from the raw data. In real analysis, you may want to consider using `maxLength = 3` or even more and repeat this diagnosis process to examine the information gain. This will allow you to have a better idea on what is the appropriate `maxLength` for your data.
@@ -161,7 +166,7 @@ For example, if you want to examine whether or not `maxLength = 3` provide more 
 ```{r}
 DominanceProbabilityLength3 <- conductance(confmatrix, maxLength = 3)
 informationGain2 <- DominanceProbabilityLength3$imputed.conf - DominanceProbability$imputed.conf
-plot.conf.mat(informationGain2, ordering = NA, labels = TRUE)
+plotConfmat(informationGain2, ordering = NA, labels = TRUE)
 ```
 As we can see in this heatmap that using `maxLength = 3` still gives you some more information. In real analysis, you may want to repeat the analysis and try `maxLength = 4`. In addition, you may also want to consider your alpha value to decide how much you want to trust those long pathways.
 
@@ -199,7 +204,7 @@ s.rank$Costs
 After finding the simulated rank order, you can apply the rank order to your dominance probability matrix in order to generate a heatmap with its rows and columns ordered by rank.  This heatmap will highlight areas of non-linear dominance rank (i.e. areas that are brown in the example below).  A block of individuals with probabilities near 0.5 indicates a subgroup of individuals whose relationships are not clearly defined.
 
 ```{r}
-plot.conf.mat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE)
+plotConfmat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE)
 ```
 
 
@@ -223,11 +228,3 @@ When individual-level win-loss relationship uncertainty is the focus of your que
 ```{r}
 individualWinProb(DominanceProbability$p.hat)[1:10,]
 ```
-
-=======
-#### Notes
-##### how to phrase what type of the network (); better way to phrase dominance/ win-loss probability matrix (Maybe use ranking, define it, and give examples "like ranking in primate dominance, ranking in chest, seeding 
-##### for future development: countPaths for whole network at particular len
-
-##### update count paths
-##### 
