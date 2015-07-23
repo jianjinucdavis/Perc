@@ -83,25 +83,42 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   # if alpha is larger than 500, use 500.
   alpha <- min(alpha, 500)
   
-  if(sum(conf[row(conf) != col(conf)] == 0) > 0){
-    paths = allPaths(conf, maxLength)
-    
-    ### Populating the direct + indirect conflict matrix called "percMat"
-    for(k in 1:(maxLength - 1)){
-      for(r in 1:nrow(paths[[2]][[k]])){
-        percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] = 
-          percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] + 
-          ((alpha + beta)/(alpha + 2*beta)/mean(outdegree))^k
-        # gc()
-      }
+  paths = allPaths(conf, maxLength)
+  
+  ### Populating the direct + indirect conflict matrix called "percMat"
+  for(k in 1:(maxLength - 1)){
+    for(r in 1:nrow(paths[[2]][[k]])){
+      wij.star = diag(conf[paths[[2]][[k]][r, 1:(k+1)], 
+                           paths[[2]][[k]][r, 2:(k+2)]])
+      wji.star = diag(conf[paths[[2]][[k]][r, 2:(k+2)], 
+                           paths[[2]][[k]][r, 1:(k+1)]])
+      percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+2]] = 
+        percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+2]] + 
+        prod((alpha * wij.star + beta) / 
+               (alpha * (wij.star + wji.star) + 2*beta)/mean(outdegree))
     }
   }
-  else{
-    constant = sum(((alpha + beta)/(alpha + 2 * beta)/mean(outdegree))
-                   ^(1:(maxLength - 1)))
-    percMat = percMat + constant
-    diag(percMat) = 0
-  }
+  
+  
+#  if(sum(conf[row(conf) != col(conf)] == 0) > 0){
+#    paths = allPaths(conf, maxLength)
+#    
+#    ### Populating the direct + indirect conflict matrix called "percMat"
+#    for(k in 1:(maxLength - 1)){
+#      for(r in 1:nrow(paths[[2]][[k]])){
+#        percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] = 
+#          percMat[paths[[2]][[k]][r,1], paths[[2]][[k]][r,k+1]] + 
+#          ((alpha + beta)/(alpha + 2*beta)/mean(outdegree))^k
+#        # gc()
+#      }
+#    }
+#  }
+#  else{
+#    constant = sum(((alpha + beta)/(alpha + 2 * beta)/mean(outdegree))
+#                   ^(1:(maxLength - 1)))
+#    percMat = percMat + constant
+#    diag(percMat) = 0
+#  }
   
   
   ### "percMat2" is the estimated win-loss probability matrix
