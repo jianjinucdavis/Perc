@@ -4,7 +4,7 @@
 # testthat output is correct.                                  -- checked
 
 
-context("Testing Conductance Function")
+context("Testing plotConfmat Function")
 
 # test data generation
 set.seed(1)
