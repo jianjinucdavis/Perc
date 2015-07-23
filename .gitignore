@@ -4,7 +4,7 @@ packrat/lib*/
 .Rapp.history
 *.csv
 .DS_Store
-
+rdev/
 # no .a files
 *.a
 # but do track lib.a, even though you're ignoring .a files above
@@ -17,3 +17,4 @@ build/
 doc/*.txt
 # ignore all .txt files in the doc/ directory
 doc/**/*.txt
+inst/doc
