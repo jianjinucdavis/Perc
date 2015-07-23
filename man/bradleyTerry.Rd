@@ -17,7 +17,7 @@ bradleyTerry(conf.mat, initial = NA, baseline = NA, stop.dif = 0.001)
 }
 \value{
 A list of length 3.
- \item{domInds}{a vector of length N consiting of the MLE values of the dominance indices.}
+ \item{domInds}{a vector of length N consiting of the MLE values of the dominance indices. Lower values represent lower ranks.}
  \item{probMat}{an N-by-N numeric matrix of win-loss probabilities estimated by the BT model.}
  \item{logLik}{the model fit.}
 }

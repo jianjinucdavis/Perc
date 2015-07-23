@@ -7,7 +7,7 @@
 #' @param baseline index for agent to represent baseline dominance index set to 0.  If NA, the "sum-to-one" parameterization will be used.
 #' @param stop.dif numeric value for difference in log likelihood value between iterations.  Used as the convergence criterion for the algorithm.
 #' @return A list of length 3. 
-#'  \item{domInds}{a vector of length N consiting of the MLE values of the dominance indices.}
+#'  \item{domInds}{a vector of length N consiting of the MLE values of the dominance indices. Lower values represent lower ranks.}
 #'  \item{probMat}{an N-by-N numeric matrix of win-loss probabilities estimated by the BT model.}
 #'  \item{logLik}{the model fit.}
 #'  

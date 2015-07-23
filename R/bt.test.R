@@ -19,6 +19,12 @@
 #'  \item{dist}{estimated sampling distribution of the test statistics under the BT model.}
 #'  \item{p.val}{p-value of the test}
 #' 
+#' @details The value of the test statistic should be within the estimated
+#' sampling distribution of the test statistics under the BT model. 
+#' The p-value of the test indicates the probability of statistics in the estimated sampling distribution
+#' is larger than the test statistic. 
+#' It is not appropriate to use Bradley-Terry model if value of the test statistic is higher than 
+#' the estimated sampling distribution of the test statistics.
 #' 
 #' @references 
 #'  Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.

@@ -32,6 +32,14 @@ A list of 3 elements.
  That is, if \eqn{A > B} and \eqn{B > C} then \eqn{A > C} and
  \eqn{Pr(A beats C)} > \eqn{Pr(B beats C)}.
 }
+\details{
+The value of the test statistic should be within the estimated
+sampling distribution of the test statistics under the BT model.
+The p-value of the test indicates the probability of statistics in the estimated sampling distribution
+is larger than the test statistic.
+It is not appropriate to use Bradley-Terry model if value of the test statistic is higher than
+the estimated sampling distribution of the test statistics.
+}
 \examples{
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
