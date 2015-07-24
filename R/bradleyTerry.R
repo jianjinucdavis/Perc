@@ -2,8 +2,8 @@
 #' 
 #' \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
 #' 
-#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a win-loss probability matrix (the second element from \code{conductance} output)
-#' @param initial initial values of dominance indices for the MM algorithm, if not supplied, the 0 vector will be the inital value.
+#' @param conf.mat an N-by-N matrix. The matrix should be a conflict matrix with element i,j representing the number of times i has beaten j.)
+#' @param initial initial values of dominance indices for the MM algorithm, if not supplied, 1/N (or 0 in the baseline parameterization) will be the inital value for all competitors.
 #' @param baseline index for agent to represent baseline dominance index set to 0.  If NA, the "sum-to-one" parameterization will be used.
 #' @param stop.dif numeric value for difference in log likelihood value between iterations.  Used as the convergence criterion for the algorithm.
 #' @return A list of length 3. 
@@ -13,7 +13,7 @@
 #'  
 #'  
 #'  @references 
-#'    Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.
+#'    Hunter, R. (2004). MM Algorithm for generalized Bradley Terry Models, The Annals of Statistics 2004, Vol. 32, No. 1, 384–406.
 #'    
 #'    Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
 #'  
@@ -23,8 +23,6 @@
 #' # Computes the MLE for the BT model
 #' bt <- bradleyTerry(confmatrix)
 #' @export
-
-
 
 
 
