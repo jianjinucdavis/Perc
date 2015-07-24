@@ -5,6 +5,54 @@ date: "July 22, 2015"
 output: html_document
 ---
 
-Why should I use it?
-How do I use it?
+Rank order and the certainty of the win-loss relationships are two aspects of ranking relationships. Win-loss information can be found not only from direct interactions, but also information from indirect pathways between all pairs of nodes. The Perc package quantifies both rank order and dominance certainty using win-loss information from both direct and indirect pathways by performing a series of random walks through the network. 
+
+
+## Workflow
+A typical workflow using Perc package to quantify rank order and dominance certainty contains three steps: 
+* Importing Data: using `r as.conflictmat()` to transform your raw win-loss edgelist or matrix to an R object of "conf.mat" class.
+
+```{r}
+library(Perc)
+# displaying the first 5 rows of the example data.
+head(sampleEdgelist, 5)
+# convert an two-column edgelist to conflict matrix
+confmatrix <- as.conflictmat(sampleEdgelist)
+# displaying the first 5 rows and columns of the converted matrix
+confmatrix[1:5, 1:5]
+```
+
+* Quantifying Dominance Probability: 
+```{r}
+DominanceProbability <- conductance(confmatrix, maxLength = 2)
+```
+
+`DominanceProbability` is a list of 2 elements. The first element, named `imputed.conf` is the updated conflict matrix which incorporates information from indirect pathways from the original conflict matrix. 
+
+```{r}
+# displaying the first 5 rows and columns of the imputed conflict matrix
+DominanceProbability$imputed.conf[1:5, 1:5]
+```
+
+The second element of `DominanceProbability` the dominance probability matrix, named `p.hat`. Here's how you could pull out the dominance probability matrix:
+
+```{r}
+# displaying the first 5 rows and columns of the dominance probability matrix
+DominanceProbability$p.hat[1:5, 1:5]
+```
+
+* Finding the best rank order: simulated rank order is computed using a simulated annealing algorithm by running the function `simRankOrder` on `DominanceProbability$p.hat`. 
+
+```{r}
+# find simRankOrder
+s.rank <- simRankOrder(DominanceProbability$p.hat, num = 10, kmax = 10)
+```
+
+* Plotting: Visually examine dominace probability from heatmap generated using `plotConfmat`.
+
+```{r}
+plotConfmat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE)
+```
+
 How do I get it?
+Well~~ I'm working on that~~ Please be patient. :-)
