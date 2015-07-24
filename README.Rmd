@@ -54,5 +54,5 @@ s.rank <- simRankOrder(DominanceProbability$p.hat, num = 10, kmax = 10)
 plotConfmat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE)
 ```
 
-How do I get it?
+## Installation
 Well~~ I'm working on that~~ Please be patient. :-)
