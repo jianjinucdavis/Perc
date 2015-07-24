@@ -2,7 +2,7 @@
 #' 
 #' \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
 #' 
-#' @param conf.mat an N-by-N matrix. The matrix should be a conflict matrix with element i,j representing the number of times i has beaten j.)
+#' @param conf.mat an N-by-N matrix. The matrix should be a conflict matrix with element i,j representing the number of times i has beaten j.
 #' @param initial initial values of dominance indices for the MM algorithm, if not supplied, 1/N (or 0 in the baseline parameterization) will be the inital value for all competitors.
 #' @param baseline index for agent to represent baseline dominance index set to 0.  If NA, the "sum-to-one" parameterization will be used.
 #' @param stop.dif numeric value for difference in log likelihood value between iterations.  Used as the convergence criterion for the algorithm.
