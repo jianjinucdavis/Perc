@@ -49,6 +49,12 @@
 ###############################################################################
 bradleyTerry = function(conf.mat, initial = NA, baseline = NA, 
                         stop.dif = .001){
+  
+  #Check row and columns for players who never lost or never won.
+  if((sum(rowSums(conf.mat) == 0) > 0) | (sum(colSums(conf.mat) == 0) > 0)  {
+    stop("Conflict Matrix does not meet Bradley-Terry assumption.  MLE does not exist.")
+  }
+                        
   m = nrow(conf.mat)
   if(length(initial) == 1){
     initial = rep(1/m, times = m)
