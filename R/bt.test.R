@@ -5,9 +5,8 @@
 #'  That is, if \eqn{A > B} and \eqn{B > C} then \eqn{A > C} and 
 #'  \eqn{Pr(A beats C)} > \eqn{Pr(B beats C)}.
 #' 
-#' @param conf.mat an N-by-N matrix. 
-#' Either a conflict matrix or a win-loss probability matrix 
-#' (the second element from \code{conductance} output)
+#' @param conf.mat an N-by-N matrix. The matrix should be a conflict matrix with element i,j
+#' representing the number of times i has beaten j.
 #' @param baseline an integer between 1 and N inclusive identifying 
 #' the agent with dominance index equal to zero.
 #' @param maxLength an integer indicating maximum path length used
@@ -27,8 +26,7 @@
 #' the estimated sampling distribution of the test statistics.
 #' 
 #' @references 
-#'  Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.
-#'    
+#'  
 #'  Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
 #'  
 #' @examples
