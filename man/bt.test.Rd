@@ -7,9 +7,8 @@
 bt.test(conf.mat, baseline = 1, maxLength = 3, reps = 1000)
 }
 \arguments{
-\item{conf.mat}{an N-by-N matrix.
-Either a conflict matrix or a win-loss probability matrix
-(the second element from \code{conductance} output)}
+\item{conf.mat}{an N-by-N matrix. The matrix should be a conflict matrix with element i,j
+representing the number of times i has beaten j.}
 
 \item{baseline}{an integer between 1 and N inclusive identifying
 the agent with dominance index equal to zero.}
@@ -47,8 +46,6 @@ confmatrix <- as.conflictmat(sampleEdgelist)
 condTestoutput <- bt.test(confmatrix)
 }
 \references{
-Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.
-
- Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
+Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
 }
 
