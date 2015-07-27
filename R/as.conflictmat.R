@@ -14,6 +14,10 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
     stop("edgelist should be of 2 column, or 3-column for weighted edgelist")
   }
   
+  if (any(lapply(edgelist, class) == 'factor')){
+    stop("converting factor vector in your data into character vector, then try again. To convert factor vector to character vector, check out '?as.character()' for help.")
+  }
+  
   if (swap.order == TRUE){
     edgelist[, 1:2] <- edgelist[, 2:1]
   }

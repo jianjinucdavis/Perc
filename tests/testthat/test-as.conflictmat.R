@@ -10,6 +10,12 @@ test_that("edgelists of more than 3 columns are not allowed", {
                "check your raw data: A edgelist should be of either 2 or 3 columns. If it is a win-loss matrix, the column number should be equal to row number.")
 })
 
+test_that("factors are not allowed in edgelist", {
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[1:10],
+                              stringsAsFactors = TRUE)
+  expect_error(as.conflictmat(testEdgelist1))
+})
+
 test_that("only a three-column edgelist is allowed if 'weighted = TRUE'", {
   testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1])
   expect_error(as.conflictmat(testEdgelist1, weighted = TRUE),
