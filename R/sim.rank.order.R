@@ -101,7 +101,7 @@ simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null,
   allRankList <- lapply(allRankOrder, function(x)rankDF(ranking = x, data = data, output = "all"))
   allRankonlyList <- lapply(allRankList, function(x)x[,1])
   RanksDF <- data.frame(do.call(cbind, allRankonlyList))
-  names(RanksDF) <- paste0("SimAnnealRun", c(1:num))
+  names(RanksDF) <- paste0("SimRun", c(1:num))
   allRankingDF <- data.frame(ID = allRankList[[1]]$ID, RanksDF)
 
   # return(Rank.ordered)
