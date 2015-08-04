@@ -34,7 +34,7 @@ a list of two elements.
 
  \item{p.hat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated
      win-loss probability.
-     Three functions (\code{\link{valueConverter}}, \code{\link{individualWinProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability
+     Three functions (\code{\link{valueConverter}}, \code{\link{individualDomProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability
      into other formats that are easier for further analysis of win-loss probability. }
 }
 \description{

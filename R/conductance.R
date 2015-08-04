@@ -26,7 +26,7 @@
 #'    
 #'  \item{p.hat}{An N-by-N numeric matrix whose \code{(i,j)}th element is the estimated 
 #'      win-loss probability. 
-#'      Three functions (\code{\link{valueConverter}}, \code{\link{individualWinProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability 
+#'      Three functions (\code{\link{valueConverter}}, \code{\link{individualDomProb}}, and \code{\link{dyadicLongConverter}}) are provided to convert win-loss probability 
 #'      into other formats that are easier for further analysis of win-loss probability. }
 #'      
 #' @details This function performs two major steps. 
@@ -147,7 +147,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a matrix of win-loss probability ranging from 0.5 - 1.0.
-#' @seealso \code{\link{conductance}}, \code{\link{individualWinProb}}, \code{\link{dyadicLongConverter}}
+#' @seealso \code{\link{conductance}}, \code{\link{individualDomProb}}, \code{\link{dyadicLongConverter}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -175,7 +175,7 @@ valueConverter <- function(matrix){
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe of dyadic level win-loss probability and ranking certainty.
 #' @details values on the diagonal of the matrix are not included in the converted long-format data.
-#' @seealso \code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{individualWinProb}}
+#' @seealso \code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{individualDomProb}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
@@ -209,7 +209,7 @@ dyadicLongConverter <- function(matrix){
 
 #' individual-level probability converter
 #' 
-#' \code{individualWinProb} convert win-loss probability matrix into long format for each dyad
+#' \code{individualDomProb} convert win-loss probability matrix into long format for each dyad
 #' 
 #' @param matrix the win-loss matrix which is the second output from \code{conductance}. 
 #' @return a dataframe. Averaging probability of win-loss relationship with all other individuals.
@@ -223,10 +223,10 @@ dyadicLongConverter <- function(matrix){
 #' perm2 <- conductance(confmatrix, 2)
 #' perm2$imputed.conf
 #' perm2$p.hat
-#' individualLevelOutput <- individualWinProb(perm2$p.hat)
+#' individualLevelOutput <- individualDomProb(perm2$p.hat)
 #' @export
 
-individualWinProb <- function(matrix){
+individualDomProb <- function(matrix){
   
   if (!(is.matrix(matrix))) {
     stop("Only matrix is accepted as input.")
