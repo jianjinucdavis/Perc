@@ -19,7 +19,7 @@ test_that("input 'conf' is of 'conf.mat'", {
                "Only matrix is accepted as input.")
   expect_error(dyadicLongConverter(edgelist1),
                "Only matrix is accepted as input.")
-  expect_error(individualWinProb(edgelist1),
+  expect_error(individualDomProb(edgelist1),
                "Only matrix is accepted as input.")
 })
 
@@ -37,8 +37,8 @@ test_that("outputs are of correct format for dyadicLongConverter", {
   expect_equal(ncol(longData), 5)
 })
 
-test_that("outputs are of correct format for dyadicLongConverter", {
-  iwOutput <- individualWinProb(testMatrix)
+test_that("outputs are of correct format for individualDomProb", {
+  iwOutput <- individualDomProb(testMatrix)
   expect_output(str(iwOutput), "data.frame")
   expect_equal(ncol(iwOutput), 3)
 })
@@ -47,5 +47,5 @@ test_that("outputs are correct", {
   
   expect_equal_to_reference(valueConverter(testMatrix), file = "valueConverterOutput.rds")
   expect_equal_to_reference(dyadicLongConverter(testMatrix), file = "dyadicLongConverterOutput.rds")
-  expect_equal_to_reference(individualWinProb(testMatrix), file = "individualWinProbOutput.rds")
+  expect_equal_to_reference(individualDomProb(testMatrix), file = "individualDomProbOutput.rds")
 })

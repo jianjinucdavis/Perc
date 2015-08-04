@@ -28,6 +28,6 @@ perm2$p.hat
 dl <- dyadicLongConverter(perm2$p.hat)
 }
 \seealso{
-\code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{individualWinProb}}
+\code{\link{conductance}}, \code{\link{valueConverter}}, \code{\link{individualDomProb}}
 }
 
