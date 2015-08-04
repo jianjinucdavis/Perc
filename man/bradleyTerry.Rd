@@ -24,11 +24,20 @@ A list of length 3.
 \description{
 \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
 }
+\details{
+In order to meet Bradley-Terry assumption, each ID in \code{conf.mat} should have at least one win AND one loss.
+\code{bradleyTerry} will return an error if no more than one win or loss was found.
+}
 \examples{
+# create an edgelist
+edgelist1 <- data.frame(col1 = sample(letters[1:15], 200, replace = TRUE),
+                        col2 = sample(letters[1:15], 200, replace = TRUE),
+                       stringsAsFactors = FALSE)
+edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(sampleEdgelist)
+confmatrix_bt <- as.conflictmat(edgelist1)
 # Computes the MLE for the BT model
-bt <- bradleyTerry(confmatrix)
+bt <- bradleyTerry(confmatrix_bt)
 }
 \references{
 Shev, A., Hsieh, F., Beisner, B., & McCowan, B. (2012). Using Markov chain Monte Carlo (MCMC) to visualize and test the linearity assumption of the Bradley-Terry class of models. Animal behaviour, 84(6), 1523-1531.

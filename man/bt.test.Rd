@@ -40,10 +40,16 @@ It is not appropriate to use Bradley-Terry model if value of the test statistic 
 the estimated sampling distribution of the test statistics.
 }
 \examples{
+# create an edgelist
+edgelist1 <- data.frame(col1 = sample(letters[1:15], 200, replace = TRUE),
+                        col2 = sample(letters[1:15], 200, replace = TRUE),
+                       stringsAsFactors = FALSE)
+edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
 # convert an edgelist to conflict matrix
-confmatrix <- as.conflictmat(sampleEdgelist)
+confmatrix_bt <- as.conflictmat(edgelist1)
 # test the assumptions of the Bradley-Terry model
-condTestoutput <- bt.test(confmatrix)
+# not run:
+# condTestoutput <- bt.test(confmatrix_bt)
 }
 \references{
 Shev, A., Fujii, K., Hsieh, F., & McCowan, B. (2014). Systemic Testing on Bradley-Terry Model against Nonlinear Ranking Hierarchy. PloS one, 9(12), e115367.
