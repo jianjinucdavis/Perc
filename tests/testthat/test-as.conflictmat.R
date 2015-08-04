@@ -17,25 +17,25 @@ test_that("factors are not allowed in edgelist", {
 })
 
 test_that("only a three-column edgelist is allowed if 'weighted = TRUE'", {
-  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1])
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1], stringsAsFactors = FALSE)
   expect_error(as.conflictmat(testEdgelist1, weighted = TRUE),
                "Input a matrix or dataframe with three columns, with the third column being Frequency of the interaction")
 })
 
 test_that("A warning raised if dyads in weighted edgelist are not unique", {
   testEdgelist2 <- data.frame(col1 = letters[c(1:10, 1)], col2 = letters[c(10:1, 10)],
-                              col3 = sample(1:10, 11, replace = TRUE))
+                              col3 = sample(1:10, 11, replace = TRUE), stringsAsFactors = FALSE)
   expect_warning(as.conflictmat(testEdgelist2, weighted = TRUE),
                "dyads in the weighted edgelist are not unique; the sum of frequencies is taken for duplicated rows.")
 })
 
 test_that("the initiator and the recipient should not be the same", {
-  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1])
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1], stringsAsFactors = FALSE)
   expect_error(as.conflictmat(testEdgelist1, weighted = TRUE))
 })
 
 test_that("returns conf.mat", {
-  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1])
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1], stringsAsFactors = FALSE)
   expect_is(as.conflictmat(testEdgelist1), "conf.mat")
 })
 
