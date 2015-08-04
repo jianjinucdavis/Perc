@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Perc Package"
-author: "Jian Jin, Brianne A. Beisner, Jessica J. Vandeleest, Kevin Fujii, Aaron Shev, Brenda McCowan, Fushing Hsieh, "
+author: "Fushing Lab & McCowan Lab, University of California, Davis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -223,8 +223,8 @@ When you want to understand dyadic level dominance uncertainty, you could get th
 dyadicLongConverter(DominanceProbability$p.hat)[1:5, c("ID1", "ID2", "RankingCertainty")]
 ```
 
-When individual-level win-loss relationship uncertainty is the focus of your question, the function `individualWinProb` computes the mean and standard deviation for individual-level win-loss probability. 
+When individual-level win-loss relationship uncertainty is the focus of your question, the function `individualDomProb` computes the mean and standard deviation for individual-level win-loss probability. 
 
 ```{r}
-individualWinProb(DominanceProbability$p.hat)[1:10,]
+individualDomProb(DominanceProbability$p.hat)[1:10,]
 ```
