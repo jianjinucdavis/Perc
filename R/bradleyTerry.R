@@ -2,7 +2,7 @@
 #' 
 #' \code{bradleyTerry} Computes the MLE for the BT model using an MM algorithm
 #' 
-#' @param conf.mat an N-by-N matrix. Either a conflict matrix or a win-loss probability matrix (the second element from \code{conductance} output)
+#' @param conf.mat a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.
 #' @param initial initial values of dominance indices for the MM algorithm, if not supplied, the 0 vector will be the inital value.
 #' @param baseline index for agent to represent baseline dominance index set to 0.  If NA, the "sum-to-one" parameterization will be used.
 #' @param stop.dif numeric value for difference in log likelihood value between iterations.  Used as the convergence criterion for the algorithm.
@@ -57,6 +57,11 @@ bradleyTerry = function(conf.mat, initial = NA, baseline = NA,
   if((sum(rowSums(conf.mat) == 0) > 0) | (sum(colSums(conf.mat) == 0) > 0))  {
     stop("Conflict Matrix does not meet Bradley-Terry assumption.  MLE does not exist.")
   }
+  # making sure conf is of conf.mat
+  if (!("conf.mat" %in% class(conf.mat))){
+    conf.mat = as.conflictmat(conf.mat)
+  }
+
                         
   m = nrow(conf.mat)
   if(length(initial) == 1){

@@ -7,7 +7,7 @@
 bradleyTerry(conf.mat, initial = NA, baseline = NA, stop.dif = 0.001)
 }
 \arguments{
-\item{conf.mat}{an N-by-N matrix. Either a conflict matrix or a win-loss probability matrix (the second element from \code{conductance} output)}
+\item{conf.mat}{a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.}
 
 \item{initial}{initial values of dominance indices for the MM algorithm, if not supplied, the 0 vector will be the inital value.}
 

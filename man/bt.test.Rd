@@ -4,7 +4,7 @@
 \alias{bt.test}
 \title{Systemic test for the assumptions of the Bradley-Terry model}
 \usage{
-bt.test(conf.mat, baseline = 1, maxLength = 3, reps = 1000)
+bt.test(conf.mat, baseline = 1, maxLength = 2, reps = 1000)
 }
 \arguments{
 \item{conf.mat}{an N-by-N matrix. The matrix should be a conflict matrix with element i,j

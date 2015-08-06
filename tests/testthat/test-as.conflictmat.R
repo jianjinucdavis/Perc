@@ -57,7 +57,7 @@ test_that("outputs are correct", {
 
 #   edgelist1 <- data.frame(x = letters[1:5], y = letters[6:2])
 
-   expect_equal_to_reference(as.conflictmat(edgelist1), file = "output1.rds")
+   expect_equal_to_reference(as.conflictmat(edgelist1), file = "asConflictoutput1.rds")
  })
 
 
