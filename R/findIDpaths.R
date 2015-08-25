@@ -74,7 +74,7 @@ findIDpaths = function(conf, ID, len = 2){
 #  ret[isUnique,]
   pathMatrix <- IDpaths(conf, i, len)
   if (nrow(pathMatrix) == 0) {
-    message(c("no pathways found starting at "), ID)
+    message(c("no pathways of length ", len, " found starting at "), ID)
     #return(
     #  list(
     #    pathMatrix, 
