@@ -10,13 +10,26 @@ IDpaths = function(conf, i, len){
   # i = 1                            ###? does i always == 1?
   #len = 5
   levels = list()
-  levels[[1]] = which(conf[i,] > 0)  ###? levels[[1]]?
+  levels[[1]] = which(conf[i,] > 0)  ###for the ith individual, index the individual column location where this individual win over this individual directly.
+  
+  # find column index of individuals whom the ith individual win over through pathway of len.
+  
   for(j in 2:len){
     levels[[j]] = lapply(unlist(levels[[j-1]]), function(k) which(conf[k,] > 0))
   }
-  ret = matrix(0, length(unlist(levels[[len]])), len+1)
+  
+  # create a matrix ret to represent the pathway information
+  ret = matrix(0, nrow = length(unlist(levels[[len]])), ncol = len+1)
+  
+  # store information
+  # the first column will always be the ith individual
   ret[,1] = i
+  
+  # the len+1th column will be individuals in levels[[len]]
   ret[,len+1] = unlist(levels[[len]])
+  
+  # if len == 2, the 2nd column will be items in levels[[1]] which
+  #  find pathways in levels[[2]].
   if(len == 2){
     ret[,2] = rep(unlist(levels[[1]]), sapply(levels[[2]], length))
   }
@@ -44,5 +57,5 @@ IDpaths = function(conf, i, len){
     prevLengths = effLengths
   }
   isUnique = apply(ret, MARGIN = 1, function(b) {length(unique(b)) == len + 1})
-  ret[isUnique,]    
+  ret[isUnique, , drop = FALSE]    
 }
