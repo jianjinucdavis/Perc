@@ -56,21 +56,21 @@ transitivity = function(conf){
   
   for(i in 1:(N-2)){
     temp = rep(i, (N-1-i)*(N-i)/2)
-    firstrow = c(firstrow, temp)
+    firstrow = c(firstrow, temp)     # first ID
   }
   
   secondrow = numeric(0)
   for(i in 1:(N-2)){ # first row number
     for(j in (i+1):(N-1)){
       temp = rep(j, N-j)
-      secondrow = c(secondrow, temp)
+      secondrow = c(secondrow, temp)  # Second ID
     }
   }
   
   thirdrow = numeric(0)
   for(i in 3:N){
     for(j in i:N){
-      thirdrow = c(thirdrow, seq(j, N, 1))
+      thirdrow = c(thirdrow, seq(j, N, 1))  # third ID
     }
   }
   
@@ -88,16 +88,16 @@ transitivity = function(conf){
   tList = matrix(0, 0, 4)
   iList = matrix(0, 0, 4)
   for(i in 1:nrow(triples)){
-    tA = triples[i,1]
-    tB = triples[i,2]
-    tC = triples[i,3]
-    AB = conf[tA, tB] - conf[tB, tA]
+    tA = triples[i,1]                  # first ID
+    tB = triples[i,2]                  # second ID
+    tC = triples[i,3]                  # third ID
+    AB = conf[tA, tB] - conf[tB, tA]  
     AC = conf[tA, tC] - conf[tC, tA]
     BC = conf[tB, tC] - conf[tC, tB]
     ### See if the triangle is transitive...
-    if((AC > 0 & BC > 0 & AB != 0) | 
-       (AB < 0 & AC < 0 & BC != 0) | 
-       (AB > 0 & BC < 0 & AC != 0)){
+    if((AC > 0 & BC > 0 & AB != 0) |    # BAC, ABC
+       (AB < 0 & AC < 0 & BC != 0) |    # CBA, BCA
+       (AB > 0 & BC < 0 & AC != 0)){    # CAB, ACB
       transitive = transitive + 1
       tList = rbind(tList, c(triples[i,], i))
     }
