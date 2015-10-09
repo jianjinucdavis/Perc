@@ -1,0 +1,12 @@
+---
+title: "README_updates"
+author: "JJ"
+date: "August 20, 2015"
+output: word_document
+---
+
+**Updates to Perc_0.0.9099**
+
+Perc_0.0.9099 fixed an error in computing imputed-win matrix in the function `conductance` that exists in old versions of Perc packages. Updates to the codes can be found at: https://github.com/jianjinucdavis/Perc/commit/d01d3a072f26a61172d09855db8f1e92cd5d9330
+
+Note: you'll need to register a github account and email me your username to access the link above.

@@ -76,7 +76,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   outdegree = rowSums(conf)
   
   # calculate alpha if not exist
-  conf.trans <- transitivity(conf)
+  conf.trans <- Perc::transitivity(conf)
   if (is.null(alpha)) {
     alpha <- conf.trans$alpha
   }
@@ -129,12 +129,12 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   percMat2 = matrix(0, N, N)
   for(i in 2:N){
     for(j in 1:(i-1)){
-      temp1 = (alpha * percMat[i,j] + beta)/(alpha * percMat[i,j] + 
-                                               alpha * percMat[j,i] + 2 * beta)
+      temp1 = (alpha * percMat[i,j] + beta)/(alpha * percMat[i,j] +  # percMat[i, j]: times i triumphs j
+                                               alpha * percMat[j,i] + 2 * beta) # percMat[j, i]: times j triumphs i.
       temp2 = (alpha * percMat[j,i] + beta)/(alpha * percMat[i,j] + 
                                                alpha * percMat[j,i] + 2 * beta)
-      percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)
-      percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)
+      percMat2[i,j] = ifelse(is.nan(temp1), 0.5, temp1)  # lower triangle.
+      percMat2[j,i] = ifelse(is.nan(temp2), 0.5, temp2)  # corresponding upper triangle
       # if(verbose){print(i)}  # "Error: object 'verbose' not found"
     }
   }
