@@ -4,6 +4,11 @@
 #' 
 #' @param conf an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}
 #' 
+#' @param strict a logical vector of length 1 (TRUE or FALSE). It is used in transitivity definition for alpha estimation. 
+#' It should be set to TRUE when a transitive triangle is defined as all pathways in the triangle go to the same direction;
+#' it should be set to FALSE when a transitive triangle is defined as PRIMARY pathways in the triangle go to the same direction.
+#' Strict = FALSE by default.
+#'
 #' @return A list of four elements.
 #' 
 #'  \item{transitive}{The number of transitive triangles.}
@@ -22,14 +27,14 @@
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # transitivity calculation
-#' conftrans <- transitivity(confmatrix)
+#' conftrans <- transitivity(confmatrix, strict = FALSE)
 #' conftrans$transitive
 #' conftrans$intransitive
 #' conftrans$transitivity
 #' conftrans$alpha
 #' @export
 
-transitivity = function(conf){
+transitivity = function(conf, strict = FALSE){
   
   # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
@@ -85,8 +90,10 @@ transitivity = function(conf){
   
   transitive = 0
   intransitive = 0
+  strictTransitive = 0
   tList = matrix(0, 0, 4)
   iList = matrix(0, 0, 4)
+  stList = matrix(0, 0, 4)
   for(i in 1:nrow(triples)){
     tA = triples[i,1]                  # first ID
     tB = triples[i,2]                  # second ID
@@ -107,16 +114,44 @@ transitivity = function(conf){
       intransitive = intransitive + 1
       iList = rbind(iList, c(triples[i,], i))
     }
+    ABstrict = conf[tA, tB]
+    ACstrict = conf[tA, tC]
+    BCstrict = conf[tB, tC]
+    BAstrict = conf[tB, tA]
+    CAstrict = conf[tC, tA]
+    CBstrict = conf[tC, tB]
+    ### See if the triangle is strict transitive
+    if(
+      ((BAstrict > 0 | ABstrict > 0) & ACstrict > 0 & BCstrict > 0 & 
+       CAstrict == 0 & CBstrict == 0) |
+      (BAstrict > 0 & CAstrict > 0 & (BCstrict > 0 | CBstrict > 0) & 
+       ABstrict == 0 & ACstrict == 0)|
+      (ABstrict > 0 & CBstrict > 0 & (ACstrict > 0 | CAstrict > 0) & 
+       BAstrict == 0 &  BCstrict == 0)) {
+      strictTransitive = strictTransitive + 1
+      stList = rbind(stList, c(triples[i,], i))
+    }
   }
   
-  
-  ### Estimated transitivity is the proportion of transitive triangles.
-  T1 = transitive / (transitive + intransitive)
-  
-  ### T1 is the order-1 transitivity.
-  
-  ### From the paper, we estimate alpha as follows.
-  alpha = (2 * sqrt(T1) - 1) / (1 - sqrt(T1))
-  
-  return(list(transitive = transitive, intransitive = intransitive, transitivity = T1, alpha = alpha))
+  if (strict) {
+    
+    T1 = strictTransitive / (transitive + intransitive)
+    strictIntransitive = (transitive + intransitive) - strictTransitive
+    alpha = (2 * sqrt(T1) - 1) / (1 - sqrt(T1))
+    
+    return(list(transitive = strictTransitive, 
+                intransitive = strictIntransitive, 
+                transitivity = T1, 
+                alpha = alpha))
+    
+  } else {
+    ### T1 is the order-1 transitivity.
+    T1 = transitive / (transitive + intransitive)
+    
+    ### From the paper, we estimate alpha as follows.
+    alpha = (2 * sqrt(T1) - 1) / (1 - sqrt(T1))
+    
+    return(list(transitive = transitive, intransitive = intransitive, transitivity = T1, alpha = alpha))
+    
+  }
 }

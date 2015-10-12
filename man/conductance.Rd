@@ -4,7 +4,7 @@
 \alias{conductance}
 \title{compute win-loss probabilities}
 \usage{
-conductance(conf, maxLength, alpha = NULL, beta = 1)
+conductance(conf, maxLength, alpha = NULL, beta = 1, strict = FALSE)
 }
 \arguments{
 \item{conf}{a matrix of conf.mat class. An N-by-N conflict matrix whose \code{(i,j)}th element is the number of times i defeated j.}
@@ -25,6 +25,11 @@ on an underlying win-loss probability.
 Both \eqn{\alpha} and \eqn{\beta} are chosen such that \eqn{((\alpha + \beta)/(\alpha + 2\beta))^2} is
 equal to the order-1 transitivity of the observed network.
 Therefore, \eqn{\beta} is commonly set to 1.}
+
+\item{strict}{a logical vector of length 1. It is used in transitivity definition for alpha estimation.
+It should be set to TRUE when a transitive triangle is defined as all pathways in the triangle go to the same direction;
+it should be set to FALSE when a transitive triangle is defined as PRIMARY pathways in the triangle go to the same direction.
+Strict = FALSE by default.}
 }
 \value{
 a list of two elements.
@@ -55,7 +60,7 @@ the underlying probability of \code{i} over \code{j}, for all \code{ij} pairs.
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
 # find win-loss probability matrix
-perm2 <- conductance(confmatrix, 2)
+perm2 <- conductance(confmatrix, 2, strict = FALSE)
 perm2$imputed.conf
 perm2$p.hat
 }

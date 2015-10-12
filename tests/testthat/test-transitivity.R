@@ -17,10 +17,10 @@ testMatrix2 <- as.conflictmat(edgelist1)
 # tests
 
 test_that("output is a list of length 4", {
-  expect_is(transitivity(testMatrix2), "list")
+  expect_is(transitivity(testMatrix2, strict = FALSE), "list")
   expect_equal(length(transitivity(testMatrix2)), 4)
 })
 
 test_that("outputs are correct", {
-  expect_equal_to_reference(transitivity(testMatrix2), file = "transitivityOutput1.rds")
+  expect_equal_to_reference(transitivity(testMatrix2, strict = FALSE), file = "transitivityOutput1.rds")
 })

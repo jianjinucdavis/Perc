@@ -19,6 +19,10 @@
 #' Both \eqn{\alpha} and \eqn{\beta} are chosen such that \eqn{((\alpha + \beta)/(\alpha + 2\beta))^2} is 
 #' equal to the order-1 transitivity of the observed network. 
 #' Therefore, \eqn{\beta} is commonly set to 1.
+#' @param strict a logical vector of length 1. It is used in transitivity definition for alpha estimation. 
+#' It should be set to TRUE when a transitive triangle is defined as all pathways in the triangle go to the same direction;
+#' it should be set to FALSE when a transitive triangle is defined as PRIMARY pathways in the triangle go to the same direction.
+#' Strict = FALSE by default.
 #' @return a list of two elements. 
 #' 
 #'  \item{imputed.conf}{An N-by-N conflict matrix whose \code{(i,j)}th element is the 
@@ -47,12 +51,12 @@
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find win-loss probability matrix
-#' perm2 <- conductance(confmatrix, 2)
+#' perm2 <- conductance(confmatrix, 2, strict = FALSE)
 #' perm2$imputed.conf
 #' perm2$p.hat
 #' @export
 
-conductance = function(conf, maxLength, alpha = NULL, beta = 1){
+conductance = function(conf, maxLength, alpha = NULL, beta = 1, strict = FALSE){
   
   # making sure conf is of conf.mat
   if (!("conf.mat" %in% class(conf))){
@@ -76,7 +80,7 @@ conductance = function(conf, maxLength, alpha = NULL, beta = 1){
   outdegree = rowSums(conf)
   
   # calculate alpha if not exist
-  conf.trans <- Perc::transitivity(conf)
+  conf.trans <- Perc::transitivity(conf, strict = FALSE)
   if (is.null(alpha)) {
     alpha <- conf.trans$alpha
   }

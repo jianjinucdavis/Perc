@@ -38,7 +38,7 @@ test_that("output is a matrix of len + 1 column, or a message if no paths found 
   testMatrix3 <- testMatrix2
   testMatrix3[1,] <- 0
   # expect_is(findIDpaths(testMatrix3, "a", len = 2), "list")
-  expect_message(findIDpaths(testMatrix3, "a", len = 2), "no pathways found starting at a")
+  expect_message(findIDpaths(testMatrix3, "a", len = 2))
 })
 
 

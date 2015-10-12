@@ -24,7 +24,7 @@ test_that("return error for incorrect maxLength", {
 })
 
 test_that("output is a list of length 2", {
-  conductanceOutput <- conductance(testMatrix2, maxLength = 2)
+  conductanceOutput <- conductance(testMatrix2, maxLength = 2, strict = FALSE)
   expect_is(conductanceOutput, "list")
   expect_equal(length(conductanceOutput), 2)
   expect_output(str(conductanceOutput), "List of 2")
@@ -34,7 +34,7 @@ test_that("output is a list of length 2", {
 
 test_that("outputs are correct", {
  
-  expect_equal_to_reference(conductance(testMatrix2, maxLength = 2), file = "conductanceOutput1.rds")
-  expect_equal_to_reference(conductance(testMatrix2, maxLength = 3), file = "conductanceOutput2.rds")
-  expect_equal_to_reference(conductance(testMatrix2, maxLength = 4), file = "conductanceOutput3.rds")
+  expect_equal_to_reference(conductance(testMatrix2, maxLength = 2, strict = FALSE), file = "conductanceOutput1.rds")
+  expect_equal_to_reference(conductance(testMatrix2, maxLength = 3, strict = FALSE), file = "conductanceOutput2.rds")
+  expect_equal_to_reference(conductance(testMatrix2, maxLength = 4, strict = FALSE), file = "conductanceOutput3.rds")
 })

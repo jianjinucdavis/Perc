@@ -4,10 +4,15 @@
 \alias{transitivity}
 \title{calculate transitivity measurements for a matrix}
 \usage{
-transitivity(conf)
+transitivity(conf, strict = FALSE)
 }
 \arguments{
 \item{conf}{an N-by-N conflict matrix whose \code{(i,j)}th element is the number of times \code{i} defeated \code{j}}
+
+\item{strict}{a logical vector of length 1 (TRUE or FALSE). It is used in transitivity definition for alpha estimation.
+It should be set to TRUE when a transitive triangle is defined as all pathways in the triangle go to the same direction;
+it should be set to FALSE when a transitive triangle is defined as PRIMARY pathways in the triangle go to the same direction.
+Strict = FALSE by default.}
 }
 \value{
 A list of four elements.
@@ -30,7 +35,7 @@ A list of four elements.
 # convert an edgelist to conflict matrix
 confmatrix <- as.conflictmat(sampleEdgelist)
 # transitivity calculation
-conftrans <- transitivity(confmatrix)
+conftrans <- transitivity(confmatrix, strict = FALSE)
 conftrans$transitive
 conftrans$intransitive
 conftrans$transitivity
