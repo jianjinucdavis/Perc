@@ -4,7 +4,7 @@ Title: Using Percolation and Conductane to find information flow certainty in di
 Version: 0.0.9100
 Date: 2015-05-06
 Authors@R: c(person("Fujii", "Kevin", email = "kevfujii@gmail.com", role = "aut"),
-  person("Jin", "Jian", email = "jinjian.xyz@gmail.com", role = c("aut", "cre")),
+  person("Jin", "Jian", email = "jinjian.pku@gmail.com", role = c("aut", "cre")),
   person("Shev", "Aaron", email = "abshev@ucdavis.edu", role = "aut"),
   person("Beisner", "Brianne", role = "aut"),
   person("McCowan", "Brenda", role = "aut"),
