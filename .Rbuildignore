@@ -5,3 +5,5 @@
 ^rdev/
 ^cran-comments\.md$
 ^README\.Rmd$
+^README_Updates\.Rmd$
+^NEWS\.Rmd$
