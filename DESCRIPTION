@@ -1,15 +1,15 @@
 Package: Perc
 Type: Package
-Title: Using Percolation and Conductane to find information flow certainty in direct network
+Title: Using Percolation and Conductane to Find Information Flow Certainty in a Direct Network
 Version: 0.0.9100
-Date: 2015-05-06
+Date: 2015-10-19
 Authors@R: c(person("Fujii", "Kevin", email = "kevfujii@gmail.com", role = "aut"),
   person("Jin", "Jian", email = "jinjian.pku@gmail.com", role = c("aut", "cre")),
   person("Shev", "Aaron", email = "abshev@ucdavis.edu", role = "aut"),
   person("Beisner", "Brianne", role = "aut"),
   person("McCowan", "Brenda", role = "aut"),
   person("Hsieh", "Fushing", role = "aut"))
-Description: Find the certainty of dominance interactions with indirect interactions being considered.
+Description: To find the certainty of dominance interactions with indirect interactions being considered.
 Depends: 
     R (>= 2.14.0)
 License: GPL (>= 2)
