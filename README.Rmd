@@ -2,7 +2,7 @@
 title: "README"
 author: "JJ"
 date: "July 22, 2015"
-output: html_document
+output: pdf_document
 ---
 
 Rank order and the certainty of the win-loss relationships are two aspects of ranking relationships. Win-loss information can be found not only from direct interactions, but also information from indirect pathways between all pairs of nodes. The Perc package quantifies both rank order and dominance certainty using win-loss information from both direct and indirect pathways by performing a series of random walks through the network. 
@@ -10,7 +10,8 @@ Rank order and the certainty of the win-loss relationships are two aspects of ra
 
 ## Workflow
 A typical workflow using Perc package to quantify rank order and dominance certainty contains three steps: 
-* Importing Data: using `r as.conflictmat()` to transform your raw win-loss edgelist or matrix to an R object of "conf.mat" class.
+
+* Importing Data: using `as.conflictmat()` to transform your raw win-loss edgelist or matrix to an R object of "conf.mat" class.
 
 ```{r}
 library(Perc)
