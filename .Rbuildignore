@@ -7,3 +7,6 @@
 ^README\.Rmd$
 ^README_Updates\.Rmd$
 ^NEWS\.Rmd$
+^README\.md$
+^NEWS\.md$
+^figure/$
