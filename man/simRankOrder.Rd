@@ -20,7 +20,7 @@ for the win-loss probability of \code{i} over \code{j}: \eqn{Beta(\alpha c_{i,j}
 In the absence of expertise to accurately estimate alpha,
 it is estimated from the data.}
 
-\item{kmax}{an integer between 2 to 1000}
+\item{kmax}{an integer between 2 to 1000, indicating the number of simulations in each SimAnnealing.}
 }
 \value{
 a list of two dataframes.
@@ -36,11 +36,19 @@ a list of two dataframes.
 confmatrix <- as.conflictmat(sampleEdgelist)
 # find dominance probability matrix
 perm2 <- conductance(confmatrix, maxLength = 2)
-# Note: It takes a while to run the simRankOrder.
+\dontrun{
+# Note: It takes a while to run the simRankOrder example.
 s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
 s.rank$BestSimulatedRankOrder
 s.rank$Costs
 s.rank$AllSimulatedRankOrder
+}
+\dontshow{
+s.rank <- simRankOrder(perm2$p.hat, num = 2, kmax = 5)
+s.rank$BestSimulatedRankOrder
+s.rank$Costs
+s.rank$AllSimulatedRankOrder
+}
 }
 \references{
 Fushing, H., McAssey, M. P., Beisner, B., & McCowan, B. (2011). Ranking network of a captive rhesus macaque society: a sophisticated corporative kingdom. PLoS One, 6(3), e17817-e17817.
