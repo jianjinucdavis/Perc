@@ -50,7 +50,7 @@ sampleRawMatrix[1:5, 1:5]
 ##### Importing your raw data
 
 Before showing you how to use any function, we want to briefly introduce how you could get help by accessing help file for each function. In R, you could access help file for any function using `?function`. For example,
-```{r}
+```{r, results='hide'}
 ?as.conflictmat
 ?subset
 ```
