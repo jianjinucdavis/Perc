@@ -5,7 +5,7 @@
 #' @param data a matrix. the win-loss probability matrix 
 #' which is the second element of the output from \code{conductance}
 #' @param num number of SimAnnealing (default is set at 10)
-#' @param kmax an integer between 2 to 1000
+#' @param kmax an integer between 2 to 1000, indicating the number of simulations in each SimAnnealing.
 #' @param alpha a positive integer that 
 #' reflects the influence of an observed win/loss interaction 
 #' on an underlying win-loss probability. 
@@ -28,11 +28,19 @@
 #' confmatrix <- as.conflictmat(sampleEdgelist)
 #' # find dominance probability matrix
 #' perm2 <- conductance(confmatrix, maxLength = 2)
-#' # Note: It takes a while to run the simRankOrder.
+#' \dontrun{
+#' # Note: It takes a while to run the simRankOrder example.
 #' s.rank <- simRankOrder(perm2$p.hat, num = 10, kmax = 1000)
 #' s.rank$BestSimulatedRankOrder
 #' s.rank$Costs
 #' s.rank$AllSimulatedRankOrder
+#' }
+#' \dontshow{
+#' s.rank <- simRankOrder(perm2$p.hat, num = 2, kmax = 5)
+#' s.rank$BestSimulatedRankOrder
+#' s.rank$Costs
+#' s.rank$AllSimulatedRankOrder
+#' }
 #' @export
 
 simRankOrder <- function(data, num = 10, alpha = NULL, kmax = 1000){  # if null, take transitivity; if not null take specify
