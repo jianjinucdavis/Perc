@@ -1,5 +1,8 @@
 ## Resubmission
-This is a resubmission. In this version I have:
+
+* Version number was increased to "0.1.0".
+
+## Resubmission-1
 
 * Fixed the misspelling of "Conductance" in DESCRIPTION (3:30).
 
