@@ -66,4 +66,4 @@ plotConfmat(DominanceProbability$p.hat, ordering = s.rank[[1]]$ID, labels = TRUE
 ```
 
 ## Installation
-Well~~ I'm working on that~~ Please be patient. :-)
+To install Perc from github, you could run `devtools::install_github("jianjinucdavis/Perc")`. If it failed, try installing the R package `devtools` first by running `install.packages("devtools")`.
