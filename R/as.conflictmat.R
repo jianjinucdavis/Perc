@@ -122,13 +122,14 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
     } else{
       mat <- as.matrix(Data)
     }
-    class(mat) = c("conf.mat", "matrix")
-    return(mat)
+    # update 2016.1.18: sorted matrix by colnames
+    sorted_subjects = unique(sort(colnames(mat)))
+    mat_sorted = mat[sorted_subjects, sorted_subjects]
   } else {
-    mat <- edgelisttomatrix(Data, weighted, swap.order)
-    class(mat) = c("conf.mat", "matrix")
-    return(mat) 
+    mat_sorted <- edgelisttomatrix(Data, weighted, swap.order)
   }
+  class(mat_sorted) = c("conf.mat", "matrix")
+  return(mat_sorted) 
 }
 
 

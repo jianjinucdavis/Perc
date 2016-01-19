@@ -193,7 +193,10 @@ valueConverter <- function(matrix){
 #' dl <- dyadicLongConverter(perm2$p.hat)
 #' @export
 
-
+# to do:
+# 1. change ID2 into character vector; make sure both IDs are character vector.
+# 2. clarify in documentation that each unique dyad appear only once.
+# 3. clarify in documentation that which ID is the dominant one.
 dyadicLongConverter <- function(matrix){
   if (!(is.matrix(matrix))) {
     stop("Only matrix is accepted as input.")
