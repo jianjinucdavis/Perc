@@ -12,7 +12,10 @@ This is a resubmission. In this version I have:
 * win-builder (devel and release)
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, no NOTES. 
+There were no ERRORs or WARNINGs.
+
+There was 1 NOTE when checking package dependencies. 
+No repository set, so cyclic dependency check skipped
 
 
 ## Reverse dependencies
