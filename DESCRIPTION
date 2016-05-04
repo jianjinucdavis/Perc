@@ -1,7 +1,7 @@
 Package: Perc
 Type: Package
 Title: Using Percolation and Conductance to Find Information Flow Certainty in a Direct Network
-Version: 0.1.1
+Version: 0.1.2
 Date: 2016-01-19
 Authors@R: c(person("Kevin", "Fujii", email = "kevfujii@gmail.com", role = "aut"),
   person("Jian", "Jin", email = "jinjian.pku@gmail.com", role = c("aut", "cre")),
