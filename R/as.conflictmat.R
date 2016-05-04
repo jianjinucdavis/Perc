@@ -14,8 +14,9 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
     stop("edgelist should be of 2 column, or 3-column for weighted edgelist")
   }
   
-  if (any(lapply(edgelist, class) == 'factor')){
-    stop("converting factor vector in your data into character vector, then try again. To convert factor vector to character vector, check out '?as.character()' for help.")
+  if (any(lapply(edgelist[, 1:2], class) == 'factor')){
+    edgelist[, 1:2] <- apply(edgelist[, 1:2], 2, as.character)
+    warning("Factor vector(s) in your data into were automatically converted into character vector(s).")
   }
   
   if (swap.order == TRUE){
@@ -24,7 +25,12 @@ edgelisttomatrix <- function(edgelist, weighted = FALSE, swap.order = FALSE) {
   
   if (any(edgelist[,1] == edgelist[,2])) {
     rowIndex <- which(edgelist[,1] == edgelist[,2])
-    stop(paste("check your raw data at row number", paste(rowIndex, collapse = ","), ". The initiator and the recipient should not be the same."))
+    edgelist <- edgelist[-rowIndex, ]
+    warning(
+      paste("Row number", 
+            paste(rowIndex, collapse = ","), 
+            "in your raw data is removed because the initiator and recipient are the same. Self-look is not allowed for this method.")
+      )
   }
   
   subjects = unique(sort(as.matrix(edgelist[,1:2]))) # work better for IDs of character
@@ -112,15 +118,22 @@ as.conflictmat = function(Data, weighted = FALSE, swap.order = FALSE){
   }
   
   if (ncol(Data) == nrow(Data)){
-    # if values on diagonal are not all zeros, return error.
+    # if values on diagonal are not all zeros, return warnings.
     if (any(diag(as.matrix(Data)) != 0)){
       index <- which(diag(as.matrix(Data)) != 0)
-      stop(paste("check your raw win-loss matrix at Row", paste(index, collapse = ","), "and column", paste(index, collapse = ","), "; Non-zero values are not allowed on the diagonal in your raw win-loss matrix."))
+      mat <- as.matrix(Data)
+      diag(mat)[index] <- 0
+      warning(paste("Non-zero values in your raw win-loss matrix at Row", 
+                    paste(index, collapse = ","), 
+                    "and column", 
+                    paste(index, collapse = ","), 
+                    " are converted to 0; Non-zero values are not allowed on the diagonal in your raw win-loss matrix."))
     }
     if (swap.order == TRUE) {
       mat <- t(as.matrix(Data))
     } else{
       mat <- as.matrix(Data)
+      
     }
     # update 2016.1.18: sorted matrix by colnames
     sorted_subjects = unique(sort(colnames(mat)))
