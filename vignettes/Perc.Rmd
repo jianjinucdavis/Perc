@@ -111,7 +111,6 @@ pathKuai[1:5, ]
 
 # When there's no pathway starting at a particular individual, you'll get an output like the example below: 
 pathKalani <- findIDpaths(confmatrix, ID = "Kalani", len = 2)
-pathKalani
 ```
 
 You could also use `transitivity` to find out information on transitivity, a measure of how consistent or inconsistent the flow of information is through the network as a whole.  This procedure looks for the number of triangles (e.g. A→B→C→A) and determines whether or not they are transitive. 
