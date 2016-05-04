@@ -11,7 +11,7 @@ test_that("edgelists of more than 3 columns are not allowed", {
 })
 
 test_that("factors are not allowed in edgelist", {
-  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[1:10],
+  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[11:20],
                               stringsAsFactors = TRUE)
   expect_error(as.conflictmat(testEdgelist1))
 })
@@ -50,8 +50,8 @@ test_that("diagonal of the raw win-loss matrix should be zeros", {
 # to do: using expect_equal_to_reference to test that "outputs are correct".
 test_that("outputs are correct", {
    set.seed(1)
-   edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE), 
-                           col2 = sample(letters[1:26], 100, replace = TRUE), 
+   edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE),
+                           col2 = sample(letters[1:26], 100, replace = TRUE),
                           stringsAsFactors = FALSE)
    edgelist1 <- edgelist1[-which(edgelist1$col1 == edgelist1$col2), ]
 
