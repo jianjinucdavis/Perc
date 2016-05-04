@@ -26,7 +26,7 @@ test_that("input 'conf' is of 'conf.mat'", {
 
 test_that("outputs are of correct format for valueConverter", {
   vcOutput <- valueConverter(testMatrix)
-  expect_output(class(vcOutput), "matrix")
+  expect_is(vcOutput, "matrix")
   expect_equal(dim(vcOutput), dim(testMatrix))
 })
 
