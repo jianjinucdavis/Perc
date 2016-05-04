@@ -13,7 +13,7 @@ test_that("edgelists of more than 3 columns are not allowed", {
 test_that("factors are not allowed in edgelist", {
   testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[11:20],
                               stringsAsFactors = TRUE)
-  expect_error(as.conflictmat(testEdgelist1))
+  expect_warning(as.conflictmat(testEdgelist1))
 })
 
 test_that("only a three-column edgelist is allowed if 'weighted = TRUE'", {
@@ -30,8 +30,8 @@ test_that("A warning raised if dyads in weighted edgelist are not unique", {
 })
 
 test_that("the initiator and the recipient should not be the same", {
-  testEdgelist1 <- data.frame(col1 = letters[1:10], col2 = letters[10:1], stringsAsFactors = FALSE)
-  expect_error(as.conflictmat(testEdgelist1, weighted = TRUE))
+  testEdgelist1 <- data.frame(col1 = c(letters[1:11], "a"), col2 = c(letters[11:1], "a"), stringsAsFactors = FALSE)
+  expect_warning(as.conflictmat(testEdgelist1, weighted = FALSE))
 })
 
 test_that("returns conf.mat", {
@@ -43,11 +43,11 @@ test_that("diagonal of the raw win-loss matrix should be zeros", {
   set.seed(1)
   testMatrix1 <- matrix(sample(1:100, 100, TRUE), 10, 10)
   diag(testMatrix1) <- sample(c(0, 1), 10, TRUE, prob = c(0.9, 0.1))
-  expect_error(as.conflictmat(testMatrix1))
+  expect_warning(as.conflictmat(testMatrix1))
 })
 
 
-# to do: using expect_equal_to_reference to test that "outputs are correct".
+
 test_that("outputs are correct", {
    set.seed(1)
    edgelist1 <- data.frame(col1 = sample(letters[1:26], 100, replace = TRUE),
