@@ -1,9 +1,11 @@
 ## Resubmission
-This is a resubmission. In this version I have:
+This is new submission. 
+
+* The previous Perc was archived on CRAN because of an uncorrected failed check. In this version I have:
+
+* Corrected the codes that were responsible for the failed check- Tests for `valueConverter` was updated so that it is consistent with the most recent version of testthat.
 
 * Version number was increased to "0.1.2".
-
-* Tests for `valueConverter` was updated so that it is consistent with the most recent version of testthat.
 
 * `as.conflictmat` was updated to fix minor issues in raw data with warnings returned to users about the fix, instead of returning erros as in previous versions.
 
@@ -14,8 +16,16 @@ This is a resubmission. In this version I have:
 ## R CMD check results
 There were no ERRORs or WARNINGs.
 
-There was 1 NOTE when checking package dependencies. 
-No repository set, so cyclic dependency check skipped
+There were 2 NOTEs when checking package dependencies. 
+* New submission
+
+Package was archived on CRAN
+
+CRAN repository db overrides:
+  X-CRAN-Comment: Archived on 2016-05-02 as check problems were not
+    corrected despite reminders.
+
+* No repository set, so cyclic dependency check skipped
 
 
 ## Reverse dependencies
