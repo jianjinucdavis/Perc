@@ -9,7 +9,7 @@
 #' specified in the \code{rownames()} of \code{conf.mat()} on the heatmap
 #' @param ... Further argument may be supplied and processed by \code{levelplot}.
 #' @return A heatmap
-#' @seealso \code{\link{as.conflictmat}}, \code{\link{conductance}}
+#' @seealso \code{\link{as.conflictmat}}, \code{\link{conductance}}, \code{\link{lattice::levelplot}}
 #' @examples
 #' # convert an edgelist to conflict matrix
 #' confmatrix <- as.conflictmat(sampleEdgelist)
