@@ -29,7 +29,9 @@ A list of four elements.
 \code{transitivity} calculate transitivity measurements for a matrix
 }
 \details{
-<more information on transitivity!>
+\code{transitivity} is calculated as the proportion transitive triangles in the total of transitive and intransitive triangles.
+transitivity is used to estimate alpha, which is used in turn in imputing information from indirect pathways as to what degree we can trust information from indirect pathways.
+Greater transitivity is associated with assigning higher weight to information from indirect pathways.
 }
 \examples{
 # convert an edgelist to conflict matrix
@@ -42,6 +44,6 @@ conftrans$transitivity
 conftrans$alpha
 }
 \seealso{
-\code{\link{countPaths}} \code{\link{findIDpaths}}
+\code{\link{countPaths}}, \code{\link{findIDpaths}}, \code{\link{conductance}}
 }
 
