@@ -15,7 +15,7 @@ a win-loss probability matrix (the second element from \code{conductance} output
 \item{labels}{if TRUE, displaying the agent names as 
 specified in the \code{rownames()} of \code{conf.mat()} on the heatmap}
 
-\item{...}{Further argument may be supplied and processed by \code{levelplot}.}
+\item{...}{Further argument may be supplied and processed by \code{lattice::levelplot}.}
 }
 \value{
 A heatmap
@@ -32,6 +32,6 @@ perm2 <- conductance(confmatrix, 2)
 plotConfmat(perm2$p.hat)
 }
 \seealso{
-\code{\link{as.conflictmat}}, \code{\link{conductance}}, \code{\link{lattice::levelplot}}
+\code{\link{as.conflictmat}}, \code{\link{conductance}}
 }
 
