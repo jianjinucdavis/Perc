@@ -54,13 +54,16 @@ plotConfmat = function(conf.mat, ordering = NA, labels = FALSE, ...){
     y.values = rev(1:N)
   }
   
-  lattice::levelplot(t(conf.mat.ord)[,ncol(conf.mat.ord):1], col.regions = colors, 
-            xlab = "Loser", ylab = "Winner",
-            scales=list(
+  gobj <- lattice::levelplot(
+    t(conf.mat.ord)[,ncol(conf.mat.ord):1],
+    col.regions = colors, 
+    xlab = "Loser", ylab = "Winner",
+    scales=list(
               x=list(labels=lbls, at = x.values, rot = ifelse(labels == TRUE, 90, 0)),
               y=list(labels=lbls, at = y.values)
-            )
-  )
+    )
+  ) # close lattice
+  print(gobj)
 }
 
 
